@@ -1,9 +1,9 @@
 from flask import Blueprint, make_response, abort
 
-auth_route = Blueprint("auth_route", __name__)
+auth_route = Blueprint("auth_route", __name__, url_prefix="/api")
 
 
-@auth_route.route("/", methods=["GET"])
+@auth_route.route("/hello", methods=["GET"])
 def index():
     resp = make_response({"message": "Wellcome to fuck docker"})
     return resp

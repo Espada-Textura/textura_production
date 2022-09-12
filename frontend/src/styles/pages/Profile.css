@@ -1,0 +1,332 @@
+@media screen and (max-width: 320px) {
+    body {
+        width: fit-content;
+    }
+}
+
+.propage-mainlayout {
+    position: relative;
+    z-index: 0;
+    display: grid !important;
+    grid-template-areas:
+        'propage-cover propage-cover'
+        'propage-nav propage-post';
+
+    grid-template-columns: 1fr 3fr;
+}
+.propage-cover-container {
+    position: relative;
+    height: 300px;
+    grid-area: propage-cover;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0, 0.6));
+}
+
+#propage-procover {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    max-width: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.propage-message-btn,
+.propage-editpro-btn,
+.propage-addfriend-btn:hover {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    max-height: 50px;
+    background-color: white !important;
+    color: #f37eaf;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.propage-addfriend-btn {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    max-height: 50px;
+    color: white;
+    background-color: #f37eaf !important;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.propage-editpro-btn:hover,
+.propage-message-btn:hover {
+    background-color: #f37eaf !important;
+    color: white;
+}
+
+.propage-pro-icon {
+    font-size: 20px;
+}
+
+#propage-editpro-text {
+    font-size: 18px;
+}
+
+.propage-profile {
+    column-gap: 10px;
+}
+
+.propage-propic {
+    position: relative;
+    max-height: 130px;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+.propage-name {
+    font-family: 'Lato-Black', sans-serif;
+    /* font-size: 36px; */
+    color: white;
+}
+
+.propage-username {
+    font-size: 24px;
+    color: #ffffffc2;
+}
+
+.propage-navcontainer {
+    grid-area: propage-nav;
+    /* column-gap: 15px; */
+    max-width: 420px;
+    position: relative;
+    height: max-content;
+}
+
+.propage-navcontainer::after {
+    content: '';
+    position: absolute;
+    height: 97%;
+    width: 1px;
+    top: 10px;
+    right: 0;
+    background-color: #c4c4c4;
+}
+
+.propage-post {
+    grid-area: propage-post;
+}
+
+@media screen and (max-width: 590.5px) {
+    #propage-editpro-text {
+        display: none;
+    }
+
+    #propage-pro-icon {
+        margin: 14px !important;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    div.propage-navmenu {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+        justify-content: space-evenly;
+        width: 100%;
+        padding-top: 1px !important;
+        padding-bottom: 0px !important;
+    }
+
+    div.propage-morebtn {
+        display: block !important;
+        align-self: center;
+    }
+
+    .propage-icon {
+        display: none !important;
+    }
+
+    .propage-active {
+        background-color: white !important;
+        font-weight: bold;
+    }
+
+    .propage-active::before {
+        bottom: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 4px !important;
+        top: 100% !important;
+        background: linear-gradient(to right, #d4145a, #fbb03b) !important;
+        border-radius: 2px !important;
+    }
+
+    .propage-hide,
+    .propage-dropdown-hide {
+        display: none !important;
+    }
+
+    .propage-navmenu div .propage-navtag {
+        padding-left: 0px !important;
+    }
+
+    .propage-widget-title {
+        display: none;
+    }
+
+    .propage-navcontainer {
+        grid-area: initial !important;
+        max-width: 100%;
+    }
+
+    .propage-mainlayout {
+        grid-template-areas:
+            'propage-cover'
+            'propage-post' !important;
+        grid-template-columns: 100%;
+    }
+}
+
+.propage-poppularityinfo *,
+.propage-navmenu * {
+    margin: 0;
+    list-style-type: none;
+}
+
+.propage-poppularityinfo .propage-followerinfo::before {
+    content: '';
+    width: 100%;
+    height: 70%;
+    border-right: 2px solid #c4c4c4;
+    border-left: 2px solid #c4c4c4;
+
+    position: absolute;
+    left: 0;
+    top: 20%;
+}
+
+.propage-navmenu div .propage-navtag {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    column-gap: 25px;
+
+    justify-items: start;
+    align-items: center;
+
+    height: 50px;
+    width: 100%;
+
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+
+    padding-left: 25px;
+    border-radius: 5px;
+}
+
+.propage-navmenu div .propage-navtag:hover {
+    background-color: #f7f7f7;
+}
+
+.propage-icon {
+    font-size: 22px;
+}
+
+.propage-active {
+    background-color: #e9e8e8;
+}
+
+.propage-active::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    left: 0;
+    top: 0%;
+    background: linear-gradient(to bottom, #d4145a, #fbb03b);
+    border-radius: 2.5px;
+}
+
+.propage-navmenu,
+#propage-logout-btn,
+#propage-bio {
+    position: relative;
+}
+
+.propage-navmenu::before {
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 1px;
+    top: 0;
+    border-radius: 0.5px;
+    background-color: #c4c4c4;
+}
+
+#propage-logout-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    border-radius: 0.5px;
+    background-color: #c4c4c4;
+}
+
+.propage-postpanel {
+    position: relative;
+    height: 580px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+}
+
+#dropdown-basic {
+    background-color: white;
+    color: black;
+    outline: 0;
+    border: none;
+}
+
+.btn,
+.btn-success {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 515px) {
+    #propage-archives-nav {
+        display: none !important;
+    }
+
+    #propage-archives-dnav {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    #propage-activities-nav {
+        display: none !important;
+    }
+
+    #propage-activites-dnav {
+        display: block !important;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    #propage-friends-nav {
+        display: none !important;
+    }
+
+    #propage-friends-dnav {
+        display: block !important;
+    }
+}

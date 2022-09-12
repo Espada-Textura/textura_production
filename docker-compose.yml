@@ -10,6 +10,18 @@ services:
     build: ./apis
     networks:
       - web_network
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+      target: development
+    container_name: frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+    networks:
+      - web_network
   nginx:
     container_name: nginx
     restart: always
@@ -26,6 +38,7 @@ services:
       - web_network
     depends_on:
       - apis
+      - frontend
 networks:
   db_network:
     driver: bridge
