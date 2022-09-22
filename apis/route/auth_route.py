@@ -3,10 +3,22 @@ from flask import Blueprint, make_response, abort
 auth_route = Blueprint("auth_route", __name__, url_prefix="/api")
 
 
-@auth_route.route("/hello", methods=["GET"])
-def index():
-    resp = make_response({"message": "Wellcome to fuck docker"})
+@auth_route.route("/user/<int:user_id>", methods=["GET"])
+def index(user_id=0):
+    data = {"name": "MISA Pisatto"}
+
+    if user_id == 10001:
+        resp = f"Wellcome {data['name']}"
+    else:
+        resp = f"Wellcome none"
+
     return resp
+
+
+@auth_route.route("/arts", methods=["GET"])
+def arts():
+    resp = make_response({"message": "Wellcome to fuck docker"})
+    return {"name": "hello"}
 
 
 # @auth_route.route("/login", methods=["POST"])
