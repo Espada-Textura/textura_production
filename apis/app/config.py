@@ -14,3 +14,7 @@ class BaseConfig:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = "jwt-app-secret-key-change-it"
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
+
+    POSTGRES_USER = "texturaAdmin"
+    POSTGRES_PASSWORD = "texturaPassword"
+    POSTGRES_MULTIPLE_DATABASES = "textura"
