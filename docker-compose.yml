@@ -10,18 +10,18 @@ services:
     build: ./apis
     networks:
       - web_network
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: ./Dockerfile
-      target: development
-    container_name: frontend
-    ports:
-      - 3000:3000
-    volumes:
-      - ./frontend:/app
-    networks:
-      - web_network
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: ./Dockerfile
+  #     target: development
+  #   container_name: frontend
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./frontend:/app
+  #   networks:
+  #     - web_network
   # db:
   #   image: postgres
   #   container_name: db
@@ -51,9 +51,9 @@ services:
       - web_network
     depends_on:
       - apis
-      - frontend
+      # - frontend
 networks:
-  db_network:
-    driver: bridge
+  # db_network:
+  #   driver: bridge
   web_network:
     driver: bridge
