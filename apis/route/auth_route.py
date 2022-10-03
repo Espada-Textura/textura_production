@@ -1,23 +1,21 @@
 from flask import Blueprint, make_response, abort
+from app import db
+from models import UserModel
 
 auth_route = Blueprint("auth_route", __name__, url_prefix="/api")
 
 
-@auth_route.route("/user/<int:user_id>", methods=["GET"])
+
+@auth_route.route("/migrate", methods=["GET"])
 def index(user_id=0):
-    data = {"name": "MISA Pisatto"}
+    user = UserModel("hello","hello")
+    db.create_all() 
 
-    if user_id == 10001:
-        resp = f"Wellcome {data['name']}"
-    else:
-        resp = f"Wellcome none"
-
-    return resp
+    return "Done"
 
 
 @auth_route.route("/arts", methods=["GET"])
 def arts():
-    resp = make_response({"message": "Wellcome to fuck docker"})
     return {"name": "hello"}
 
 

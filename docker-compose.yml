@@ -22,19 +22,19 @@ services:
       - ./frontend:/app
     networks:
       - web_network
-  # db:
-  #   image: postgres
-  #   container_name: db
-  #   environment:
-  #     POSTGRES_USER: texturaAdmin
-  #     POSTGRES_PASSWORD: texturaPassword
-  #     POSTGRES_MULTIPLE_DATABASES: textura
-  #   networks:
-  #     - db_network
-  #   volumes:
-  #     - ./database/postgres:/var/lib/postgresql/data
-  #   ports:
-  #     - "5432:5432"
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_USER: texturaAdmin
+      POSTGRES_PASSWORD: texturaPassword
+      POSTGRES_MULTIPLE_DATABASES: textura
+    networks:
+      - db_network
+    volumes:
+      - ./database/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   nginx:
     container_name: nginx
     restart: always
