@@ -1,13 +1,20 @@
 version: "3.8"
 services:
-  apis:
-    container_name: apis
+  api:
+    container_name: api
     restart: always
     volumes:
-      - ./apis/:/apis
+      - ./api/:/api
+      - ./api/entrypoint.dev.sh:/entrypoint.sh
     ports:
       - 5001:5001
-    build: ./apis
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    environment:
+      DB_NAME: tesxtura
+      DB_USERNAME: tesxtura_user
+      DB_PASSWORD: tesxtura_user_password
     networks:
       - web_network
   frontend:
@@ -50,7 +57,7 @@ services:
     networks:
       - web_network
     depends_on:
-      - apis
+      - api
       - frontend
 networks:
   db_network:
