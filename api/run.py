@@ -13,4 +13,4 @@ for _route in route.values():
     current_app.register_blueprint(_route)
 
 if __name__ == "__main__":
-    current_app.run(host=DevConfigs.HOST, port=DevConfigs.PORT)
+    current_app.run(host=DevConfigs.HOST, port=5000)

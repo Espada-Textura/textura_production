@@ -9,4 +9,4 @@ if [ ! -d "./migration" ]; then
     envsubst '${DB_NAME}:${DB_USERNAME}:${DB_PASSWORD}' < ./app/alembic.template > ./alembic.ini && cat ./alembic.ini
 fi
 
-python -m debugpy --listen 0.0.0.0:5678 --wait-for-client run.py
+python -m debugpy --listen 0.0.0.0:5001 --wait-for-client run.py

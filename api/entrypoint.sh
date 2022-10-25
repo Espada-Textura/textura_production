@@ -11,4 +11,4 @@ fi
 
 python print("in")
 
-python -m debugpy --listen 0.0.0.0:5678 --wait-for-client run.py
+python -m debugpy --listen 0.0.0.0:5001 --wait-for-client run.py

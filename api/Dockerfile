@@ -6,12 +6,12 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /apis
 
-EXPOSE 5001
-
 COPY . /apis
 
 # install python dependencies
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-CMD python run.py
+RUN pip install debugpy && mv entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
