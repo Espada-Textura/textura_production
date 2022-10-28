@@ -1,0 +1,68 @@
+version: "3.7"
+
+services:
+  # front:
+  #   image: front
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: ./Dockerfile
+  #     target: production
+  #   container_name: front
+  #   networks:
+  #     - app
+  db:
+    image: database
+    build:
+      context: ./database
+      dockerfile: ./Dockerfile
+      target: development
+    container_name: database
+    environment:
+      POSTGRES_USER: "ecdbadmin"
+      POSTGRES_PASSWORD: "testP1ssW0rd"
+      POSTGRES_DB: "ecdatastorage"
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - /postgres:/var/lib/postgresql/data
+    networks:
+      - app
+  api:
+    image: api
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+      target: production
+    environment:
+      DB_NAME: ecdatastorage
+      DB_USERNAME: ecdbadmin
+      DB_PASSWORD: testP1ssW0rd
+      HOME_URL: https://textura-art.com
+    container_name: api
+    networks:
+      - app
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./api:/api
+      - ./api/entrypoint.sh:/entrypoint.sh
+  proxy:
+    image: proxy
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+      target: development
+    container_name: proxy
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - app
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      # - front
+      - api
+
+networks:
+  app:
+    driver: bridge
