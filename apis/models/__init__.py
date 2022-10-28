@@ -1,1 +1,0 @@
-from .user_medel import UserModel
