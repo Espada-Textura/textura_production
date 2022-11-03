@@ -8,6 +8,8 @@ services:
       dockerfile: ./Dockerfile
       target: production
     container_name: front
+    ports:
+      - "3000:3000"
     networks:
       - app
   db:
@@ -54,7 +56,6 @@ services:
     container_name: proxy
     ports:
       - 80:80
-      - 443:443
     networks:
       - app
     volumes:
