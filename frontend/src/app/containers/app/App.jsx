@@ -1,6 +1,6 @@
 import './styles/App.scss'
 import {Route, Routes} from "react-router-dom";
-import HomePage from "../home_page/index.jsx";
+import HomePage from '@app/containers/home_page/';
 
 function App() {
 
