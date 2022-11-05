@@ -1,10 +1,9 @@
-//
-// import Topbar from "../../layout/TopBar/index.jsx";
+import Topbar from "@layouts/TopBar/";
 
 function Home(){
     return (
         <section>
-            {/*<Topbar/>*/}
+            <Topbar/>
             <div>
 
             </div>

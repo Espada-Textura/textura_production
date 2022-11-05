@@ -5,10 +5,11 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     resolve: {
         alias: {
-            "@": "frontend/src/",
-            "@components": "src/app/components/",
-            "@containers": "src/app/containers/",
-            "@images": "@/app/images/",
+            "@": "/src",
+            "@components": "@/components",
+            "@containers": "@/containers",
+            "@layouts" : "@/layouts",
+            "@images": "@/images",
         }
     },
     plugins: [

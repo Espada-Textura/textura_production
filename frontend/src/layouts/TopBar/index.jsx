@@ -1,8 +1,8 @@
 //styles
-import '../../sass/layout/_topbar.scss'
+import '../../sass/layouts/_topbar.scss'
 
 //components
-import '@app/components/Logo/index.jsx'
+import Logo from '@components/Logo/'
 
 //icons
 import {HiUpload, HiBell, HiPaperAirplane, HiChevronDown} from "react-icons/hi";
@@ -27,7 +27,7 @@ export default function Topbar() {
                 </button>
                 <div className={"profile-btn"}>
                     <button className={"icon-btn-large"}>
-                        <img src="frontend/src/layout/TopBar/index.jsx" alt=""/>
+                        <img src="frontend/src/layouts/TopBar/index.jsx" alt=""/>
                     </button>
                     <HiChevronDown className={"w-6 h-6"}/>
                 </div>
