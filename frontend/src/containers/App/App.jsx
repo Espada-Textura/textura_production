@@ -1,6 +1,6 @@
 import '../../sass/containers/_app.scss'
-import {Route, Routes} from "react-router-dom";
-import Home from '@containers/Home/';
+import {Route, Routes} from "react-router-dom"
+import Home from '@containers/Home/'
 
 function App() {
 

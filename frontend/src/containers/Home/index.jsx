@@ -1,6 +1,6 @@
-import Topbar from "@layouts/TopBar/";
+import Topbar from "@layouts/TopBar/"
 
-function Home(){
+function Home() {
     return (
         <section>
             <Topbar/>

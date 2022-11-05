@@ -1,4 +1,4 @@
-@import '../abstracts/_color.scss';
+@use '../abstracts' as abs;
 
 .btn-large {
   padding: 0 2rem;
@@ -25,32 +25,32 @@
 }
 
 .btn-filled{
-  color: $primary;
-  background-color: $accent_color;
+  color: abs.$primary;
+  background-color: abs.$accent_color;
 }
 
 .btn-filled:hover, .btn-highlighted:hover{
-  background-color: darken($accent_color, 5);
+  background-color: darken(abs.$accent_color, 5);
 }
 
 .btn-outlined{
-  color: $accent_color;
-  border: solid 3px $accent_color;
+  color: abs.$accent_color;
+  border: solid 3px abs.$accent_color;
 }
 
 .btn-outlined-filled{
-  color: $accent_color_20;
-  border: solid 3px $accent_color;
+  color: abs.$accent_color_20;
+  border: solid 3px abs.$accent_color;
 }
 
 .btn-plain{
-  color: $accent_color;
-  background-color: $primary;
+  color: abs.$accent_color;
+  background-color: abs.$primary;
 }
 
 .btn-plain-filled{
-  color: $accent_color;
-  background-color: $accent_color_40;
+  color: abs.$accent_color;
+  background-color: abs.$accent_color_40;
 }
 
 .btn-plain-filled:focus, .btn-plain:focus{
@@ -58,12 +58,12 @@
 }
 
 .btn-plain:hover, .btn-outlined:hover, .btn-plain-filled:hover{
-  background-color: darken($accent_color_30, 5);
+  background-color: darken(abs.$accent_color_30, 5);
 }
 
 .btn-highlighted{
   @extend .btn-filled;
-  box-shadow: 0 8px 16px -4px $accent_color_80;
+  box-shadow: 0 8px 16px -4px abs.$accent_color_80;
 }
 
 .icon-btn-large{
@@ -96,14 +96,14 @@ button{
 }
 
 button:focus{
-  outline: 5px solid $accent_color_30;
+  outline: 5px solid abs.$accent_color_30;
 }
 
 button:active{
-  box-shadow: inset 1px 1px 10px $accent_color_30;
+  box-shadow: inset 1px 1px 10px abs.$accent_color_30;
 }
 
 button:disabled{
-  box-shadow: 2px 2px 4px $secondary_color_30;
+  box-shadow: 2px 2px 4px abs.$secondary_color_30;
   opacity: 0.5;
 }

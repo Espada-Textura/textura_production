@@ -1,5 +1,5 @@
 //styles
-import '../../sass/layouts/_topbar.scss'
+import '~layouts/_topbar.scss'
 
 //components
 import Logo from '@components/Logo/'

@@ -10,6 +10,14 @@ export default defineConfig({
             "@containers": "@/containers",
             "@layouts" : "@/layouts",
             "@images": "@/images",
+
+            "@sass" : "@/sass",
+            "~abstracts" : "@/sass/abstracts",
+            "~components" : "@/sass/components",
+            "~containers" : "@/sass/containers",
+            "~layouts" : "@/sass/layouts",
+            "~utils" : "@/sass/utils"
+
         }
     },
     plugins: [
