@@ -1,0 +1,25 @@
+@use "abstracts";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+  font-family: abstracts.$plain-text-font, 'sans-serif', 'serif';
+  font-size: 1rem;
+  color: inherit;
+  background-color: abstracts.$primary;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+}
+
+form {
+  accent-color: abstracts.$accent_color;
+}
+
+::selection {
+  background: abstracts.$accent_color;
+}

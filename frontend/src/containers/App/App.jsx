@@ -1,13 +1,13 @@
-import './styles/App.scss'
+import '../../sass/containers/_app.scss'
 import {Route, Routes} from "react-router-dom";
-import HomePage from '@app/containers/home_page/';
+// import Home from '@containers/Home/';
 
 function App() {
 
     return (
         <main>
             <Routes>
-                <Route path="/" element={<HomePage/>}/>
+                {/*<Route path="/" element={<Home/>}/>*/}
             </Routes>
         </main>
 

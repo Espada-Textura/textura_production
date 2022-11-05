@@ -1,0 +1,10 @@
+//@import "_color.scss";
+
+.profile-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  //color: $accent_color;
+  cursor: pointer;
+}

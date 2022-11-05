@@ -6,12 +6,12 @@ WORKDIR /frontend
 COPY package.json .
 # COPY package-lock.lock .
 RUN npm install
-# Copy app files
+# Copy App files
 COPY . .
 # Expose port
 
 RUN ls
 
 EXPOSE 3000
-# Start the app
+# Start the App
 CMD [ "npm", "start" ]
