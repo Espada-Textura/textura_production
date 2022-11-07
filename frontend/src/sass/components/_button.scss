@@ -1,5 +1,16 @@
 @use '../abstracts' as abs;
 
+
+//--------------------------- abstract ----------------------------
+button{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+//--------------------------- size ----------------------------
 .btn-large {
   padding: 0 2rem;
   font-size: 1.125rem;
@@ -24,13 +35,11 @@
   font-weight: 500;
 }
 
+
+//--------------------------- category ----------------------------
 .btn-filled{
   color: abs.$primary;
   background-color: abs.$accent_color;
-}
-
-.btn-filled:hover, .btn-highlighted:hover{
-  background-color: darken(abs.$accent_color, 5);
 }
 
 .btn-outlined{
@@ -53,18 +62,12 @@
   background-color: abs.$accent_color_40;
 }
 
-.btn-plain-filled:focus, .btn-plain:focus{
-  outline: none;
-}
-
-.btn-plain:hover, .btn-outlined:hover, .btn-plain-filled:hover{
-  background-color: darken(abs.$accent_color_30, 5);
-}
 
 .btn-highlighted{
   @extend .btn-filled;
   box-shadow: 0 8px 16px -4px abs.$accent_color_80;
 }
+
 
 .icon-btn-large{
   @extend .btn-large;
@@ -87,12 +90,27 @@
   width: 2rem;
 }
 
-button{
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+.btn-sec {
+  color: abs.$secondary_color;
+  background-color: transparent;
+}
+
+//--------------------------- states ----------------------------
+
+.btn-filled:hover, .btn-highlighted:hover{
+  background-color: darken(abs.$accent_color, 5);
+}
+
+.btn-plain-filled:focus, .btn-plain:focus{
+  outline: 3px solid abs.$accent_color_80;
+}
+
+.btn-plain:hover, .btn-outlined:hover, .btn-plain-filled:hover{
+  background-color: darken(abs.$accent_color_30, 5);
+}
+
+.btn-sec:focus {
+  outline: 5px solid abs.$secondary_color_30;
 }
 
 button:focus{
@@ -107,3 +125,7 @@ button:disabled{
   box-shadow: 2px 2px 4px abs.$secondary_color_30;
   opacity: 0.5;
 }
+
+
+
+

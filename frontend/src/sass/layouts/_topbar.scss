@@ -1,11 +1,15 @@
 @use "../abstracts" as abs;
 @use "../components";
 
-.profile-btn{
+.profile-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   color: abs.$accent_color;
   cursor: pointer;
+}
+
+.navigation-bar Link{
+
 }
