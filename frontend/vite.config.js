@@ -12,11 +12,6 @@ export default defineConfig({
             "@images": "@/images",
 
             "@sass" : "@/sass",
-            "~abstracts" : "@/sass/abstract",
-            "~components" : "@/sass/components",
-            "~containers" : "@/sass/containers",
-            "~layouts" : "@/sass/layouts",
-            "~utils" : "@/sass/utils"
 
         }
     },

@@ -1,5 +1,5 @@
 //styles
-import '~containers/_app.scss'
+import '@sass/index.scss'
 
 //components
 import {Route, Routes} from "react-router-dom"

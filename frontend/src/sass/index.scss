@@ -1,4 +1,9 @@
 @use "abstract";
+@use "layouts";
+@use "containers";
+@use "utils";
+@use "components";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +13,7 @@ body {
   font-family: abstract.$plain-text-font, 'sans-serif', 'serif';
   font-size: 16px;
   color: inherit;
-  background-color: abstract.$primary;
+  background-color: var(--tr-primary);
   margin: 0;
   padding: 0;
   outline: none;
@@ -16,9 +21,9 @@ body {
 }
 
 form {
-  accent-color: abstract.$accent_color;
+  accent-color: var(--tr-accent);
 }
 
 ::selection {
-  background: abstract.$accent_color;
+  background: var(--tr-accent);
 }

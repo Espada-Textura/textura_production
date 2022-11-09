@@ -38,34 +38,34 @@ button{
 
 //--------------------------- category ----------------------------
 .btn-filled{
-  color: abs.$primary;
-  background-color: abs.$accent_color;
+  color: var(--tr-accent);
+  background-color: var(--tr-accent);
 }
 
 .btn-outlined{
-  color: abs.$accent_color;
-  border: solid 3px abs.$accent_color;
+  color: var(--tr-accent);
+  border: solid 3px var(--tr-accent);
 }
 
 .btn-outlined-filled{
-  color: abs.$accent_color_20;
-  border: solid 3px abs.$accent_color;
+  color: var(--tr-accent)_20;
+  border: solid 3px var(--tr-accent);
 }
 
 .btn-plain{
-  color: abs.$accent_color;
-  background-color: abs.$primary;
+  color: var(--tr-accent);
+  background-color: var(--tr-primary);
 }
 
 .btn-plain-filled{
-  color: abs.$accent_color;
-  background-color: abs.$accent_color_40;
+  color: var(--tr-accent);
+  background-color: rgba(abs.$accent_color, 0.4);
 }
 
 
 .btn-highlighted{
   @extend .btn-filled;
-  box-shadow: 0 8px 16px -4px abs.$accent_color_80;
+  box-shadow: 0 8px 16px -4px rgba(abs.$accent_color, 0.8);
 }
 
 
@@ -91,7 +91,7 @@ button{
 }
 
 .btn-sec {
-  color: abs.$secondary_color;
+  color: var(--tr-secondary);
   background-color: transparent;
 }
 
@@ -102,27 +102,27 @@ button{
 }
 
 .btn-plain-filled:focus, .btn-plain:focus{
-  outline: 3px solid abs.$accent_color_80;
+  outline: 3px solid rgba(abs.$accent_color, 0.8);
 }
 
 .btn-plain:hover, .btn-outlined:hover, .btn-plain-filled:hover{
-  background-color: darken(abs.$accent_color_30, 5);
+  background-color: darken(abs.$accent_color, 5);
 }
 
 .btn-sec:focus {
-  outline: 5px solid abs.$secondary_color_30;
+  outline: 5px solid rgba(abs.$secondary_color, 0.3);
 }
 
 button:focus{
-  outline: 5px solid abs.$accent_color_30;
+  outline: 5px solid rgba(abs.$accent_color, 0.3);
 }
 
 button:active{
-  box-shadow: inset 1px 1px 10px abs.$accent_color_30;
+  box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
 }
 
 button:disabled{
-  box-shadow: 2px 2px 4px abs.$secondary_color_30;
+  box-shadow: 2px 2px 4px rgba(abs.$secondary_color, 0.3);
   opacity: 0.5;
 }
 

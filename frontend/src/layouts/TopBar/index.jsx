@@ -1,5 +1,3 @@
-//styles
-import "~layouts/_topbar.scss";
 
 //components
 import Logo from "@components/Logo/";
