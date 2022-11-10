@@ -1,7 +1,7 @@
 import click
 import pandas as pd
 
-from dao import StateDao, UserDao
+from dao import UserDao
 
 
 @click.group()
@@ -10,8 +10,8 @@ def state():
 
 
 @click.command()
-@click.option("--username", help="login username")
-@click.option("--password", help="account password")
+@click.option("--username", default="admin", help="login username")
+@click.option("--password", default="admin", help="account password")
 @click.option("--email", default="admin@textura-art.com", help="account email")
 def add_admin(username, password, email):
 
