@@ -5,13 +5,11 @@ WORKDIR /frontend
 # Cache and Install dependencies
 COPY package.json .
 # COPY package-lock.lock .
-RUN npm install
+RUN yarn install
 # Copy app files
 COPY . .
 # Expose port
 
-RUN ls
-
 EXPOSE 3000
 # Start the app
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
