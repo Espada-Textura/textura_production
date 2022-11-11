@@ -20,7 +20,6 @@ function App() {
 
     return (
         <>
-
             <Topbar/>
             <main>
                 <Routes>
@@ -29,7 +28,7 @@ function App() {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/search" element={<Search/>}/>
                     <Route path="/terms" element={<Terms/>}/>
-                    <Route path="/art:id" element={<FullView/>}/>
+                    <Route path="/art/:id" element={<FullView/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>

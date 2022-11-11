@@ -38,7 +38,7 @@ button{
 
 //--------------------------- category ----------------------------
 .btn-filled{
-  color: var(--tr-accent);
+  color: var(--tr-primary);
   background-color: var(--tr-accent);
 }
 
@@ -48,26 +48,24 @@ button{
 }
 
 .btn-outlined-filled{
-  color: var(--tr-accent)_20;
+  color: rgba(abs.$accent_color, 0.2);
   border: solid 3px var(--tr-accent);
 }
 
 .btn-plain{
   color: var(--tr-accent);
-  background-color: var(--tr-primary);
+  background-color: transparent;
 }
 
 .btn-plain-filled{
   color: var(--tr-accent);
-  background-color: rgba(abs.$accent_color, 0.4);
+  background-color: rgba(abs.$accent_color, 0.3);
 }
-
 
 .btn-highlighted{
   @extend .btn-filled;
   box-shadow: 0 8px 16px -4px rgba(abs.$accent_color, 0.8);
 }
-
 
 .icon-btn-large{
   @extend .btn-large;
@@ -106,7 +104,7 @@ button{
 }
 
 .btn-plain:hover, .btn-outlined:hover, .btn-plain-filled:hover{
-  background-color: darken(abs.$accent_color, 5);
+  background-color: darken(rgba(abs.$accent_color, 0.3), 5);
 }
 
 .btn-sec:focus {
