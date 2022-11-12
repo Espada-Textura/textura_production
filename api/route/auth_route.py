@@ -1,4 +1,6 @@
-from flask import Blueprint, make_response, abort
+from datetime import datetime
+
+from flask import Blueprint, make_response, abort, session
 from flask_jwt_extended import jwt_required
 
 from flask_jwt_extended import (
@@ -11,7 +13,9 @@ from flask_jwt_extended import (
 
 from dao import UserDao
 from schema import UserSchema
-from utils import validate_request
+from utils import validate_request, get_otp_code, get_hash, EmailSender
+from service import AuthService
+
 
 auth_route = Blueprint("auth_route", __name__, url_prefix="/api")
 
@@ -20,40 +24,57 @@ auth_route = Blueprint("auth_route", __name__, url_prefix="/api")
 @validate_request("UserSchema", partial=True, only=("email", "password", "username"))
 def user_login(user):
 
-    try:
+    service = AuthService()
+    resp = None
 
-        with UserDao() as dao:
+    user_json = service.login(user=user)
 
-            _user = dao.get_query(
-                **{
-                    f"_UserModel__{key}": value
-                    for key, value in user.items()
-                    if key != "password"
-                }
-            ).one()
+    resp = make_response(user_json, 200)
 
-        if not _user.verify_password(user.get("password")):
-            abort(403)
+    access_token = create_access_token(user_json.get("id"), additional_claims=user_json)
 
-        user_json = dao.jsonify(UserSchema, _user)
+    refresh_token = create_refresh_token(
+        user_json.get("id"), additional_claims=user_json
+    )
 
-        access_token = create_access_token(
-            user_json.get("id"), additional_claims=user_json
-        )
+    set_access_cookies(resp, access_token)
+    set_refresh_cookies(resp, refresh_token)
 
-        refresh_token = create_refresh_token(
-            user_json.get("id"), additional_claims=user_json
-        )
+    return user_json
 
-        resp = make_response(user_json, 200)
 
-        set_access_cookies(resp, access_token)
-        set_refresh_cookies(resp, refresh_token)
+@auth_route.route("/signup", methods=["POST"])
+@validate_request("UserSchema", only=("email", "password", "first_name", "last_name"))
+def user_signup(user):
 
-    except Exception as err:
-        abort(400)
+    service = AuthService()
+    new_user_json = service.sign_up(user=user)
 
-    return resp
+    otp_code = get_otp_code()
+
+    session["user"] = {
+        "id": new_user_json.get("id"),
+        "hashed_otp": get_hash(otp_code),
+        "created": datetime.now(),
+    }
+
+    notification = EmailSender(
+        to=["misapisatto@gmail.com"],
+        subject="Verifying Textura account",
+        message=otp_code,
+    )
+
+    notification.send_email()
+
+    return make_response(new_user_json, 200)
+
+
+@auth_route.route("/activate", methods=["POST"])
+@validate_request("UserSchema", partial=True, only=("email", "password", "username"))
+def user_verify(user):
+    print(session.get("user"))
+
+    return make_response({}, 200)
 
 
 @auth_route.route("/logout", methods=["POST"])

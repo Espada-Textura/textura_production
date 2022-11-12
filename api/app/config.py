@@ -16,3 +16,6 @@ class DevConfigs:
     JWT_REFRESH_COOKIE_PATH = "/api/refresh"
     JWT_REFRESH_CSRF_COOKIE_PATH = "/api/refresh"
     JWT_COOKIE_CSRF_PROTECT = False
+
+    GMAIL_ACCOUNT = "espada.team.official@gmail.com"
+    GMAIL_TOKEN = "rjmbxdrstpzujgop"
