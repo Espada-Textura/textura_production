@@ -26,3 +26,17 @@ def get_hash(password: str):
     """
 
     return sha256_crypt.encrypt(password)
+
+
+def safe_execute(default, exception, function, *args):
+    """safe execute inline function
+    param   default     Any         the default return value
+    param   exception   Exeception  the exception class to be catch
+    param   function    Function    the function to be execute
+    param   args        Any         the args that will pass to function when call
+    return  Any
+    """
+    try:
+        return function(*args)
+    except exception:
+        return default
