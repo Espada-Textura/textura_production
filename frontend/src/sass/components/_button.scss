@@ -1,8 +1,7 @@
-@use '../abstract' as abs;
-
+@use "../abstract" as abs;
 
 //--------------------------- abstract ----------------------------
-button{
+button {
   display: flex;
   text-align: center;
   align-items: center;
@@ -35,95 +34,139 @@ button{
   font-weight: 500;
 }
 
-
-//--------------------------- category ----------------------------
-.btn-filled{
-  color: var(--tr-primary);
-  background-color: var(--tr-accent);
-}
-
-.btn-outlined{
-  color: var(--tr-accent);
-  border: solid 3px var(--tr-accent);
-}
-
-.btn-outlined-filled{
-  color: rgba(abs.$accent_color, 0.2);
-  border: solid 3px var(--tr-accent);
-}
-
-.btn-plain{
-  color: var(--tr-accent);
-  background-color: transparent;
-}
-
-.btn-plain-filled{
-  color: var(--tr-accent);
-  background-color: rgba(abs.$accent_color, 0.3);
-}
-
-.btn-highlighted{
-  @extend .btn-filled;
-  box-shadow: 0 8px 16px -4px rgba(abs.$accent_color, 0.8);
-}
-
-.icon-btn-large{
+.icon-btn-large {
   @extend .btn-large;
   font-size: 1.5rem;
   padding: 0;
   width: 3.5rem;
 }
 
-.icon-btn-medium{
+.icon-btn-medium {
   @extend .btn-medium;
   font-size: 1.25rem;
   padding: 0;
   width: 2.75rem;
 }
 
-.icon-btn-small{
+.icon-btn-small {
   @extend .btn-small;
   font-size: 1.5rem;
   padding: 0;
   width: 2rem;
 }
 
-.btn-sec {
+//--------------------------- category ----------------------------
+.btn-filled {
+  color: var(--tr-primary);
+  background-color: var(--tr-accent);
+
+  &:hover {
+    background-color: darken(abs.$accent_color, 5);
+  }
+}
+
+.btn-outlined {
+  @extend .btn-prime;
+  color: var(--tr-accent);
+  border: solid 3px var(--tr-accent);
+}
+
+.btn-outlined-filled {
+  @extend .btn-prime;
+  color: rgba(abs.$accent_color, 0.2);
+  border: solid 3px var(--tr-accent);
+}
+
+.btn-plain {
+  @extend .btn-prime;
+  color: var(--tr-accent);
+  background-color: transparent;
+}
+
+.btn-plain-filled {
+  @extend .btn-prime;
+  color: var(--tr-accent);
+  background-color: rgba(abs.$accent_color, 0.3);
+}
+
+.btn-highlighted {
+  @extend .btn-filled;
+  box-shadow: 0 8px 16px -4px rgba(abs.$accent_color, 0.8);
+}
+
+//------ secondary color button -------
+.btn-filled-sec {
+  @extend .btn-sec;
+
+  color: var(--tr-primary);
+  background-color: var(--tr-secondary);
+
+  &:hover {
+    background-color: darken(abs.$secondary_color, 5) !important;
+  }
+
+  &:focus {
+    outline: 5px solid rgba(abs.$accent_color, 0.8);
+  }
+}
+
+.btn-outlined-sec {
+  @extend .btn-sec;
+
+  color: var(--tr-secondary);
+  border: solid 3px var(--tr-secondary);
+}
+
+.btn-outlined-filled-sec {
+  @extend .btn-sec;
+  color: rgba(abs.$secondary_color, 0.2);
+  border: solid 3px var(--tr-accent);
+}
+
+.btn-plain-sec {
+  @extend .btn-sec;
   color: var(--tr-secondary);
   background-color: transparent;
 }
 
+.btn-plain-filled-sec {
+  @extend .btn-sec;
+  color: var(--tr-secondary);
+  background-color: transparent;
+}
+
+.btn-highlighted-sec {
+  @extend .btn-filled-sec;
+  box-shadow: 0 8px 16px -4px rgba(abs.$secondary_color, 0.8);
+}
+
 //--------------------------- states ----------------------------
 
-.btn-filled:hover, .btn-highlighted:hover{
-  background-color: darken(abs.$accent_color, 5);
+.btn-prime {
+  &:hover {
+    background-color: darken(rgba(abs.$accent_color, 0.3), 5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
+  }
 }
 
-.btn-plain-filled:focus, .btn-plain:focus{
-  outline: 3px solid rgba(abs.$accent_color, 0.8);
+.btn-sec {
+  &:focus {
+    outline: 2px solid rgba(abs.$secondary_color, 0.5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px rgba(abs.$secondary_color, 0.3) !important;
+  }
+
+  &:hover {
+    background-color: rgba(abs.$secondary_color, 0.1);
+  }
 }
 
-.btn-plain:hover, .btn-outlined:hover, .btn-plain-filled:hover{
-  background-color: darken(rgba(abs.$accent_color, 0.3), 5);
-}
-
-.btn-sec:focus {
-  outline: 5px solid rgba(abs.$secondary_color, 0.3);
-}
-
-button:focus{
-  outline: 5px solid rgba(abs.$accent_color, 0.3);
-}
-
-button:active{
-  box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
-}
-
-button:disabled{
+button:disabled {
   box-shadow: 2px 2px 4px rgba(abs.$secondary_color, 0.3);
   opacity: 0.5;
 }
-
-
-
-
