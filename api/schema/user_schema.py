@@ -23,6 +23,8 @@ class UserAuthSchema(Mixin):
     )
     first_name = fields.Str(required=True)
     last_name = fields.Str(required=True)
+    otp = fields.Str(validate=validate.Length(min=6, max=6), load_only=True)
+    token = fields.Str(validate=validate.Length(min=6, max=128), load_only=True)
 
 
 class UserPasswordSchema(Mixin):
@@ -36,7 +38,7 @@ class UserPasswordSchema(Mixin):
 
 class UserActivateSchema(Mixin):
     email = fields.Email(required=True)
-    otp = fields.Str(required=True)
+    otp = fields.Str(validate=validate.Length(min=6, max=6), load_only=True)
 
 
 class NestedUserSchema(NestedSchema):

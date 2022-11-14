@@ -1,5 +1,6 @@
 from datetime import datetime
 import asyncio
+import shortuuid
 from multiprocessing.dummy import Pool
 
 from flask import Blueprint, make_response, abort, session
@@ -138,6 +139,105 @@ def user_resend_otp(user_auth):
     notification.send_email()
 
     return make_response({"message": "Resent"})
+
+
+@auth_route.route("/reset-password/<step>", methods=["PUT"])
+@validate_request(
+    "UserAuthSchema", partial=True, only=(["email", "otp", "uid", "token"])
+)
+def user_reset_password(user_auth, step):
+
+    step = str(step)
+
+    if step == "request":
+
+        service = AuthService()
+
+        user_json = service.get_user_by_email(user_auth)
+
+        otp_code = get_otp_code()
+
+        session["reseting_password"] = {
+            "id": user_json.get("uid"),
+            "hashed_otp": get_hash(otp_code),
+            "created": datetime.now(),
+        }
+
+        notification = EmailSender(
+            to=[user_json.get("email")],
+            subject="Reset Textura account password",
+            message=f"Your OTP code is {otp_code}",
+        )
+
+        notification.send_email()
+
+        resp = {
+            "email": user_json.get("email"),
+            "uid": user_json.get("uid"),
+        }
+
+        return make_response(resp)
+
+    elif step == "verify":
+
+        session_value = session.get("reseting_password")
+
+        if not session_value:
+            abort(403)
+
+        req_otp = user_auth.get("otp")
+
+        rep_uid = user_auth.get("uid")
+
+        if not verify_otp(otp=req_otp, hashed_otp=session_value.get("hashed_otp")):
+            abort(403)
+
+        if not rep_uid == session_value.get("uid"):
+            abort(403)
+
+        service = AuthService()
+
+        user_json = service.get_user_by_email(user_auth)
+
+        c_otp_code = str(shortuuid.uuid() + shortuuid.uuid())
+
+        session["reseting_password"] = {
+            "uid": user_json.get("uid"),
+            "hashed_token": get_hash(c_otp_code),
+            "created": datetime.now(),
+        }
+
+        resp = {
+            "email": user_json.get("email"),
+            "uid": user_json.get("uid"),
+            "token": c_otp_code,
+        }
+
+        return make_response(resp)
+
+    elif step == "new":
+
+        session_value = session.get("reseting_password")
+
+        if not session_value:
+            abort(403)
+
+        req_token = user_auth.get("token")
+
+        rep_uid = user_auth.get("uid")
+
+        print(rep_uid, session_value.get("uid"))
+
+        if not rep_uid == session_value.get("uid"):
+            abort(403)
+
+        if not verify_otp(otp=req_token, hashed_otp=session_value.get("hashed_token")):
+            abort(403)
+
+        return make_response({"message": "Resent"})
+
+    else:
+        abort(403)
 
 
 @auth_route.route("/logout", methods=["POST"])

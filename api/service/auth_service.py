@@ -84,3 +84,29 @@ class AuthService:
             user_json = dao.jsonify(UserSchema, user_model)
 
         return user_json
+
+    def get_user_by_email(self, user):
+
+        with UserDao() as dao:
+
+            user_model = dao.get_by_email(user)
+
+            if not user_model:
+                abort(404)
+
+            user_json = dao.jsonify(UserSchema, user_model)
+
+        return user_json
+
+    def reset_password(self, user):
+
+        with UserDao() as dao:
+
+            user_model = dao.get_by_email(user)
+
+            if not user_model:
+                abort(404)
+
+            user_json = dao.jsonify(UserSchema, user_model)
+
+        return user_json
