@@ -36,6 +36,7 @@ class EmailSender:
         self.message = message
 
     def send_email(self):
+        print("sening")
         smtpserver = smtplib.SMTP(self.f_host, self.f_port)
         smtpserver.ehlo()
         smtpserver.starttls()

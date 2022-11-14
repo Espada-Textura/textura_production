@@ -26,6 +26,9 @@ class AuthService:
             if not user_model:
                 abort(404)
 
+            if not user_model.activated:
+                abort(403)
+
             if not user_model.verify_password(user.get("password")):
                 abort(403)
 
@@ -42,14 +45,42 @@ class AuthService:
 
         with UserDao() as dao:
 
-            # user_model = dao.add(user)
+            user_model = dao.add(user)
 
-            # user_json = dao.jsonify(UserSchema, user_model)
+            user_json = dao.jsonify(UserSchema, user_model)
 
-            # notification = EmailSender(
-            #     to=[user_model.email], subject="Verifying Textura account"
-            # )
+        return user_json
 
-            print("new user")
+    def activate(self, user=None):
 
-        return {}
+        with UserDao() as dao:
+
+            user_model = dao.get_by_email(user)
+
+            if not user_model:
+                abort(404)
+
+            if user_model.activated:
+                abort(403)
+
+            user_model.activate()
+
+            user_json = dao.jsonify(UserSchema, user_model)
+
+        return user_json
+
+    def resent_otp(self, user=None):
+
+        with UserDao() as dao:
+
+            user_model = dao.get_by_email(user)
+
+            if not user_model:
+                abort(404)
+
+            if user_model.activated:
+                abort(403)
+
+            user_json = dao.jsonify(UserSchema, user_model)
+
+        return user_json

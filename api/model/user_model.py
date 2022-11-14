@@ -1,4 +1,5 @@
 # builtin imports
+from datetime import datetime
 
 # thirt-party imports
 from sqlalchemy import Column, Integer, String, ForeignKey
@@ -52,6 +53,22 @@ class UserModel(Based, BaseModel):
 
         return sha256_crypt.verify(password, self.__password)
 
+    @property
+    def activated(self):
+        meta = self.get_meta(key="activated")
+        return meta
+
+    @activated.setter
+    def activated(self, activated):
+        self.update_meta("activated", activated)
+
+    def activate(self):
+        if not self.activated:
+            self.update_meta("activated", True)
+            self.update_meta(
+                "activated_date", datetime.now().strftime("%Y:%m:%d %H:%M:%S")
+            )
+
     def get_meta(self, key=None, jsonify=True, user_id=None):
         """Get User Meta"""
         metas = self.metas
@@ -103,7 +120,7 @@ class UserModel(Based, BaseModel):
         )
 
 
-class UserMetaModel(BaseModel):
+class UserMetaModel(Based, BaseModel):
     __tablename__ = "user_meta"
 
     value = Column(String(), nullable=False)

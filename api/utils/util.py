@@ -3,6 +3,9 @@ from random import randint
 from passlib.hash import sha256_crypt
 
 
+from flask_jwt_extended import verify_jwt_in_request, get_jwt
+
+
 def get_project_root() -> Path:
     return Path(__file__).parent.parent
 
@@ -28,6 +31,12 @@ def get_hash(password: str):
     return sha256_crypt.encrypt(password)
 
 
+def verify_otp(otp="", hashed_otp=""):
+    """Verify otp"""
+
+    return sha256_crypt.verify(otp, hashed_otp)
+
+
 def safe_execute(default, exception, function, *args):
     """safe execute inline function
     param   default     Any         the default return value
@@ -40,3 +49,9 @@ def safe_execute(default, exception, function, *args):
         return function(*args)
     except exception:
         return default
+
+
+def get_current_user():
+    """get current user id from jwt token"""
+    claims = get_jwt()
+    return claims
