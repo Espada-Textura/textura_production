@@ -1,0 +1,39 @@
+@use "./../abstract" as abs;
+
+.search-bar {
+  display: flex;
+  background-color: var(--tr-primary);
+
+  border-radius: 0.75rem;
+  border: 2px solid rgba(abs.$secondary_color, 0.6);
+
+  width: 100%;
+  max-width: 500px;
+
+  padding-right: 0.5rem;
+
+  &:has(input:focus) {
+    border: 2px solid var(--tr-secondary);
+  }
+}
+
+.search-bar input {
+  background-color: transparent;
+
+  font-weight: 450;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+
+  border-radius: inherit;
+
+  padding: 0 1rem;
+
+  width: inherit;
+
+  text-overflow: ellipsis;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}

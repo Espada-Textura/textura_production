@@ -9,10 +9,34 @@ button {
   gap: 8px;
 }
 
+.btn-prime {
+  &:hover {
+    background-color: darken(rgba(abs.$accent_color, 0.3), 5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
+  }
+}
+
+.btn-sec {
+  &:focus {
+    outline: 2px solid rgba(abs.$secondary_color, 0.5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px rgba(abs.$secondary_color, 0.3) !important;
+  }
+
+  &:hover {
+    background-color: rgba(abs.$secondary_color, 0.1);
+  }
+}
+
 //--------------------------- size ----------------------------
 .btn-large {
   padding: 0 2rem;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
   border-radius: 1rem;
   height: 3.25rem;
@@ -37,22 +61,22 @@ button {
 .icon-btn-large {
   @extend .btn-large;
   font-size: 1.5rem;
-  padding: 0;
-  width: 3.5rem;
+
+  padding: 0 1rem;
 }
 
 .icon-btn-medium {
   @extend .btn-medium;
-  font-size: 1.25rem;
-  padding: 0;
-  width: 2.75rem;
+  font-size: 1rem;
+
+  padding: 0 1rem;
 }
 
 .icon-btn-small {
   @extend .btn-small;
   font-size: 1.5rem;
-  padding: 0;
-  width: 2rem;
+
+  padding: 0 1rem;
 }
 
 //--------------------------- category ----------------------------
@@ -104,10 +128,6 @@ button {
   &:hover {
     background-color: darken(abs.$secondary_color, 5) !important;
   }
-
-  &:focus {
-    outline: 5px solid rgba(abs.$accent_color, 0.8);
-  }
 }
 
 .btn-outlined-sec {
@@ -132,7 +152,7 @@ button {
 .btn-plain-filled-sec {
   @extend .btn-sec;
   color: var(--tr-secondary);
-  background-color: transparent;
+  background-color: rgba(abs.$secondary_color, 0.1);
 }
 
 .btn-highlighted-sec {
@@ -141,30 +161,6 @@ button {
 }
 
 //--------------------------- states ----------------------------
-
-.btn-prime {
-  &:hover {
-    background-color: darken(rgba(abs.$accent_color, 0.3), 5);
-  }
-
-  &:active {
-    box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
-  }
-}
-
-.btn-sec {
-  &:focus {
-    outline: 2px solid rgba(abs.$secondary_color, 0.5);
-  }
-
-  &:active {
-    box-shadow: inset 1px 1px 10px rgba(abs.$secondary_color, 0.3) !important;
-  }
-
-  &:hover {
-    background-color: rgba(abs.$secondary_color, 0.1);
-  }
-}
 
 button:disabled {
   box-shadow: 2px 2px 4px rgba(abs.$secondary_color, 0.3);
