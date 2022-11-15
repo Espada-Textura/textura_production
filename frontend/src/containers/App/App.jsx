@@ -14,6 +14,7 @@ import Terms from "../Terms/index.jsx";
 import FullView from "../FullView/index.jsx";
 
 //subcontainer
+import { Default } from "@containers/Discover/Default/";
 import { Latest } from "@containers/Discover/Latest";
 import { Following } from "@containers/Discover/Following";
 import { Popular } from "@containers/Discover/Popular";
@@ -32,7 +33,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="discover" element={<Discover />}>
+          <Route path="discover/*" element={<Discover />}>
+            <Route index element={<Default />} />
             <Route path="latest" element={<Latest />} />
             <Route path="following" element={<Following />} />
             <Route path="artists" element={<Artists />} />
@@ -41,9 +43,9 @@ function App() {
             <Route path="stories" element={<Stories />} />
             <Route path="topics" element={<Topics />} />
           </Route>
-          <Route path="profile" element={<Profile />} />
-          <Route path="search" element={<Search />} />
-          <Route path="terms" element={<Terms />} />
+          <Route path="profile/*" element={<Profile />} />
+          <Route path="search/*" element={<Search />} />
+          <Route path="terms/*" element={<Terms />} />
           <Route path="art/:id" element={<FullView />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

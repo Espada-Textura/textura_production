@@ -1,6 +1,10 @@
 @use "../abstract" as abs;
 @use "../components";
 
+.topbar-section {
+  box-shadow: 0px 4px 10px rgba(abs.$secondary_color, 0.1);
+}
+
 .topbar-top-section {
   display: flex;
   gap: 2.5rem;
@@ -51,7 +55,7 @@
   }
 }
 
-a.active {
+a.active.topbar-nav-link {
   color: var(--tr-secondary);
 
   &:hover {
@@ -74,4 +78,16 @@ a.active {
 .topbar-bottom-section {
   display: flex;
   overflow-x: scroll;
+  justify-content: center;
+  gap: 2rem;
+
+  padding: 1rem;
+  background-color: var(--primary);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

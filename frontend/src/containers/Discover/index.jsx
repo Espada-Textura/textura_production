@@ -1,5 +1,11 @@
+import { Outlet } from "react-router-dom";
+
 const Discover = () => {
-  return <div>Discover</div>;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 export default Discover;
