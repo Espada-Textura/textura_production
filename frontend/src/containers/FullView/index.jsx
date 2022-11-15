@@ -1,7 +1,9 @@
+import { useParams } from "react-router-dom";
 
-export default function FullView(){
-    return (
-        <>
-        </>
-    )
-}
+const FullView = () => {
+  const param = useParams();
+  console.log(param);
+  return <div>FullView</div>;
+};
+
+export default FullView;
