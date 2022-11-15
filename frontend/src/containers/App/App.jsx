@@ -2,16 +2,18 @@
 import "@sass/index.scss";
 
 //components
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 
 //containers
-import Home from "@containers/Home/";
-import NotFound from "../NotFound/index.jsx";
-import Discover from "../Discover/index.jsx";
-import Profile from "../Profile/index.jsx";
-import Search from "../Search/index.jsx";
-import Terms from "../Terms/index.jsx";
-import FullView from "../FullView/index.jsx";
+import Home from "@containers/Home";
+import NotFound from "@containers/NotFound";
+import Discover from "@containers/Discover";
+import Profile from "@containers/Profile";
+import Search from "@containers/Search";
+import Terms from "@containers/Terms";
+import FullView from "@containers/FullView";
+import Challenge from "@containers/Challenge";
+import Forum from "@containers/Forum";
 
 //subcontainer
 import { Default } from "@containers/Discover/Default/";
@@ -33,7 +35,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="discover/*" element={<Discover />}>
+          <Route path="home" element={<Home />} />
+          <Route path="discover" element={<Discover />}>
             <Route index element={<Default />} />
             <Route path="latest" element={<Latest />} />
             <Route path="following" element={<Following />} />
@@ -43,11 +46,14 @@ function App() {
             <Route path="stories" element={<Stories />} />
             <Route path="topics" element={<Topics />} />
           </Route>
-          <Route path="profile/*" element={<Profile />} />
-          <Route path="search/*" element={<Search />} />
-          <Route path="terms/*" element={<Terms />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="search" element={<Search />} />
+          <Route path="terms" element={<Terms />} />
+          <Route path="art" element={"Text"} />
           <Route path="art/:artId" element={<FullView />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="challenges" element={<Challenge />} />
+          <Route path="forum" element={<Forum />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </main>
     </>

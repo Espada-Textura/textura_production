@@ -1,8 +1,3 @@
-
-
-export default function Terms(){
-    return (
-        <>
-        </>
-    )
+export default function Terms() {
+  return <>Terms</>;
 }
