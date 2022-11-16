@@ -14,18 +14,26 @@ export default function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={"search-bar"}>
-      <input
-        type={"text"}
-        placeholder={"Search for digital arts, cultural, anime, etc."}
-        name={"search"}
-        value={state}
-        onChange={handleChange}
-        autoComplete={"off"}
-      />
-      <button className={"icon-btn-medium"} onClick={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit} className={"search-bar hidden 2xl:flex"}>
+        <input
+          type={"text"}
+          placeholder={"Search for digital arts, anime, etc."}
+          name={"search"}
+          value={state}
+          onChange={handleChange}
+          autoComplete={"off"}
+        />
+        <button className={"icon-btn-medium"} onClick={handleSubmit}>
+          <HiOutlineSearch className={"w-6 h-6"} />
+        </button>
+      </form>
+      <button
+        className={"icon-btn-medium btn-plain-sec 2xl:hidden"}
+        onClick={handleSubmit}
+      >
         <HiOutlineSearch className={"w-6 h-6"} />
       </button>
-    </form>
+    </div>
   );
 }

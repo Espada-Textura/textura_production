@@ -2,7 +2,13 @@
 import "@sass/index.scss";
 
 //components
-import { Route, Routes, Link } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  redirect,
+  Navigate,
+} from "react-router-dom";
 
 //containers
 import Home from "@containers/Home";
@@ -34,8 +40,8 @@ function App() {
       <Topbar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="home" element={<Home />} />
+          <Route index element={<Navigate to={"home"} />} />
+          <Route path="/home" index element={<Home />} />
           <Route path="discover" element={<Discover />}>
             <Route index element={<Default />} />
             <Route path="latest" element={<Latest />} />
@@ -49,11 +55,10 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="search" element={<Search />} />
           <Route path="terms" element={<Terms />} />
-          <Route path="art" element={"Text"} />
           <Route path="art/:artId" element={<FullView />} />
           <Route path="challenges" element={<Challenge />} />
           <Route path="forum" element={<Forum />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </>

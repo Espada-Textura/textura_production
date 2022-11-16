@@ -6,9 +6,13 @@ import {
   HiOutlineUser,
 } from "react-icons/hi";
 
+import SearchBar from "@components/SearchBar/index.jsx";
+
 export default function ButtonGroup() {
   return (
     <div className={"flex gap-4"}>
+      <SearchBar />
+
       <button className={"btn-highlighted btn-medium"}>
         <HiUpload className={"w-6 h-6"} />
         Upload

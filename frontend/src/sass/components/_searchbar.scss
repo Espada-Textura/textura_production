@@ -5,12 +5,10 @@
   background-color: var(--tr-primary);
 
   border-radius: 0.75rem;
-  border: 2px solid rgba(abs.$secondary_color, 0.6);
+  border: 2px solid rgba(abs.$secondary_color, 0.3);
 
   width: 100%;
-  max-width: 500px;
-
-  padding-right: 0.5rem;
+  max-width: 400px;
 
   &:has(input:focus) {
     border: 2px solid var(--tr-secondary);

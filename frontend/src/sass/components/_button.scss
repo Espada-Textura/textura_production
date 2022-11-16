@@ -69,14 +69,14 @@ button {
   @extend .btn-medium;
   font-size: 1rem;
 
-  padding: 0 1rem;
+  padding: 0 0.75rem;
 }
 
 .icon-btn-small {
   @extend .btn-small;
   font-size: 1.5rem;
 
-  padding: 0 1rem;
+  padding: 0 0.75rem;
 }
 
 //--------------------------- category ----------------------------
