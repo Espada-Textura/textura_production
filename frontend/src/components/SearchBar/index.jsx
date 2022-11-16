@@ -14,8 +14,8 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className={"search-bar hidden 2xl:flex"}>
+    <div className="w-full px-4 max-xl:hidden">
+      <form onSubmit={handleSubmit} className={"search-bar "}>
         <input
           type={"text"}
           placeholder={"Search for digital arts, anime, etc."}
@@ -28,12 +28,6 @@ export default function SearchBar() {
           <HiOutlineSearch className={"w-6 h-6"} />
         </button>
       </form>
-      <button
-        className={"icon-btn-medium btn-plain-sec 2xl:hidden"}
-        onClick={handleSubmit}
-      >
-        <HiOutlineSearch className={"w-6 h-6"} />
-      </button>
     </div>
   );
 }

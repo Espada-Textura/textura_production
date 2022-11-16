@@ -4,7 +4,7 @@ export default function Logo() {
   return (
     <Link
       to={"/home"}
-      className="flex"
+      className="flex px-4"
       style={{ fontFamily: "pacifico", fontSize: "2em", padding: "0, 0.5rem" }}
     >
       <p style={{ color: "var(--tr-accent)" }}> Tex </p>
