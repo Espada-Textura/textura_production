@@ -36,32 +36,31 @@ import Topbar from "@layouts/TopBar/";
 
 function App() {
   return (
-    <>
+    <main onContextMenu={(e) => e.preventDefault()}>
       <Topbar />
-      <main>
-        <Routes>
-          <Route index element={<Navigate to={"home"} />} />
-          <Route path="/home" index element={<Home />} />
-          <Route path="discover" element={<Discover />}>
-            <Route index element={<Default />} />
-            <Route path="latest" element={<Latest />} />
-            <Route path="following" element={<Following />} />
-            <Route path="artists" element={<Artists />} />
-            <Route path="popular" element={<Popular />} />
-            <Route path="trending" element={<Trending />} />
-            <Route path="stories" element={<Stories />} />
-            <Route path="topics" element={<Topics />} />
-          </Route>
-          <Route path="profile" element={<Profile />} />
-          <Route path="search" element={<Search />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="art/:artId" element={<FullView />} />
-          <Route path="challenges" element={<Challenge />} />
-          <Route path="forum" element={<Forum />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </>
+
+      <Routes>
+        <Route index element={<Navigate to={"home"} />} />
+        <Route path="/home" index element={<Home />} />
+        <Route path="discover" element={<Discover />}>
+          <Route index element={<Default />} />
+          <Route path="latest" element={<Latest />} />
+          <Route path="following" element={<Following />} />
+          <Route path="artists" element={<Artists />} />
+          <Route path="popular" element={<Popular />} />
+          <Route path="trending" element={<Trending />} />
+          <Route path="stories" element={<Stories />} />
+          <Route path="topics" element={<Topics />} />
+        </Route>
+        <Route path="profile" element={<Profile />} />
+        <Route path="search" element={<Search />} />
+        <Route path="terms" element={<Terms />} />
+        <Route path="art/:artId" element={<FullView />} />
+        <Route path="challenges" element={<Challenge />} />
+        <Route path="forum" element={<Forum />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </main>
   );
 }
 

@@ -81,6 +81,8 @@ button {
 
 //--------------------------- category ----------------------------
 .btn-filled {
+  @extend .btn-prime;
+
   color: var(--tr-primary);
   background-color: var(--tr-accent);
 

@@ -24,6 +24,7 @@
 }
 
 .topbar-navigation-bar {
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -34,7 +35,6 @@
 }
 
 .topbar-nav-link {
-  position: relative;
   text-align: center;
   font-weight: bold;
   font-size: 1rem;
@@ -60,17 +60,23 @@ a.active.topbar-nav-link {
   &:hover {
     background-color: transparent;
   }
+}
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    margin-bottom: -1rem;
-    background-color: var(--tr-accent);
-    border-radius: 1rem;
+li:has(a.active) {
+  position: relative;
+
+  & {
+    ::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      margin-bottom: -1rem;
+      background-color: var(--tr-accent);
+      border-radius: 1rem;
+    }
   }
 }
 
@@ -99,5 +105,13 @@ a.active.topbar-nav-link {
     background-color: rgba(abs.$accent_color, 0.2);
     color: var(--tr-accent);
     font-weight: 500;
+  }
+}
+
+li:has(a) {
+  &:focus,
+  &:active {
+    outline: none;
+    border: none;
   }
 }

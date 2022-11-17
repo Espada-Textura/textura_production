@@ -21,9 +21,7 @@ export default function ButtonGroup() {
         <HiSearch className={"w-6 h-6"} />
       </Link>
 
-      <button
-        className={"btn-highlighted btn-medium max-xl:px-3 max-md:hidden"}
-      >
+      <button className={"btn-filled btn-medium max-xl:px-3 max-md:hidden"}>
         <HiUpload className={"w-6 h-6"} />
         <span className="max-xl:hidden">Upload</span>
       </button>

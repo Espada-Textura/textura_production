@@ -1,1 +1,6 @@
-$plain-text-font : 'Poppins';
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.google.com/specimen/Poppins?query=popp");
+}
+
+$plain-text-font: "Poppins";

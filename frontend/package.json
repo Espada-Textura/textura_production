@@ -7,7 +7,7 @@
     "start": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "serve": "vite build & vite preview"
+    "watch": "vite build --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
