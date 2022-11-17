@@ -10,7 +10,7 @@ export default defineConfig({
             "@containers": "/src/containers",
             "@layouts": "/src/layouts",
             "@images": "/src/images",
-
+            "@fonts": "/src/fonts",
             "@sass": "/src/sass",
 
         }
