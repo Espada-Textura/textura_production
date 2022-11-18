@@ -14,7 +14,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="w-full px-4 max-xl:hidden">
+    <div className=" w-full px-4 max-xl:hidden max-w-sm">
       <form onSubmit={handleSubmit} className={"search-bar "}>
         <input
           type={"text"}

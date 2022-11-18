@@ -2,13 +2,7 @@
 import "@sass/index.scss";
 
 //components
-import {
-  Route,
-  Routes,
-  useLocation,
-  redirect,
-  Navigate,
-} from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 //containers
 import Home from "@containers/Home";
