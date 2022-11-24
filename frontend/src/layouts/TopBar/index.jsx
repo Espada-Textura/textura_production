@@ -3,7 +3,7 @@ import Menu from "./Menu.jsx";
 import Logo from "@components/Logo/";
 import ButtonGroup from "./ButtonGroup.jsx";
 import Navigation from "./Navigation.jsx";
-import SearchBar from "@components/SearchBar/index.jsx";
+import SearchBar from "@components/SearchBar";
 import Categories from "./Categories.jsx";
 
 //icons

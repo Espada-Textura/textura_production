@@ -16,7 +16,7 @@ import Challenge from "@containers/Challenge";
 import Forum from "@containers/Forum";
 
 //subcontainer
-import { Default } from "@containers/Discover/Default/";
+import { All } from "@containers/Discover/All";
 import { Latest } from "@containers/Discover/Latest";
 import { Following } from "@containers/Discover/Following";
 import { Popular } from "@containers/Discover/Popular";
@@ -35,9 +35,10 @@ function App() {
 
       <Routes>
         <Route index element={<Navigate to={"home"} />} />
-        <Route path="/home" index element={<Home />} />
+        <Route path="home" index element={<Home />} />
         <Route path="discover" element={<Discover />}>
-          <Route index element={<Default />} />
+          <Route index element={<Navigate to={"all"} />} />
+          <Route path="all" element={<All />} />
           <Route path="latest" element={<Latest />} />
           <Route path="following" element={<Following />} />
           <Route path="artists" element={<Artists />} />

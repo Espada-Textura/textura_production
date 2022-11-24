@@ -12,67 +12,67 @@
 
   padding: 0.75rem 1.5rem;
   box-shadow: 0px 1px 10px rgba(abs.$secondary_color, 0.1);
-}
 
-.topbar-profile-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--tr-secondary);
-  cursor: pointer;
-}
-
-.topbar-navigation-bar {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: stretch;
-
-  height: 2.75rem;
-  padding: 0 1rem;
-}
-
-.topbar-nav-link {
-  text-align: center;
-
-  font-size: 1rem;
-  color: rgba(abs.$secondary_color, 0.8);
-
-  border-radius: 0.75rem;
-
-  padding: 0 1.25rem;
-  height: 2.75rem;
-
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    color: var(--tr-accent);
-    font-weight: 600;
+  .topbar-profile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--tr-secondary);
+    cursor: pointer;
   }
-}
 
-a.active.topbar-nav-link {
-  color: var(--tr-accent);
-  font-weight: bold;
-}
+  .topbar-navigation-bar {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: stretch;
 
-li:has(a.active) {
-  position: relative;
+    height: 2.75rem;
+    padding: 0 1rem;
+  }
 
-  & {
-    ::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 4px;
-      width: 100%;
-      margin-bottom: -1rem;
-      background-color: var(--tr-accent);
-      border-radius: 1rem;
+  .topbar-nav-link {
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(abs.$secondary_color, 0.8);
+
+    @include abs.radius(0.75rem);
+
+    padding: 0 1.25rem;
+    height: 2.75rem;
+
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(abs.$secondary_color, 0.075);
+    }
+  }
+
+  a.active.topbar-nav-link {
+    color: var(--tr-accent);
+    font-weight: bold;
+  }
+
+  li:has(a.active) {
+    position: relative;
+
+    & {
+      ::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        margin-bottom: -1rem;
+        background-color: var(--tr-accent);
+        @include abs.radius(1rem);
+      }
     }
   }
 }
@@ -93,9 +93,10 @@ li:has(a.active) {
     display: none;
   }
 
-  > a {
+  a {
+    color: rgba(abs.$secondary_color, 0.8);
     padding: 0.25rem 1rem;
-    border-radius: 0.5rem;
+    @include abs.radius(0.5rem);
   }
 
   & > a.active {

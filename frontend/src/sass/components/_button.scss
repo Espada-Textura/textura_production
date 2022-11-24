@@ -29,6 +29,7 @@ button {
   }
 
   &:hover {
+    position: relative;
     background-color: rgba(abs.$secondary_color, 0.1);
   }
 }
@@ -38,13 +39,13 @@ button {
   padding: 0 2rem;
   font-size: 1rem;
   font-weight: 500;
-  border-radius: 1rem;
+  @include abs.radius(0.1rem);
   height: 3.25rem;
 }
 
 .btn-medium {
   padding: 0 1.5rem;
-  border-radius: 0.75rem;
+  @include abs.radius(0.75rem);
   font-weight: 500;
   font-size: 1rem;
   height: 2.75rem;
@@ -52,7 +53,7 @@ button {
 
 .btn-small {
   padding: 0 1rem;
-  border-radius: 10px;
+  @include abs.radius(10px);
   font-size: 0.75rem;
   height: 2rem;
   font-weight: 500;
@@ -136,13 +137,14 @@ button {
   @extend .btn-sec;
 
   color: var(--tr-secondary);
-  border: solid 3px var(--tr-secondary);
+  border: solid 2px var(--tr-secondary);
 }
 
 .btn-outlined-filled-sec {
   @extend .btn-sec;
-  color: rgba(abs.$secondary_color, 0.2);
-  border: solid 3px var(--tr-accent);
+  color: var(--tr-secondary);
+  background-color: rgba(abs.$secondary_color, 0.1);
+  border: solid 2px var(--tr-secondary);
 }
 
 .btn-plain-sec {
