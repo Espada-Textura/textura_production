@@ -30,7 +30,7 @@ button {
 
   &:hover {
     position: relative;
-    background-color: rgba(abs.$secondary_color, 0.1);
+    background-color: var(--tr-sa);
   }
 }
 
@@ -143,7 +143,7 @@ button {
 .btn-outlined-filled-sec {
   @extend .btn-sec;
   color: var(--tr-secondary);
-  background-color: rgba(abs.$secondary_color, 0.1);
+  background-color: var(--tr-sa);
   border: solid 2px var(--tr-secondary);
 }
 
@@ -156,7 +156,7 @@ button {
 .btn-plain-filled-sec {
   @extend .btn-sec;
   color: var(--tr-secondary);
-  background-color: rgba(abs.$secondary_color, 0.1);
+  background-color: var(--tr-sa);
 }
 
 .btn-highlighted-sec {

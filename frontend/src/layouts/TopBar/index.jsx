@@ -18,7 +18,11 @@ export default function Topbar() {
         <SearchBar />
         <ButtonGroup />
       </div>
-      <div className={"topbar-bottom-section"}>
+      <div
+        className={
+          "topbar-bottom-section max-xl:justify-around max-xl:gap-0 max-md:hidden"
+        }
+      >
         <Categories />
       </div>
     </header>
