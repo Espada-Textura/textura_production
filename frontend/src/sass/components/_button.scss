@@ -36,7 +36,7 @@ button {
 
 //--------------------------- size ----------------------------
 .btn-large {
-  padding: 0 2rem;
+  padding: 0 2rem 0 1.75rem;
   font-size: 1rem;
   font-weight: 500;
   @include abs.radius(0.1rem);
@@ -44,7 +44,7 @@ button {
 }
 
 .btn-medium {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 0 1.25rem;
   @include abs.radius(0.75rem);
   font-weight: 500;
   font-size: 1rem;
@@ -52,7 +52,7 @@ button {
 }
 
 .btn-small {
-  padding: 0 1rem;
+  padding: 0 1rem 0 0.75rem;
   @include abs.radius(10px);
   font-size: 0.75rem;
   height: 2rem;
