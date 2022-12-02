@@ -1,6 +1,7 @@
 import smtplib
 from email.mime.text import MIMEText
-
+import threading
+from string import Template
 
 from app import DevConfigs
 from .util import get_project_root
@@ -26,6 +27,8 @@ class EmailSender:
         cc=[],
         subject="default subject",
         message="content message",
+        template=None,
+        temp_conts=None,
     ):
         app_config = DevConfigs()
         self.f_user = app_config.GMAIL_ACCOUNT
@@ -35,8 +38,16 @@ class EmailSender:
         self.subject = subject
         self.message = message
 
-    def send_email(self):
-        print("sening")
+        # if template:
+        #     html_content = self.read_template(template=template)
+
+        # print(html_content)
+
+        # if html_content:
+
+        #     self.message = Template(html_content).substitute(**temp_conts)
+
+    def send(self):
         smtpserver = smtplib.SMTP(self.f_host, self.f_port)
         smtpserver.ehlo()
         smtpserver.starttls()
@@ -47,7 +58,27 @@ class EmailSender:
         msg["From"] = self.sender
         msg["To"] = ",".join(self.to)
         msg["Cc"] = ",".join(self.to)
+
         for t in self.to:
             smtpserver.sendmail(self.f_user, t, msg.as_string())
         smtpserver.close()
-        print("Mail is sent successfully!!")
+
+    def emit_send(self):
+        sending = threading.Thread(target=self.send)
+        sending.start()
+
+    def read_template(self, template=None):
+
+        try:
+            with open(
+                f"{get_project_root()}/template/email/{template}.html",
+                "r",
+                encoding="utf-8",
+            ) as f:
+                text = f.read()
+
+            return text
+
+        except Exception as err:
+
+            return None

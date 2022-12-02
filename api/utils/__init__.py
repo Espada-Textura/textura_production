@@ -8,6 +8,7 @@ from .util import (
     safe_execute,
     get_current_user,
     verify_otp,
+    get_remote_location,
 )
 
 __all__ = [
@@ -20,4 +21,5 @@ __all__ = [
     "safe_execute",
     "get_current_user",
     "verify_otp",
+    "get_remote_location",
 ]
