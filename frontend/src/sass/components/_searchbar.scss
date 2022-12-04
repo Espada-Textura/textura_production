@@ -4,8 +4,8 @@
   display: flex;
   background-color: var(--tr-primary);
 
-  @include abs.radius(0.75rem);
-  border: 2px solid rgba(abs.$secondary_color, 0.5);
+  @include abs.border-radius(0.75rem);
+  border: 2px solid abs.$secondary-color-50;
 
   width: 100%;
 
@@ -21,7 +21,7 @@
   font-size: 1rem;
   text-overflow: ellipsis;
 
-  @include abs.radius(inherit);
+  @include abs.border-radius(inherit);
 
   padding: 0 1rem;
 

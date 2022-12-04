@@ -1,88 +1,65 @@
 @use "../abstract" as abs;
 
 //--------------------------- abstract ----------------------------
-button {
+
+.MuiButton-root {
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-}
-
-.btn-root {
-  &:hover {
-    background-color: darken(rgba(abs.$accent_color, 0.3), 5);
-  }
-
-  &:active {
-    box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
-  }
-}
-
-.btn-sec {
-  &:focus {
-    outline: 2px solid rgba(abs.$secondary_color, 0.5);
-  }
-
-  &:active {
-    box-shadow: inset 1px 1px 10px rgba(abs.$secondary_color, 0.3) !important;
-  }
-
-  &:hover {
-    position: relative;
-    background-color: var(--tr-sa);
-  }
+  gap: 0.5rem;
+  text-transform: none !important;
 }
 
 //--------------------------- size ----------------------------
-.btn-large {
+.MuiButton-sizeLarge {
   padding: 0 2rem 0 1.75rem;
   font-size: 1rem;
   font-weight: 500;
-  @include abs.radius(0.1rem);
+  @include abs.border-radius(0.1rem);
   height: 3.25rem;
 }
 
-.btn-medium {
+.MuiButton-sizeMedium {
   padding: 0 1.5rem 0 1.25rem;
-  @include abs.radius(0.75rem);
+  @include abs.border-radius(0.75rem);
   font-weight: 500;
   font-size: 1rem;
   height: 2.75rem;
 }
 
-.btn-small {
+.MuiButton-sizeSmall {
   padding: 0 1rem 0 0.75rem;
-  @include abs.radius(10px);
+  @include abs.border-radius(10px);
   font-size: 0.75rem;
   height: 2rem;
   font-weight: 500;
 }
 
-.icon-btn-large {
-  @extend .btn-large;
+.iconSizeLarge {
+  @extend .MuiButton-sizeLarge;
   font-size: 1.5rem;
 
   padding: 0 1rem;
 }
 
-.icon-btn-medium {
-  @extend .btn-medium;
+.iconSizeMedium {
+  @extend .MuiButton-sizeMedium;
   font-size: 1rem;
 
   padding: 0 0.75rem;
 }
 
-.icon-btn-small {
-  @extend .btn-small;
+.iconSizeSmall {
+  @extend .MuiButton-sizeSmall;
   font-size: 1.5rem;
 
   padding: 0 0.75rem;
 }
 
-//--------------------------- category ----------------------------
-.btn-filled {
-  @extend .btn-root;
+//--------------------------- variants ----------------------------
+.MuiButton-containedAccent {
+  @extend .button-prime;
 
   color: var(--tr-primary);
   background-color: var(--tr-accent);
@@ -92,38 +69,40 @@ button {
   }
 }
 
-.btn-outlined {
-  @extend .btn-root;
+.MuiButton-outlined {
+  @extend .button-prime;
+  color: abs.$accent-color-20;
+  border: solid 3px var(--tr-accent);
+}
+
+.MuiButton-outlinedAccent {
+  @extend .button-prime;
   color: var(--tr-accent);
   border: solid 3px var(--tr-accent);
 }
 
-.btn-outlined-filled {
-  @extend .btn-root;
-  color: rgba(abs.$accent_color, 0.2);
-  border: solid 3px var(--tr-accent);
-}
-
-.btn-plain {
-  @extend .btn-root;
+.MuiButton-text {
+  @extend .button-prime;
   color: var(--tr-accent);
   background-color: transparent;
 }
 
-.btn-plain-filled {
-  @extend .btn-root;
+.MuiButton-textAccent {
+  @extend .button-prime;
   color: var(--tr-accent);
-  background-color: rgba(abs.$accent_color, 0.3);
+  background-color: abs.$accent-color-30;
 }
 
-.btn-highlighted {
-  @extend .btn-filled;
-  box-shadow: 0 8px 16px -4px rgba(abs.$accent_color, 0.8);
+.MuiButton-fairContainedAccent {
+  @extend .button-sec;
+  color: var(--tr-accent);
+  background-color: abs.$secondary-color-10;
+  border: solid 2px var(--tr-secondary);
 }
 
 //------ secondary color button -------
-.btn-filled-sec {
-  @extend .btn-sec;
+.MuiButton-containedSecondary {
+  @extend .button-sec;
 
   color: var(--tr-primary);
   background-color: var(--tr-secondary);
@@ -133,40 +112,54 @@ button {
   }
 }
 
-.btn-outlined-sec {
-  @extend .btn-sec;
+.MuiButton-outlinedSecondary {
+  @extend .button-sec;
 
   color: var(--tr-secondary);
   border: solid 2px var(--tr-secondary);
 }
 
-.btn-outlined-filled-sec {
-  @extend .btn-sec;
+.MuiButton-fairContainedSecondary {
+  @extend .button-sec;
   color: var(--tr-secondary);
-  background-color: var(--tr-sa);
+  background-color: abs.$secondary-color-10;
   border: solid 2px var(--tr-secondary);
 }
 
-.btn-plain-sec {
-  @extend .btn-sec;
+.MuiButton-textSecondary {
+  @extend .button-sec;
   color: var(--tr-secondary);
   background-color: transparent;
 }
 
-.btn-plain-filled-sec {
-  @extend .btn-sec;
-  color: var(--tr-secondary);
-  background-color: var(--tr-sa);
-}
-
-.btn-highlighted-sec {
-  @extend .btn-filled-sec;
-  box-shadow: 0 8px 16px -4px rgba(abs.$secondary_color, 0.8);
-}
-
 //--------------------------- states ----------------------------
 
-button:disabled {
-  box-shadow: 2px 2px 4px rgba(abs.$secondary_color, 0.3);
+.MuiButton:disabled {
+  box-shadow: 2px 2px 4px abs.$secondary-color-30;
   opacity: 0.5;
+}
+
+.button-prime {
+  &:hover {
+    background-color: darken(abs.$accent-color-30, 5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px abs.$accent-color-30;
+  }
+}
+
+.button-sec {
+  &:focus {
+    outline: 2px solid abs.$secondary-color-50;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px abs.$secondary-color-30 !important;
+  }
+
+  &:hover {
+    position: relative;
+    background-color: abs.$secondary-color-10;
+  }
 }

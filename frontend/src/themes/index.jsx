@@ -21,18 +21,6 @@ const theme = createTheme({
       main: "#f4694d",
       dark: "#f4694d",
     },
-
-    accentFair: {
-      light: "#f4694d20",
-      main: "#f4694d20",
-      dark: "#f4694d30",
-    },
-
-    secondaryFair: {
-      light: "#1a212f10",
-      main: "#1a212f10",
-      dark: "#f9fbfc10",
-    },
   },
 
   typography: {
@@ -127,23 +115,16 @@ const theme = createTheme({
     },
 
     MuiButtonBase: {
+      variants: [
+        {
+          props: {
+            variant: "fairContained",
+          },
+        },
+      ],
       defaultProps: {
         disableRipple: true,
         size: "medium",
-      },
-
-      styleOverrides: {
-        root: {
-          font: "inherit !important",
-          borderRadius: "0.5rem !important",
-          textTransform: "none !important",
-        },
-      },
-    },
-
-    MuiIconButton: {
-      styleOverrides: {
-        root: {},
       },
     },
   },
