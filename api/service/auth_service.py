@@ -107,6 +107,8 @@ class AuthService:
             if not user_model:
                 abort(404)
 
+            user_model.set_password(user.get("password"))
+
             user_json = dao.jsonify(UserSchema, user_model)
 
         return user_json

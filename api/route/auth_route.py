@@ -1,9 +1,8 @@
 from datetime import datetime
-import asyncio
 import shortuuid
 from multiprocessing.dummy import Pool
 
-from flask import Blueprint, make_response, abort, session
+from flask import Blueprint, make_response, abort, session, request
 from flask_jwt_extended import jwt_required
 
 from flask_jwt_extended import (
@@ -22,6 +21,7 @@ from utils import (
     EmailSender,
     get_current_user,
     verify_otp,
+    get_remote_location,
 )
 from service import AuthService
 
@@ -77,7 +77,7 @@ def user_signup(user_auth):
         message=f"Your OTP code is {otp_code}",
     )
 
-    notification.send_email()
+    notification.emit_send()
 
     return make_response(new_user_json, 200)
 
@@ -105,7 +105,7 @@ def user_verify(user_activate):
             message="Your account has been activated.",
         )
 
-        notification.send_email()
+        notification.emit_send()
 
         session.pop("user")
 
@@ -136,14 +136,14 @@ def user_resend_otp(user_auth):
         subject="Verifying Textura account",
         message=f"Hey Your OTP code is {otp_code}",
     )
-    notification.send_email()
+    notification.emit_send()
 
     return make_response({"message": "Resent"})
 
 
 @auth_route.route("/reset-password/<step>", methods=["PUT"])
 @validate_request(
-    "UserAuthSchema", partial=True, only=(["email", "otp", "uid", "token"])
+    "UserAuthSchema", partial=True, only=(["email", "otp", "uid", "token", "password"])
 )
 def user_reset_password(user_auth, step):
 
@@ -158,7 +158,7 @@ def user_reset_password(user_auth, step):
         otp_code = get_otp_code()
 
         session["reseting_password"] = {
-            "id": user_json.get("uid"),
+            "uid": user_json.get("uid"),
             "hashed_otp": get_hash(otp_code),
             "created": datetime.now(),
         }
@@ -167,9 +167,18 @@ def user_reset_password(user_auth, step):
             to=[user_json.get("email")],
             subject="Reset Textura account password",
             message=f"Your OTP code is {otp_code}",
+            template="forget_password",
+            temp_conts={
+                "otp_code": otp_code,
+                "client_info": f"""
+            Request from:
+                IP : -
+                Agent : {request.environ.get("HTTP_USER_AGENT")}
+            """,
+            },
         )
 
-        notification.send_email()
+        notification.emit_send()
 
         resp = {
             "email": user_json.get("email"),
@@ -187,12 +196,12 @@ def user_reset_password(user_auth, step):
 
         req_otp = user_auth.get("otp")
 
-        rep_uid = user_auth.get("uid")
+        req_uid = user_auth.get("uid")
 
         if not verify_otp(otp=req_otp, hashed_otp=session_value.get("hashed_otp")):
             abort(403)
 
-        if not rep_uid == session_value.get("uid"):
+        if not req_uid == session_value.get("uid"):
             abort(403)
 
         service = AuthService()
@@ -226,15 +235,32 @@ def user_reset_password(user_auth, step):
 
         rep_uid = user_auth.get("uid")
 
-        print(rep_uid, session_value.get("uid"))
-
         if not rep_uid == session_value.get("uid"):
             abort(403)
 
         if not verify_otp(otp=req_token, hashed_otp=session_value.get("hashed_token")):
             abort(403)
 
-        return make_response({"message": "Resent"})
+        service = AuthService()
+
+        user_json = service.reset_password(user_auth)
+
+        notification = EmailSender(
+            to=[user_json.get("email")],
+            subject="Textura Account",
+            message=f"""
+            Your account password have been changed.
+
+            Request from:
+                IP : -
+                Agent : {request.environ.get("HTTP_USER_AGENT")}
+                Location : -
+            """,
+        )
+
+        notification.emit_send()
+
+        return make_response({"message": "Password has been changed"})
 
     else:
         abort(403)
@@ -245,4 +271,17 @@ def user_reset_password(user_auth, step):
 def user_logout():
     resp = make_response({"message": "Logout successful"})
     unset_jwt_cookies(resp)
+    return resp
+
+
+@auth_route.route("/debug", methods=["GET"])
+def debug():
+
+    client_ip = request.environ.get("REMOTE_ADDR")
+
+    # resp = get_remote_location(client_ip)
+
+    print(request.access_route)
+
+    resp = make_response({})
     return resp

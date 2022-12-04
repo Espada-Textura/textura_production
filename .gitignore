@@ -12,3 +12,4 @@ app/db.sqlite3
 ./postgres
 postgres
 api/migration
+api/art

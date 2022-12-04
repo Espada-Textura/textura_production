@@ -1,6 +1,8 @@
 from pathlib import Path
 from random import randint
 from passlib.hash import sha256_crypt
+import requests
+import json
 
 
 from flask_jwt_extended import verify_jwt_in_request, get_jwt
@@ -55,3 +57,19 @@ def get_current_user():
     """get current user id from jwt token"""
     claims = get_jwt()
     return claims
+
+
+def get_remote_location(ip=None):
+    location = ""
+
+    url = f"http://ip-api.com/json/{ip}"
+    resp = requests.get(url)
+
+    print(resp)
+
+    if not resp:
+        location = "Unknown IP location"
+
+    location = json.loads(resp.text)
+
+    return location

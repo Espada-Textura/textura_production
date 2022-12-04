@@ -5,8 +5,8 @@ from flask_jwt_extended import JWTManager
 
 app = Flask(
     __name__,
-    static_url_path="/api/uploads",
-    static_folder="uploads",
+    static_url_path="/api/art",
+    static_folder="art",
     root_path="/api",
 )
 
