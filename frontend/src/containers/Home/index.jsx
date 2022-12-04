@@ -1,7 +1,7 @@
 function Home() {
   return (
     <section>
-      <div>Home</div>
+      <button className="icon-btn-medium btn-outlined">Button</button>
     </section>
   );
 }

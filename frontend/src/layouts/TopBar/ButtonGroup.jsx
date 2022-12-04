@@ -4,35 +4,45 @@ import {
   HiOutlinePaperAirplane,
   HiUpload,
   HiOutlineUser,
+  HiSearch,
 } from "react-icons/hi";
 
-import SearchBar from "@components/SearchBar/index.jsx";
+import { Link } from "react-router-dom";
 
 export default function ButtonGroup() {
   return (
     <div className={"flex gap-4"}>
-      <SearchBar />
+      <Link
+        className={
+          "btn-plain-sec icon-btn-medium px-3 max-md:hidden xl:hidden items-center flex"
+        }
+        to={"/search"}
+      >
+        <HiSearch className={"w-6 h-6 self-center"} />
+      </Link>
 
-      <button className={"btn-highlighted btn-medium"}>
+      <button className={"btn-filled btn-medium max-xl:px-3 max-md:hidden"}>
         <HiUpload className={"w-6 h-6"} />
-        Upload
+        <span className="max-xl:hidden">Upload</span>
       </button>
 
-      <button className={"btn-plain-sec icon-btn-medium"}>
+      <button className={"btn-plain-sec icon-btn-medium max-lg:hidden"}>
         <HiOutlineBell className={"w-6 h-6"} />
       </button>
 
-      <button className={"btn-plain-sec icon-btn-medium"}>
+      <button className={"btn-plain-sec icon-btn-medium max-lg:hidden"}>
         <HiOutlinePaperAirplane
           className={"w-6 h-6 rotate-45 translate-x-0.5 -translate-y-0.5"}
         />
       </button>
 
       <div className={"topbar-profile-btn"}>
-        <button className={"icon-btn-medium btn-plain-sec"}>
+        <Link
+          className={" px-3 icon-btn-medium btn-plain-sec items-center flex"}
+        >
           {/* TODO: Conditional Rendering on the profile*/}
-          <HiOutlineUser className={"w-6 h-6"} />
-        </button>
+          <HiOutlineUser className={"w-6 h-6 self-center"} />
+        </Link>
 
         <HiChevronDown className={"w-6 h-6"} />
       </div>

@@ -29,30 +29,31 @@ button {
   }
 
   &:hover {
-    background-color: rgba(abs.$secondary_color, 0.1);
+    position: relative;
+    background-color: var(--tr-sa);
   }
 }
 
 //--------------------------- size ----------------------------
 .btn-large {
-  padding: 0 2rem;
+  padding: 0 2rem 0 1.75rem;
   font-size: 1rem;
   font-weight: 500;
-  border-radius: 1rem;
+  @include abs.radius(0.1rem);
   height: 3.25rem;
 }
 
 .btn-medium {
-  padding: 0 1.5rem;
-  border-radius: 0.75rem;
+  padding: 0 1.5rem 0 1.25rem;
+  @include abs.radius(0.75rem);
   font-weight: 500;
   font-size: 1rem;
   height: 2.75rem;
 }
 
 .btn-small {
-  padding: 0 1rem;
-  border-radius: 10px;
+  padding: 0 1rem 0 0.75rem;
+  @include abs.radius(10px);
   font-size: 0.75rem;
   height: 2rem;
   font-weight: 500;
@@ -81,6 +82,8 @@ button {
 
 //--------------------------- category ----------------------------
 .btn-filled {
+  @extend .btn-prime;
+
   color: var(--tr-primary);
   background-color: var(--tr-accent);
 
@@ -134,13 +137,14 @@ button {
   @extend .btn-sec;
 
   color: var(--tr-secondary);
-  border: solid 3px var(--tr-secondary);
+  border: solid 2px var(--tr-secondary);
 }
 
 .btn-outlined-filled-sec {
   @extend .btn-sec;
-  color: rgba(abs.$secondary_color, 0.2);
-  border: solid 3px var(--tr-accent);
+  color: var(--tr-secondary);
+  background-color: var(--tr-sa);
+  border: solid 2px var(--tr-secondary);
 }
 
 .btn-plain-sec {
@@ -152,7 +156,7 @@ button {
 .btn-plain-filled-sec {
   @extend .btn-sec;
   color: var(--tr-secondary);
-  background-color: rgba(abs.$secondary_color, 0.1);
+  background-color: var(--tr-sa);
 }
 
 .btn-highlighted-sec {

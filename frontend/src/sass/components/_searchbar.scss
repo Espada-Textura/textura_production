@@ -4,11 +4,10 @@
   display: flex;
   background-color: var(--tr-primary);
 
-  border-radius: 0.75rem;
-  border: 2px solid rgba(abs.$secondary_color, 0.3);
+  @include abs.radius(0.75rem);
+  border: 2px solid rgba(abs.$secondary_color, 0.5);
 
   width: 100%;
-  max-width: 400px;
 
   &:has(input:focus) {
     border: 2px solid var(--tr-secondary);
@@ -18,11 +17,11 @@
 .search-bar input {
   background-color: transparent;
 
-  font-weight: 450;
+  font-weight: 500;
   font-size: 1rem;
   text-overflow: ellipsis;
 
-  border-radius: inherit;
+  @include abs.radius(inherit);
 
   padding: 0 1rem;
 
@@ -33,5 +32,24 @@
   &:focus {
     border: none;
     outline: none;
+  }
+
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--tr-secondary);
+    font-weight: 500;
+    opacity: 0.6; /* Firefox */
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    font-weight: 500;
+    color: var(--tr-secondary);
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    font-weight: 500;
+    color: var(--tr-secondary);
   }
 }
