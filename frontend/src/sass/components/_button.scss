@@ -2,7 +2,8 @@
 
 //--------------------------- abstract ----------------------------
 
-.MuiButton-root {
+.MuiButton-root,
+.MuiButtonBase-root {
   display: flex;
   text-align: center;
   align-items: center;
@@ -39,7 +40,6 @@
 .iconSizeLarge {
   @extend .MuiButton-sizeLarge;
   font-size: 1.5rem;
-
   padding: 0 1rem;
 }
 
@@ -96,7 +96,7 @@
 .MuiButton-fairContainedAccent {
   @extend .button-sec;
   color: var(--tr-accent);
-  background-color: abs.$secondary-color-10;
+  background-color: abs.$accent-color-20;
   border: solid 2px var(--tr-secondary);
 }
 
@@ -122,7 +122,7 @@
 .MuiButton-fairContainedSecondary {
   @extend .button-sec;
   color: var(--tr-secondary);
-  background-color: abs.$secondary-color-10;
+  background-color: abs.$secondary-color-10 !important;
   border: solid 2px var(--tr-secondary);
 }
 
