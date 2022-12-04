@@ -30,7 +30,7 @@ import Topbar from "@layouts/TopBar/";
 
 function App() {
   return (
-    <main onContextMenu={(e) => e.preventDefault()}>
+    <div onContextMenu={(e) => e.preventDefault()}>
       <Topbar />
 
       <Routes>
@@ -47,7 +47,7 @@ function App() {
           <Route path="stories" element={<Stories />} />
           <Route path="topics" element={<Topics />} />
         </Route>
-        <Route path="profile" element={<Profile />} />
+        <Route path="artist/:artistId" element={<Profile />} />
         <Route path="search" element={<Search />} />
         <Route path="terms" element={<Terms />} />
         <Route path="art/:artId" element={<FullView />} />
@@ -55,7 +55,7 @@ function App() {
         <Route path="forum" element={<Forum />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </main>
+    </div>
   );
 }
 

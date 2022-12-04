@@ -1,16 +1,28 @@
+$primary-color: #f9fbfc;
 
-$primary-color: #F9FBFC;
+$sa-color: #e9eff2;
 
-$sa-color: #E9EFF2;
+$accent_color: #f4694d;
 
-$accent_color: #F4694D;
+$secondary_color: #1a212f;
 
-$secondary_color: #1A212F;
+light {
+  $primary-color: #f9fbfc;
+  $sa-color: #e9eff2;
+  $accent_color: #f4694d;
+  $secondary_color: #1a212f;
+}
 
+dark {
+  $secondary-color: #f9fbfc;
+  $sa-color: #e9eff2;
+  $accent_color: #f4694d;
+  $primary_color: #1a212f;
+}
 
-:root{
-  --tr-accent : #{$accent_color};
-  --tr-primary : #{$primary-color};
-  --tr-secondary : #{$secondary_color};
-  --tr-sa : #{$sa-color};
+:root {
+  --tr-accent: #{$accent_color};
+  --tr-primary: #{$primary-color};
+  --tr-secondary: #{$secondary_color};
+  --tr-sa: #{$sa-color};
 }
