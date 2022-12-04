@@ -18,8 +18,21 @@ from utils import safe_execute
 class ArtModel(Based, BaseModel):
     __tablename__ = "art"
 
-    aid = Column("uid", String(32), unique=True, index=True)
+    aid = Column("aid", String(32), unique=True, index=True)
+    title = Column("title", String(), index=True)
+    description = Column("description", String())
+    rpath = Column("rpath", String())
+    status = Column("status", String(), default="processing")
+    preimage = Column("preimage", String())
+    view = Column("view", Integer(), default=0)
+    like = Column("like", Integer(), default=0)
+
     user_id = Column(Integer, ForeignKey("user.id"), index=True, nullable=False)
+
+    user = relationship(
+        "UserModel",
+        backref="user",
+    )
 
     metas = relationship(
         "ArtMetaModel",
@@ -29,7 +42,7 @@ class ArtModel(Based, BaseModel):
 
     def __init__(self, schema):
         for key, value in schema.items():
-            if key not in ("password"):
+            if key not in ("image"):
                 setattr(self, key, value)
 
     def get_meta(self, key=None, jsonify=True, art_id=None):

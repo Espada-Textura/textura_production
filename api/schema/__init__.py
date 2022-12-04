@@ -7,5 +7,13 @@ from .user_schema import (
     UserAuthSchema,
 )
 
+from .art_schema import ArtSchema, NestedArtSchema
 
-__all__ = ["UserSchema", "UserActivateSchema", "UserAuthSchema"]
+
+__all__ = [
+    "UserSchema",
+    "UserActivateSchema",
+    "UserAuthSchema",
+    "ArtSchema",
+    "NestedArtSchema",
+]

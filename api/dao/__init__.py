@@ -1,6 +1,4 @@
 from .user_dao import UserDao
+from .art_dao import ArtDao
 
-
-__all__ = [
-    "UserDao",
-]
+__all__ = ["UserDao", "ArtDao"]
