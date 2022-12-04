@@ -1,7 +1,10 @@
+import Button from "@mui/material/Button";
 function Home() {
   return (
     <section>
-      <button className="icon-btn-medium btn-outlined">Button</button>
+      <Button variant="text" color="secondary">
+        This is a Button
+      </Button>
     </section>
   );
 }
