@@ -12,6 +12,9 @@ import {
 
 //containers
 import Home from "@containers/Home";
+import SignUp from "@containers/SignUp";
+import SignIn from "@containers/SignIn";
+import RecoveryPassword from "@containers/RecoveryPassword";
 import NotFound from "@containers/NotFound";
 import Discover from "@containers/Discover";
 import Profile from "@containers/Profile";
@@ -42,6 +45,9 @@ function App() {
         <Routes>
           <Route index element={<Navigate to={"home"} />} />
           <Route path="/home" index element={<Home />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="recovery-password" element ={<RecoveryPassword />} />
           <Route path="discover" element={<Discover />}>
             <Route index element={<Default />} />
             <Route path="latest" element={<Latest />} />
