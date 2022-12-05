@@ -7,8 +7,32 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  text-transform: none !important;
+  gap: 8px;
+}
+
+.btn-prime {
+  &:hover {
+    background-color: darken(rgba(abs.$accent_color, 0.3), 5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
+  }
+}
+
+.btn-sec {
+  &:focus {
+    outline: 2px solid rgba(abs.$secondary_color, 0.5);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 10px rgba(abs.$secondary_color, 0.3) !important;
+  }
+
+  &:hover {
+    position: relative;
+    background-color: var(--tr-sa);
+  }
 }
 
 //--------------------------- size ----------------------------
@@ -57,9 +81,9 @@
   padding: 0 0.75rem;
 }
 
-//--------------------------- variants ----------------------------
-.MuiButton-containedAccent {
-  @extend .button-prime;
+//--------------------------- category ----------------------------
+.btn-filled {
+  @extend .btn-prime;
 
   color: var(--tr-primary);
   background-color: var(--tr-accent);
@@ -69,26 +93,26 @@
   }
 }
 
-.MuiButton-outlined {
-  @extend .button-prime;
-  color: abs.$accent-color-20;
-  border: solid 3px var(--tr-accent);
-}
-
-.MuiButton-outlinedAccent {
-  @extend .button-prime;
+.btn-outlined {
+  @extend .btn-prime;
   color: var(--tr-accent);
   border: solid 3px var(--tr-accent);
 }
 
-.MuiButton-text {
-  @extend .button-prime;
+.btn-outlined-filled {
+  @extend .btn-prime;
+  color: rgba(abs.$accent_color, 0.2);
+  border: solid 3px var(--tr-accent);
+}
+
+.btn-plain {
+  @extend .btn-prime;
   color: var(--tr-accent);
   background-color: transparent;
 }
 
-.MuiButton-textAccent {
-  @extend .button-prime;
+.btn-plain-filled {
+  @extend .btn-prime;
   color: var(--tr-accent);
   background-color: abs.$accent-color-30;
 }

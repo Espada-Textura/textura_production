@@ -18,13 +18,13 @@ export default function Topbar() {
         <SearchBar />
         <ButtonGroup />
       </div>
-      {/* <div
+      <div
         className={
           "topbar-bottom-section max-xl:justify-around max-xl:gap-0 max-md:hidden"
         }
       >
         <Categories />
-      </div> */}
+      </div>
     </header>
   );
 }
