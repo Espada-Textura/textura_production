@@ -14,23 +14,31 @@ export default function ButtonGroup() {
     <div className={"flex gap-4"}>
       <Link
         className={
-          "btn-plain-sec icon-btn-medium px-3 max-md:hidden xl:hidden items-center flex"
+          "button-plain-secondary icon-button-medium px-3 max-md:hidden xl:hidden items-center flex"
         }
         to={"/search"}
       >
         <HiSearch className={"w-6 h-6 self-center"} />
       </Link>
 
-      <button className={"btn-filled btn-medium max-xl:px-3 max-md:hidden"}>
+      <button
+        className={
+          "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
+        }
+      >
         <HiUpload className={"w-6 h-6"} />
         <span className="max-xl:hidden">Upload</span>
       </button>
 
-      <button className={"btn-plain-sec icon-btn-medium max-lg:hidden"}>
+      <button
+        className={"button-plain-secondary icon-button-medium max-lg:hidden"}
+      >
         <HiOutlineBell className={"w-6 h-6"} />
       </button>
 
-      <button className={"btn-plain-sec icon-btn-medium max-lg:hidden"}>
+      <button
+        className={"button-plain-secondary icon-button-medium max-lg:hidden"}
+      >
         <HiOutlinePaperAirplane
           className={"w-6 h-6 rotate-45 translate-x-0.5 -translate-y-0.5"}
         />
@@ -38,7 +46,9 @@ export default function ButtonGroup() {
 
       <div className={"topbar-profile-btn"}>
         <Link
-          className={" px-3 icon-btn-medium btn-plain-sec items-center flex"}
+          className={
+            " px-3 icon-button-medium button-plain-secondary items-center flex"
+          }
         >
           {/* TODO: Conditional Rendering on the profile*/}
           <HiOutlineUser className={"w-6 h-6 self-center"} />
