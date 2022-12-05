@@ -14,7 +14,6 @@ import Terms from "@containers/Terms";
 import FullView from "@containers/FullView";
 import Challenge from "@containers/Challenge";
 import Forum from "@containers/Forum";
-import SignIn from "@containers/Sign_In";
 
 //subcontainer
 import { All } from "@containers/Discover/All";
@@ -36,7 +35,6 @@ function App() {
 
       <Routes>
         <Route index element={<Navigate to={"home"} />} />
-        <Route path="signIn" element={<SignIn />} />
         <Route path="home" index element={<Home />} />
         <Route path="discover" element={<Discover />}>
           <Route index element={<Navigate to={"all"} />} />
