@@ -129,10 +129,17 @@ button {
   }
 }
 
-.button-outline-secondary {
+.button-outlined-secondary {
   @extend .button-secondary;
 
   color: var(--tr-secondary);
+  border: solid 2px var(--tr-secondary);
+}
+
+.button-outlined-fair-secondary {
+  @extend .button-secondary;
+  color: var(--tr-secondary);
+  background-color: abs.$secondary-color-10;
   border: solid 2px var(--tr-secondary);
 }
 
@@ -140,7 +147,6 @@ button {
   @extend .button-secondary;
   color: var(--tr-secondary);
   background-color: abs.$secondary-color-10;
-  border: solid 2px var(--tr-secondary);
 }
 
 .button-plain-secondary {

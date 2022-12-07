@@ -2,16 +2,10 @@
 
 .search-bar {
   display: flex;
-  background-color: var(--tr-primary);
+  background-color: abs.$secondary-color-10;
 
   @include abs.border-radius(0.75rem);
-  border: 2px solid abs.$secondary-color-50;
-
   width: 100%;
-
-  &:has(input:focus) {
-    border: 2px solid var(--tr-secondary);
-  }
 }
 
 .search-bar input {
@@ -23,7 +17,7 @@
 
   @include abs.border-radius(inherit);
 
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 
   width: inherit;
 

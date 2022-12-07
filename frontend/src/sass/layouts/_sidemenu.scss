@@ -1,0 +1,87 @@
+@use "../abstract" as abs;
+
+.sidebar-portal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
+  .sidebar-container {
+    width: max-content;
+    max-width: 350px;
+    // height: 100%;
+    padding: 1rem 2rem;
+    color: abs.$secondary-color-70;
+    font-weight: bold;
+    background-color: var(--tr-primary);
+    overflow: auto;
+
+    .sidebar-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .sidebar-search {
+        height: 3.125rem;
+        padding: 0 1rem;
+        width: 100%;
+        font-weight: 500 !important;
+        @include abs.border-radius(0.5rem);
+        background-color: abs.$secondary-color-10;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .sidebar-section-title {
+        margin: 0.75rem 0;
+        font-size: 0.9rem;
+        color: abs.$secondary-color-60;
+      }
+
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        justify-items: flex-start;
+        gap: 1rem;
+        height: 3.125rem;
+        padding: 0 0.75rem;
+
+        svg {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+      }
+    }
+
+    .sidebar-footer {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      height: 4rem;
+
+      margin: 1rem 0;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+
+      border-top: 2px solid abs.$secondary-color-20;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}
+
+.sidebar-empty-space {
+  position: relative;
+
+  background-color: abs.$secondary-color-50;
+}
