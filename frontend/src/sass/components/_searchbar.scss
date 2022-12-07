@@ -6,6 +6,10 @@
 
   @include abs.border-radius(0.75rem);
   width: 100%;
+
+  svg {
+    color: abs.$secondary-color-70;
+  }
 }
 
 .search-bar input {

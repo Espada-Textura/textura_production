@@ -1,6 +1,9 @@
 //styles
 import "@sass/index.scss";
 
+//stores
+import { useMenuStore } from "@/zustand/menuStore";
+
 //components
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -28,11 +31,16 @@ import { Artists } from "@containers/Discover/Artists";
 
 //layouts
 import Topbar from "@layouts/TopBar/";
+import SideMenu from "@layouts/SideMenu/";
 
-function App() {
+const App = () => {
+  const isMenuOpen = useMenuStore((state) => state.isMenuOpen);
+
   return (
     <>
       <Topbar onContextMenu={(e) => e.preventDefault()} />
+
+      <SideMenu />
 
       <Routes>
         <Route index element={<Navigate to={"home"} />} />
@@ -59,6 +67,6 @@ function App() {
       </Routes>
     </>
   );
-}
+};
 
 export default App;
