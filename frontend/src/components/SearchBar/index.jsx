@@ -20,7 +20,7 @@ export default function SearchBar() {
           <HiSearch className={"w-6 h-6"} />
         </button>
         <input
-          type={"text"}
+          type={"search"}
           placeholder={"Search arts, anime, etcs."}
           name={"search"}
           value={state}
