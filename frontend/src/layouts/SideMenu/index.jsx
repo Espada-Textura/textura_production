@@ -12,7 +12,6 @@ import {
   HiOutlineLightBulb,
   HiOutlineAtSymbol,
   HiOutlineBookmark,
-  HiSearch,
 } from "react-icons/hi";
 
 import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
