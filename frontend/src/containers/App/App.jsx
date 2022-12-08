@@ -29,10 +29,10 @@ import { Artists } from "@containers/Discover/Artists";
 //layouts
 import Topbar from "@layouts/TopBar/";
 
-function App() {
+const App = () => {
   return (
-    <div onContextMenu={(e) => e.preventDefault()}>
-      <Topbar />
+    <>
+      <Topbar onContextMenu={(e) => e.preventDefault()} />
 
       <Routes>
         <Route index element={<Navigate to={"home"} />} />
@@ -57,8 +57,8 @@ function App() {
         <Route path="forum" element={<Forum />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+    </>
   );
-}
+};
 
 export default App;

@@ -1,21 +1,44 @@
 $primary-color: #f9fbfc;
+$primary-color-90: rgba($primary-color, 0.9);
+$primary-color-80: rgba($primary-color, 0.8);
+$primary-color-70: rgba($primary-color, 0.7);
+$primary-color-60: rgba($primary-color, 0.6);
+$primary-color-50: rgba($primary-color, 0.5);
+$primary-color-40: rgba($primary-color, 0.4);
+$primary-color-30: rgba($primary-color, 0.3);
+$primary-color-20: rgba($primary-color, 0.2);
+$primary-color-10: rgba($primary-color, 0.1);
 
-$sa-color: #e9eff2;
+$secondary-color: #1a212f;
+$secondary-color-90: rgba($secondary-color, 0.9);
+$secondary-color-80: rgba($secondary-color, 0.8);
+$secondary-color-70: rgba($secondary-color, 0.7);
+$secondary-color-60: rgba($secondary-color, 0.6);
+$secondary-color-50: rgba($secondary-color, 0.5);
+$secondary-color-40: rgba($secondary-color, 0.4);
+$secondary-color-30: rgba($secondary-color, 0.3);
+$secondary-color-20: rgba($secondary-color, 0.2);
+$secondary-color-10: rgba($secondary-color, 0.1);
 
-$accent_color: #f4694d;
-
-$secondary_color: #1a212f;
+$accent-color: #f4694d;
+$accent-color-90: rgba($accent-color, 0.9);
+$accent-color-80: rgba($accent-color, 0.8);
+$accent-color-70: rgba($accent-color, 0.7);
+$accent-color-60: rgba($accent-color, 0.6);
+$accent-color-50: rgba($accent-color, 0.5);
+$accent-color-40: rgba($accent-color, 0.4);
+$accent-color-30: rgba($accent-color, 0.3);
+$accent-color-20: rgba($accent-color, 0.2);
+$accent-color-10: rgba($accent-color, 0.1);
 
 light {
   $primary-color: #f9fbfc;
-  $sa-color: #e9eff2;
   $accent_color: #f4694d;
   $secondary_color: #1a212f;
 }
 
 dark {
   $secondary-color: #f9fbfc;
-  $sa-color: #e9eff2;
   $accent_color: #f4694d;
   $primary_color: #1a212f;
 }
@@ -24,5 +47,4 @@ dark {
   --tr-accent: #{$accent_color};
   --tr-primary: #{$primary-color};
   --tr-secondary: #{$secondary_color};
-  --tr-sa: #{$sa-color};
 }

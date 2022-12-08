@@ -1,6 +1,7 @@
 @use "../abstract" as abs;
 
 //--------------------------- abstract ----------------------------
+
 button {
   display: flex;
   text-align: center;
@@ -9,23 +10,23 @@ button {
   gap: 8px;
 }
 
-.btn-prime {
+.button-accent {
   &:hover {
-    background-color: darken(rgba(abs.$accent_color, 0.3), 5);
+    background-color: darken(abs.$accent-color-10, 5);
   }
 
   &:active {
-    box-shadow: inset 1px 1px 10px rgba(abs.$accent_color, 0.3);
+    box-shadow: inset 1px 1px 10px abs.$accent-color-30;
   }
 }
 
-.btn-sec {
+.button-secondary {
   &:focus {
-    outline: 2px solid rgba(abs.$secondary_color, 0.5);
+    outline: 2px solid abs.$secondary-color-50;
   }
 
   &:active {
-    box-shadow: inset 1px 1px 10px rgba(abs.$secondary_color, 0.3) !important;
+    box-shadow: inset 1px 1px 10px abs.$secondary-color-30 !important;
   }
 
   &:hover {
@@ -35,138 +36,128 @@ button {
 }
 
 //--------------------------- size ----------------------------
-.btn-large {
+.button-large {
   padding: 0 2rem 0 1.75rem;
   font-size: 1rem;
   font-weight: 500;
-  @include abs.radius(0.1rem);
+  @include abs.border-radius(0.1rem);
   height: 3.25rem;
 }
 
-.btn-medium {
+.button-medium {
   padding: 0 1.5rem 0 1.25rem;
-  @include abs.radius(0.75rem);
+  @include abs.border-radius(0.75rem);
   font-weight: 500;
   font-size: 1rem;
   height: 2.75rem;
 }
 
-.btn-small {
+.button-small {
   padding: 0 1rem 0 0.75rem;
-  @include abs.radius(10px);
+  @include abs.border-radius(10px);
   font-size: 0.75rem;
   height: 2rem;
   font-weight: 500;
 }
 
-.icon-btn-large {
-  @extend .btn-large;
+.icon-button-large {
+  @extend .button-large;
   font-size: 1.5rem;
 
   padding: 0 1rem;
 }
 
-.icon-btn-medium {
-  @extend .btn-medium;
+.icon-button-medium {
+  @extend .button-medium;
   font-size: 1rem;
 
   padding: 0 0.75rem;
 }
 
-.icon-btn-small {
-  @extend .btn-small;
+.icon-button-small {
+  @extend .button-small;
   font-size: 1.5rem;
 
   padding: 0 0.75rem;
 }
 
 //--------------------------- category ----------------------------
-.btn-filled {
-  @extend .btn-prime;
+.button-filled-accent {
+  @extend .button-accent;
 
   color: var(--tr-primary);
   background-color: var(--tr-accent);
 
   &:hover {
-    background-color: darken(abs.$accent_color, 5);
+    background-color: darken(abs.$accent-color, 5);
   }
 }
 
-.btn-outlined {
-  @extend .btn-prime;
+.button-outlined-accent {
+  @extend .button-accent;
   color: var(--tr-accent);
   border: solid 3px var(--tr-accent);
 }
 
-.btn-outlined-filled {
-  @extend .btn-prime;
-  color: rgba(abs.$accent_color, 0.2);
+.button-outlined-filled-accent {
+  @extend .button-accent;
+  color: abs.$accent-color-20;
   border: solid 3px var(--tr-accent);
 }
 
-.btn-plain {
-  @extend .btn-prime;
+.button-plain-accent {
+  @extend .button-accent;
   color: var(--tr-accent);
   background-color: transparent;
 }
 
-.btn-plain-filled {
-  @extend .btn-prime;
+.button-fiar-accent {
+  @extend .button-accent;
   color: var(--tr-accent);
-  background-color: rgba(abs.$accent_color, 0.3);
-}
-
-.btn-highlighted {
-  @extend .btn-filled;
-  box-shadow: 0 8px 16px -4px rgba(abs.$accent_color, 0.8);
+  background-color: abs.$accent-color-30;
 }
 
 //------ secondary color button -------
-.btn-filled-sec {
-  @extend .btn-sec;
+.button-filled-secondary {
+  @extend .button-secondary;
 
   color: var(--tr-primary);
   background-color: var(--tr-secondary);
 
   &:hover {
-    background-color: darken(abs.$secondary_color, 5) !important;
+    background-color: darken(abs.$secondary-color, 5) !important;
   }
 }
 
-.btn-outlined-sec {
-  @extend .btn-sec;
+.button-outlined-secondary {
+  @extend .button-secondary;
 
   color: var(--tr-secondary);
   border: solid 2px var(--tr-secondary);
 }
 
-.btn-outlined-filled-sec {
-  @extend .btn-sec;
+.button-outlined-fair-secondary {
+  @extend .button-secondary;
   color: var(--tr-secondary);
-  background-color: var(--tr-sa);
+  background-color: abs.$secondary-color-10;
   border: solid 2px var(--tr-secondary);
 }
 
-.btn-plain-sec {
-  @extend .btn-sec;
+.button-fair-secondary {
+  @extend .button-secondary;
+  color: var(--tr-secondary);
+  background-color: abs.$secondary-color-10;
+}
+
+.button-plain-secondary {
+  @extend .button-secondary;
   color: var(--tr-secondary);
   background-color: transparent;
-}
-
-.btn-plain-filled-sec {
-  @extend .btn-sec;
-  color: var(--tr-secondary);
-  background-color: var(--tr-sa);
-}
-
-.btn-highlighted-sec {
-  @extend .btn-filled-sec;
-  box-shadow: 0 8px 16px -4px rgba(abs.$secondary_color, 0.8);
 }
 
 //--------------------------- states ----------------------------
 
 button:disabled {
-  box-shadow: 2px 2px 4px rgba(abs.$secondary_color, 0.3);
+  box-shadow: 2px 2px 4px abs.$secondary-color-30;
   opacity: 0.5;
 }

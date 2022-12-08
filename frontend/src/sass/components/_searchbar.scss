@@ -3,14 +3,12 @@
 .search-bar {
   display: flex;
   background-color: var(--tr-primary);
-
-  @include abs.radius(0.75rem);
-  border: 2px solid rgba(abs.$secondary_color, 0.5);
-
+  border: 1.5px solid abs.$secondary-color-20;
+  @include abs.border-radius(0.75rem);
   width: 100%;
 
-  &:has(input:focus) {
-    border: 2px solid var(--tr-secondary);
+  svg {
+    color: abs.$secondary-color-70;
   }
 }
 
@@ -21,9 +19,9 @@
   font-size: 1rem;
   text-overflow: ellipsis;
 
-  @include abs.radius(inherit);
+  @include abs.border-radius(inherit);
 
-  padding: 0 1rem;
+  padding-right: 1rem;
 
   width: inherit;
 

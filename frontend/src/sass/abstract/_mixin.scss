@@ -1,5 +1,18 @@
-@mixin radius($size) {
+@mixin border-radius($size) {
   -webkit-border-radius: $size;
   -moz-border-radius: $size;
   border-radius: $size;
+}
+
+@mixin backdrop-blur($blur) {
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin disable-drag() {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }

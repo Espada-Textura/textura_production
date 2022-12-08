@@ -1,7 +1,7 @@
 function Home() {
   return (
     <section>
-      <button className="icon-btn-medium btn-outlined">Button</button>
+      <button className="button-outlined-secondary">Button</button>
     </section>
   );
 }

@@ -41,7 +41,6 @@ body {
 image,
 img,
 picture,
-svg,
 video {
   max-width: 100%;
 }
@@ -57,4 +56,8 @@ textarea {
 
 ::selection {
   background: var(--tr-accent);
+}
+
+#root {
+  width: 100%;
 }
