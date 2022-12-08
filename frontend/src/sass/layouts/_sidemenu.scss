@@ -1,13 +1,13 @@
 @use "../abstract" as abs;
 
 .sidebar-container {
-  $side-bar-width: 300px;
+  $side-bar-width: 18.75rem;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
 
-  min-width: 300px;
+  min-width: 18.75rem;
   width: $side-bar-width;
   height: 100%;
 
@@ -15,7 +15,7 @@
   padding-top: 5.5rem;
 
   color: abs.$secondary-color-70;
-  font-weight: bold;
+  font-weight: 700;
   background-color: abs.$primary-color;
   overflow: auto;
 
@@ -56,6 +56,8 @@
       padding: 0 1rem;
       border-left: 3px solid transparent;
       @include abs.border-radius(0.25rem 0.5rem 0.5rem 0.25rem);
+
+      font-size: 0.9rem;
 
       svg {
         height: 1.5rem;

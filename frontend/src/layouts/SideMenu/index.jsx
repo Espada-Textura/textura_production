@@ -15,16 +15,13 @@ import {
 } from "react-icons/hi";
 
 import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
-import { setMenuOpen, useMenuStore } from "@/zustand/menuStore";
 
-const SideMenu = () => {
-  const isOpen = useMenuStore((state) => state.isMenuOpen);
-
+const SideMenu = (props) => {
   return (
     <>
       <aside
         className={`sidebar-container ${
-          isOpen ? "translate-x-0" : "translate-x-[-300px]"
+          props.isOpen ? "translate-x-0" : "translate-x-[-300px]"
         } ease-in-out duration-300`}
       >
         <div className={"sidebar-section"}>
@@ -107,9 +104,9 @@ const SideMenu = () => {
       </aside>
       <div
         className={`${
-          !isOpen && "hidden"
+          !props.isOpen && "hidden"
         } sidebar-empty-space w-full z-0 absolute top-0 right-0 h-full`}
-        onClick={() => setMenuOpen(false)}
+        onClick={() => props.setMenuOpen(false)}
       />
     </>
   );

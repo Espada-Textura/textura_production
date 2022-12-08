@@ -1,10 +1,53 @@
+@use "./../abstract/" as abs;
+
 .drop-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  position: absolute;
+  top: 6rem;
+  right: 1rem;
+  width: 16rem;
+  min-width: 16rem;
+  box-shadow: 0px 0px 30px abs.$secondary-color-20;
+
+  padding: 1rem;
+  @include abs.border-radius(0.5rem);
+
+  font-weight: bold;
+  color: abs.$secondary-color-70;
+  font-size: 0.9rem;
+
   .drop-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
     .drop-item {
+      display: flex;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      height: 2.75rem;
+      width: 100%;
+      padding: 0 1rem;
+
+      @include abs.border-radius(0.5rem);
+
+      &:hover {
+        background-color: abs.$secondary-color-10;
+      }
+
       svg {
         width: 1.5rem;
         height: 1.5rem;
       }
     }
+  }
+
+  .drop-separator {
+    height: 2px;
+    width: 100%;
+    background-color: abs.$secondary-color-10;
   }
 }

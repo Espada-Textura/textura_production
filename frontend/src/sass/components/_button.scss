@@ -12,7 +12,7 @@ button {
 
 .button-accent {
   &:hover {
-    background-color: darken(abs.$accent-color-30, 5);
+    background-color: darken(abs.$accent-color-10, 5);
   }
 
   &:active {

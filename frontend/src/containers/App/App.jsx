@@ -28,14 +28,11 @@ import { Artists } from "@containers/Discover/Artists";
 
 //layouts
 import Topbar from "@layouts/TopBar/";
-import SideMenu from "@layouts/SideMenu/";
 
 const App = () => {
   return (
     <>
       <Topbar onContextMenu={(e) => e.preventDefault()} />
-
-      <SideMenu />
 
       <Routes>
         <Route index element={<Navigate to={"home"} />} />
