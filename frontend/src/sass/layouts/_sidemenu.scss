@@ -5,12 +5,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 900;
+  z-index: 1000;
+
   min-width: 300px;
   width: $side-bar-width;
   height: 100%;
+
   padding: 1rem 2rem;
-  padding-top: 5rem;
+  padding-top: 5.5rem;
+
   color: abs.$secondary-color-70;
   font-weight: bold;
   background-color: abs.$primary-color;
@@ -31,7 +34,7 @@
       @include abs.border-radius(1rem);
       background-color: abs.$primary-color;
 
-      border: 1.5px solid abs.$secondary-color-50;
+      border: 1.5px solid abs.$secondary-color-20;
 
       &:focus {
         outline: none;
@@ -97,6 +100,32 @@
       height: 1.5rem;
     }
   }
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: abs.$secondary-color-20;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    display: none;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      display: block;
+    }
+  }
+  /* Handle on hover */
 }
 
 .sidebar-empty-space {

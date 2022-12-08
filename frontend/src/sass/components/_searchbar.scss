@@ -2,8 +2,8 @@
 
 .search-bar {
   display: flex;
-  background-color: abs.$secondary-color-10;
-
+  background-color: var(--tr-primary);
+  border: 1.5px solid abs.$secondary-color-20;
   @include abs.border-radius(0.75rem);
   width: 100%;
 

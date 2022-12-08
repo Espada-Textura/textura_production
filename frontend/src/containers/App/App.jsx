@@ -1,9 +1,6 @@
 //styles
 import "@sass/index.scss";
 
-//stores
-import { useMenuStore } from "@/zustand/menuStore";
-
 //components
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -34,8 +31,6 @@ import Topbar from "@layouts/TopBar/";
 import SideMenu from "@layouts/SideMenu/";
 
 const App = () => {
-  const isMenuOpen = useMenuStore((state) => state.isMenuOpen);
-
   return (
     <>
       <Topbar onContextMenu={(e) => e.preventDefault()} />

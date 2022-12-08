@@ -45,14 +45,14 @@ export default function ButtonGroup() {
       </button>
 
       <div className={"topbar-profile-btn"}>
-        <Link
+        <button
           className={
             " px-3 icon-button-medium button-plain-secondary items-center flex"
           }
         >
           {/* TODO: Conditional Rendering on the profile*/}
           <HiOutlineUser className={"w-6 h-6 self-center"} />
-        </Link>
+        </button>
 
         <HiChevronDown className={"w-6 h-6"} />
       </div>
