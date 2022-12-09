@@ -55,7 +55,7 @@
       height: 3.125rem;
       padding: 0 1rem;
       border-left: 3px solid transparent;
-      @include abs.border-radius(0.25rem 0.5rem 0.5rem 0.25rem);
+      @include abs.border-radius(0.5rem);
 
       font-size: 0.9rem;
 
@@ -68,6 +68,8 @@
         color: var(--tr-accent);
         background-color: abs.$accent-color-10;
         border-left: 3px solid var(--tr-accent);
+
+        @include abs.border-radius(0.25rem 0.5rem 0.5rem 0.25rem);
 
         &:hover,
         &:focus-visible {

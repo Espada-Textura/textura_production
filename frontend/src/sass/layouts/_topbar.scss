@@ -5,10 +5,10 @@
   z-index: 1100;
   position: fixed;
   width: inherit;
-  background-color: abs.$primary-color;
+  background-color: abs.$primary-color-80;
   height: 5rem;
   border-bottom: 1.5px solid abs.$secondary-color-10;
-  @include abs.backdrop-blur(2rem);
+  @include abs.backdrop-blur(5rem);
 
   .topbar-top-section {
     height: inherit;
