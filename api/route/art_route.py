@@ -46,3 +46,16 @@ def art_upadte(art=None):
     arts_json = service.update_art(current_user=current_user, art=art)
 
     return make_response(arts_json, 200)
+
+
+@art_route.route("/arts/<aid>", methods=["DELETE"])
+@jwt_required()
+def art_delete(aid=None):
+
+    service = ArtService()
+
+    current_user = get_current_user()
+
+    service.delete_art(current_user=current_user, aid=aid)
+
+    return make_response({}, 202)

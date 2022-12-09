@@ -31,3 +31,9 @@ class ArtDao(BaseDAO):
             self._session.commit()
 
         return art
+
+    def get_by_aid(self, aid):
+        """Get row by aid"""
+
+        query = self._query.filter(self._model.aid == aid)
+        return query.one_or_none()

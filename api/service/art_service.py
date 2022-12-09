@@ -4,6 +4,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 import threading
+import os
 
 import blurhash
 from flask import abort, make_response, request
@@ -116,14 +117,26 @@ class ArtService:
 
         return art_json
 
-    def delete_art(self, current_user=None, art=None):
+    def delete_art(self, current_user=None, aid=None):
         """ """
 
         with ArtDao() as dao:
 
-            art_medel = dao.get(id=art.get("id"))
+            art_medel = dao.get_by_aid(aid=aid)
+
+            if not art_medel:
+                abort(404)
 
             if not current_user.get("id") == art_medel.user_id:
                 abort(403)
 
-            art = dao.delete(id=art.get("id"))
+            try:
+                if os.path.exists(art_medel.rpath):
+                    os.remove(art_medel.rpath)
+                    os.remove(art_medel.get_spath())
+            except:
+                abort(403)
+
+            art = dao.delete(id=art_medel.id)
+
+            return True

@@ -45,6 +45,10 @@ class ArtModel(Based, BaseModel):
             if key not in ("image"):
                 setattr(self, key, value)
 
+    def get_spath(self):
+        rpath = self.rpath
+        return f"{rpath.split('.')[0]}_thumbnail.{rpath.split('.')[1]}"
+
     def get_meta(self, key=None, jsonify=True, art_id=None):
         """Get Art Meta"""
         metas = self.metas
