@@ -1,7 +1,5 @@
-export default function SignIn(){
-  return (
-      <div>
-        Sign In Here
-      </div>
-  )
-}
+const SignIn = () => {
+  return <div>Signin</div>;
+};
+
+export default SignIn;

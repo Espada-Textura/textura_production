@@ -1,7 +1,5 @@
-export default function RecoveryPassword (){
-  return (
-    <div>
-      Recovery Password Here
-    </div>
-  )
-}
+const RecoveryPassword = () => {
+  return <div>RecoveryPassword</div>;
+};
+
+export default RecoveryPassword;

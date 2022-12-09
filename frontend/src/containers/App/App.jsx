@@ -16,7 +16,6 @@ import Terms from "@containers/Terms";
 import FullView from "@containers/FullView";
 import Challenge from "@containers/Challenge";
 import Forum from "@containers/Forum";
-import SignIn from "@containers/Sign_In";
 import Search from "@containers/Search";
 
 //subcontainer
@@ -39,7 +38,6 @@ const App = () => {
 
       <Routes>
         <Route path="/" index element={<Navigate to={"/home"} />} />
-        <Route path="signIn" element={<SignIn />} />
         <Route path="home" element={<Home />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="sign-in" element={<SignIn />} />
