@@ -1,4 +1,6 @@
 import ProfileDrop from "@layouts/ProfileDrop";
+import UploadModal from "@layouts/UploadModal";
+
 import { useState } from "react";
 import {
   HiOutlineBell,
@@ -13,6 +15,7 @@ import { Link } from "react-router-dom";
 
 export default function ButtonGroup() {
   const [isProfileDrop, setProfileDrop] = useState(false);
+  const [isUploadOpen, setUploadOpen] = useState(false);
 
   return (
     <>
@@ -30,6 +33,7 @@ export default function ButtonGroup() {
           className={
             "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
           }
+          onClick={() => setUploadOpen(!isUploadOpen)}
         >
           <HiUpload className={"w-6 h-6"} />
           <span className="max-xl:hidden">Upload</span>
@@ -63,7 +67,10 @@ export default function ButtonGroup() {
           <HiChevronDown className={"w-6 h-6 "} />
         </div>
       </div>
-      {isProfileDrop && <ProfileDrop />}
+      {isProfileDrop && (
+        <ProfileDrop isDrop={isProfileDrop} setDrop={setProfileDrop} />
+      )}
+      {isUploadOpen && <UploadModal />}
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 import {
   HiOutlineUpload,
   HiOutlinePaperAirplane,
@@ -12,10 +14,26 @@ import {
   HiOutlineLogout,
 } from "react-icons/hi";
 
-const profileDrop = () => {
+const profileDrop = (props) => {
+  useEffect(() => {
+    const handler = (event) => {
+      !profileRef.current.contains(event.target) && props.setDrop(false);
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    console.log("runing");
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
+  const profileRef = useRef();
+
   return (
     <>
-      <div className={"drop-container"}>
+      <div className={"drop-container"} ref={profileRef}>
         <div className={"drop-section"}>
           <button className={"drop-item w-full"}>
             <HiOutlineUpload />

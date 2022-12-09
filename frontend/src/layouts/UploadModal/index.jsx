@@ -1,6 +1,9 @@
-import React from "react";
+import { useCallback } from "react";
+import FileUpload from "./FileUpload";
 
-const uploadModal = () => {
+const uploadModal = (props) => {
+  const handleClose = useCallback();
+
   return (
     <>
       <div className={"upload-container"}>
@@ -17,10 +20,22 @@ const uploadModal = () => {
             type={"text"}
             placeholder={"Name of this masterpiece"}
           />
-          <input name={"upload-art-desc"} type={"text"} />
-          <div className={""}></div>
-          <div>
-            <button className={"button-contained-fair"}></button>
+          <FileUpload />
+          <div className={"upload-art-buttons"}>
+            <button
+              className={"button-fair-accent button-medium"}
+              // onClick={}
+            >
+              Cancel
+            </button>
+            <div className={"upload-art-p-buttons"}>
+              <button className={"button-plain-accent button-medium"}>
+                Save to Draft
+              </button>
+              <button className={"button-contained-accent button-medium"}>
+                Upload
+              </button>
+            </div>
           </div>
         </form>
       </div>
