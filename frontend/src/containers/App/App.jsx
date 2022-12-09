@@ -9,12 +9,12 @@ import Home from "@containers/Home";
 import NotFound from "@containers/NotFound";
 import Discover from "@containers/Discover";
 import Profile from "@containers/Profile";
-import Search from "@containers/Search";
 import Terms from "@containers/Terms";
 import FullView from "@containers/FullView";
 import Challenge from "@containers/Challenge";
 import Forum from "@containers/Forum";
 import SignIn from "@containers/Sign_In";
+import Search from "@containers/Search";
 
 //subcontainer
 import { All } from "@containers/Discover/All";
@@ -35,9 +35,10 @@ const App = () => {
       <Topbar onContextMenu={(e) => e.preventDefault()} />
 
       <Routes>
-        <Route index element={<Navigate to={"home"} />} />
+        <Route path="/" index element={<Navigate to={"/home"} />} />
         <Route path="signIn" element={<SignIn />} />
-        <Route path="home" index element={<Home />} />
+        <Route path="home" element={<Home />} />
+        <Route path="search/:input" element={<Search />} />
         <Route path="discover" element={<Discover />}>
           <Route index element={<Navigate to={"all"} />} />
           <Route path="all" element={<All />} />
@@ -50,7 +51,6 @@ const App = () => {
           <Route path="topics" element={<Topics />} />
         </Route>
         <Route path="artist/:artistId" element={<Profile />} />
-        <Route path="search" element={<Search />} />
         <Route path="terms" element={<Terms />} />
         <Route path="art/:artId" element={<FullView />} />
         <Route path="challenges" element={<Challenge />} />

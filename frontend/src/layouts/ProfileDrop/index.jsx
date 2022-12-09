@@ -32,7 +32,7 @@ const profileDrop = () => {
           </button>
           <button className={"drop-item w-full"}>
             <HiOutlineBell />
-            <span>Notification</span>
+            <span>Notifications</span>
           </button>
         </div>
 
@@ -45,7 +45,7 @@ const profileDrop = () => {
           </button>
           <button className={"drop-item w-full"}>
             <HiOutlinePhotograph />
-            <span>My Art</span>
+            <span>My Arts</span>
           </button>
           <button className={"drop-item w-full"}>
             <HiOutlineCollection />
