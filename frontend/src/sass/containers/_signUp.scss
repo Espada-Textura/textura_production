@@ -1,0 +1,64 @@
+@use "./../abstract/" as abs;
+
+body {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 200px;
+
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+
+    background-image: url(/frontend/src/images/sign-up.png);
+
+    .content {
+      @include abs.border-radius(16px);
+
+      .signUp--form {
+        display: flex;
+        align-items: center;
+        padding: 100px 0px;
+
+        width: 760px;
+        height: 880px;
+
+        .signUp--form-form {
+          .signUp--logo {
+          }
+          .signUp--notes {
+            .signUp--notes--main-text {
+              font-size: 36px;
+              font-weight: 700;
+            }
+            .signUp--notes--small-text {
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+          .signUp--alternative-signin {
+          }
+          .signUp--or-statement {
+          }
+          .signUp--fills {
+          }
+          .signUp--submit {
+          }
+        }
+      }
+    }
+
+    .signUp--decor-content {
+      .signUp--decor-content-main {
+        font-size: 64px;
+        font-weight: 700;
+      }
+
+      .signUp--decor-content-small {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+}
