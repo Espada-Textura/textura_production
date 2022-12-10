@@ -22,8 +22,6 @@ const profileDrop = (props) => {
 
     document.addEventListener("mousedown", handler);
 
-    console.log("runing");
-
     return () => {
       document.removeEventListener("mousedown", handler);
     };
