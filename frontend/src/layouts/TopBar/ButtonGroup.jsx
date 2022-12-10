@@ -1,5 +1,6 @@
 import ProfileDrop from "@layouts/ProfileDrop";
 import UploadModal from "@layouts/UploadModal";
+import { useRef } from "react";
 
 import { useState } from "react";
 import {
@@ -16,6 +17,12 @@ import { Link } from "react-router-dom";
 export default function ButtonGroup() {
   const [isProfileDrop, setProfileDrop] = useState(false);
   const [isUploadOpen, setUploadOpen] = useState(false);
+
+  const handProfileClose = () => {
+    setProfileDrop(!isProfileDrop);
+  };
+
+  const togglerRef = useRef();
 
   return (
     <>
@@ -53,7 +60,8 @@ export default function ButtonGroup() {
 
         <div
           className={"topbar-profile-btn"}
-          onClick={() => setProfileDrop(!isProfileDrop)}
+          onClick={handProfileClose}
+          ref={togglerRef}
         >
           <button
             className={
@@ -68,9 +76,12 @@ export default function ButtonGroup() {
         </div>
       </div>
       {isProfileDrop && (
-        <ProfileDrop isDrop={isProfileDrop} setDrop={setProfileDrop} />
+        <ProfileDrop
+          isDrop={isProfileDrop}
+          setDrop={setProfileDrop}
+          togglerRef={togglerRef}
+        />
       )}
-      {isUploadOpen && <UploadModal />}
     </>
   );
 }

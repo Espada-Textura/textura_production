@@ -6,7 +6,7 @@
   gap: 0.5rem;
 
   position: absolute;
-  top: 5.5rem;
+  top: 4.5rem;
   right: 1rem;
   width: 16rem;
   min-width: 16rem;
@@ -15,7 +15,7 @@
   padding: 1rem;
   @include abs.border-radius(0.5rem);
 
-  font-weight: 700;
+  font-weight: 600;
   color: abs.$secondary-color-70;
 
   .drop-section {
@@ -45,7 +45,7 @@
   }
 
   .drop-separator {
-    height: 2px;
+    height: 1.5px;
     width: 100%;
     background-color: abs.$secondary-color-10;
   }

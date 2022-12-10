@@ -10,7 +10,6 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.13",
     "@react-spring/web": "^9.5.5",
     "axios": "^0.27.2",
     "react": "^18.2.0",
@@ -20,7 +19,6 @@
     "react-query": "^3.39.2",
     "react-router-dom": "^6.4.1",
     "react-textarea-autosize": "^8.4.0",
-    "sass-alias": "^1.0.5",
     "zustand": "^4.1.5"
   },
   "devDependencies": {

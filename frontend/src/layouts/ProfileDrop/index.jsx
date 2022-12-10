@@ -17,7 +17,9 @@ import {
 const profileDrop = (props) => {
   useEffect(() => {
     const handler = (event) => {
-      !profileRef.current.contains(event.target) && props.setDrop(false);
+      !profileRef.current.contains(event.target) &&
+        !props.togglerRef.current.contains(event.target) &&
+        props.setDrop(!props.isDrop);
     };
 
     document.addEventListener("mousedown", handler);
