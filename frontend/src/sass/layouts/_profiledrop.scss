@@ -15,9 +15,8 @@
   padding: 1rem;
   @include abs.border-radius(0.5rem);
 
-  font-weight: bold;
+  font-weight: 700;
   color: abs.$secondary-color-70;
-  font-size: 0.9rem;
 
   .drop-section {
     display: flex;
