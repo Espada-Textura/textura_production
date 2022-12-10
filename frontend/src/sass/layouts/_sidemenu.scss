@@ -1,0 +1,137 @@
+@use "../abstract" as abs;
+
+.sidebar-container {
+  $side-bar-width: 18.75rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  min-width: 18.75rem;
+  width: $side-bar-width;
+  height: 100%;
+
+  padding: 1rem 2rem;
+  padding-top: 5.5rem;
+
+  color: abs.$secondary-color-70;
+  font-weight: 700;
+  background-color: abs.$primary-color;
+  overflow: auto;
+
+  @include abs.backdrop-blur(2rem);
+  .sidebar-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .sidebar-search {
+      color: var(--tr-secondary);
+      height: 3.5rem;
+      padding: 0 0.5rem 0rem 1rem;
+      width: 100%;
+      font-weight: 500 !important;
+      @include abs.border-radius(1rem);
+      background-color: abs.$primary-color;
+
+      border: 1.5px solid abs.$secondary-color-20;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .sidebar-section-title {
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+      color: abs.$secondary-color-60;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-items: flex-start;
+      gap: 1.5rem;
+      height: 3.125rem;
+      padding: 0 1rem;
+      border-left: 3px solid transparent;
+      @include abs.border-radius(0.5rem);
+
+      font-size: 0.9rem;
+
+      svg {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+
+      &.active {
+        color: var(--tr-accent);
+        background-color: abs.$accent-color-10;
+        border-left: 3px solid var(--tr-accent);
+
+        @include abs.border-radius(0.25rem 0.5rem 0.5rem 0.25rem);
+
+        &:hover,
+        &:focus-visible {
+          background-color: abs.$accent-color-10;
+        }
+      }
+
+      &:hover,
+      &:focus-visible {
+        background-color: abs.$secondary-color-10;
+        outline: none;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 4rem;
+
+    margin: 1rem 0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+
+    border-top: 2px solid abs.$secondary-color-20;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: abs.$secondary-color-20;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    display: none;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      display: block;
+    }
+  }
+  /* Handle on hover */
+}
+
+.sidebar-empty-space {
+  background-color: abs.$secondary-color-50;
+}

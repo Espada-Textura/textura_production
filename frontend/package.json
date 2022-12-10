@@ -6,11 +6,10 @@
   "scripts": {
     "start": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "watch": "vite build --watch"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
     "@heroicons/react": "^2.0.13",
     "@react-spring/web": "^9.5.5",
     "axios": "^0.27.2",
@@ -18,11 +17,9 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-query": "^3.39.2",
-    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.1",
-    "redux": "^4.2.0",
-    "redux-toolkit": "^1.1.2",
-    "sass-alias": "^1.0.5"
+    "sass-alias": "^1.0.5",
+    "zustand": "^4.1.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.21",

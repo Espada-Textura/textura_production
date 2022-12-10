@@ -2,102 +2,102 @@
 @use "../components";
 
 .topbar-section {
-  box-shadow: 0px 4px 10px rgba(abs.$secondary_color, 0.1);
-}
+  z-index: 1100;
+  position: fixed;
+  width: inherit;
+  background-color: abs.$primary-color-80;
+  height: 5rem;
+  border-bottom: 1.5px solid abs.$secondary-color-10;
+  @include abs.backdrop-blur(5rem);
 
-.topbar-top-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  .topbar-top-section {
+    height: inherit;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1024;
+    padding: 0.75rem 1.5rem;
 
-  padding: 0.75rem 2.5rem;
-  box-shadow: 0px 1px 10px rgba(abs.$secondary_color, 0.1);
-}
+    .topbar-profile-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tr-secondary);
+      cursor: pointer;
+    }
 
-.topbar-profile-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--tr-secondary);
-  cursor: pointer;
-}
+    .topbar-navigation-bar {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      align-items: stretch;
 
-.topbar-navigation-bar {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: stretch;
+      height: 2.75rem;
+      padding: 0 1rem;
+    }
 
-  height: 2.75rem;
-  padding: 0 1rem;
-}
+    .topbar-nav-link {
+      text-align: center;
 
-.topbar-nav-link {
-  position: relative;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1rem;
-  color: rgba(abs.$secondary_color, 0.8);
+      font-size: 1rem;
+      font-weight: 600;
+      color: abs.$secondary-color-80;
 
-  border-radius: 0.75rem;
-  // border: 5px solid transparent;
+      @include abs.border-radius(0.75rem);
 
-  padding: 0 1.25rem;
-  height: 2.75rem;
+      padding: 0 1.25rem;
+      height: 2.75rem;
 
-  display: flex;
-  align-items: center;
+      display: flex;
+      align-items: center;
 
-  &:hover {
-    background-color: rgba(abs.$secondary_color, 0.1);
-  }
-}
+      &:hover {
+        background-color: rgba(abs.$secondary-color, 0.075);
+      }
+    }
 
-a.active.topbar-nav-link {
-  color: var(--tr-secondary);
-
-  &:hover {
-    background-color: transparent;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    margin-bottom: -1rem;
-    background-color: var(--tr-accent);
-    border-radius: 1rem;
-  }
-}
-
-.topbar-bottom-section {
-  display: flex;
-  overflow-x: scroll;
-  justify-content: center;
-  gap: 2rem;
-
-  padding: 0.5rem;
-  background-color: var(--primary);
-
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-
-  &::-webkit-scrollbar {
-    display: none;
+    a.active.topbar-nav-link {
+      color: var(--tr-accent);
+      font-weight: bold;
+    }
   }
 
-  > a {
-    padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
+  .topbar-bottom-section {
+    display: flex;
+    overflow-x: scroll;
+    justify-content: center;
+    gap: 2rem;
+
+    padding: 0.5rem;
+    background-color: var(--primary);
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      color: abs.$secondary-color-80;
+      padding: 0.25rem 1rem;
+      @include abs.border-radius(0.5rem);
+    }
+
+    & > a.active {
+      background-color: abs.$accent-color-20;
+      color: var(--tr-accent);
+      font-weight: 600;
+    }
   }
 
-  & > a.active {
-    background-color: rgba(abs.$accent_color, 0.2);
-    color: var(--tr-accent);
-    font-weight: 500;
+  li:has(a) {
+    &:focus,
+    &:active {
+      outline: none;
+      border: none;
+    }
   }
 }
