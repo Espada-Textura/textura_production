@@ -15,9 +15,23 @@ def art_view(expression=None, pagination=None):
 
     service = ArtService()
 
+    if not pagination:
+        pagination = {"per_page": 30}
+
     arts_json = service.get_arts(expression=expression, pagination=pagination)
 
     return make_response(arts_json, 200)
+
+
+@art_route.route("/arts/<aid>", methods=["GET"])
+@validate_params("ArtSchema")
+def art_view_by_aid(aid=None, expression=None, pagination=None):
+
+    service = ArtService()
+
+    art_json = service.get_art_by_aid(aid=aid)
+
+    return make_response(art_json, 200)
 
 
 @art_route.route("/arts/new", methods=["POST"])

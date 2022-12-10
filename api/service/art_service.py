@@ -37,6 +37,19 @@ class ArtService:
 
         return arts_json
 
+    def get_art_by_aid(self, aid=None):
+
+        with ArtDao() as dao:
+
+            art = dao.get_by_aid(aid=aid)
+
+            art_json = dao.jsonify(
+                ArtSchema,
+                art,
+            )
+
+        return art_json
+
     def create_art(self, current_user=None, art=None):
         """ """
 
