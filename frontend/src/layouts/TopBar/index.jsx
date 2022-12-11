@@ -23,7 +23,7 @@ const Topbar = () => {
           >
             <HiOutlineMenuAlt1 className={"w-6 h-6"} />
           </button>
-          <Logo />
+          <Logo height={"2.5rem"} />
           <Navigation />
           <SearchBar />
           <ButtonGroup />
