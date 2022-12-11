@@ -20,6 +20,12 @@ div:has(.upload-container) {
   align-items: center;
   justify-content: center;
 
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+  }
+
   .upload-portal {
     position: absolute;
     top: inherit;
@@ -33,9 +39,43 @@ div:has(.upload-container) {
     position: relative;
     left: 0;
     top: 0;
-    padding: 3rem;
+
+    padding: 2rem;
     background-color: abs.$primary-color;
 
-    @include abs.border-radius(1rem);
+    @include abs.border-radius(0.75rem);
+    @include abs.box-shadow(0 0 1rem rgba(abs.$secondary-color, 0.05));
+
+    overflow: auto;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: abs.$secondary-color-20;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      background-clip: padding-box;
+      display: none;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        display: block;
+      }
+    }
+
+    .upload-dropzone {
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%23F4694DFF' stroke-width='2' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+      border-radius: 0.25rem;
+    }
   }
 }

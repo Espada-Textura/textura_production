@@ -6,7 +6,7 @@
   position: fixed;
   width: inherit;
   background-color: abs.$primary-color-80;
-  height: 4rem;
+  height: 5rem;
   border-bottom: 1.5px solid abs.$secondary-color-10;
   @include abs.backdrop-blur(5rem);
 

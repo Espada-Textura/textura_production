@@ -1,6 +1,8 @@
 import { useRef } from "react";
 
 import { useState } from "react";
+import { useUploadStore, setUpload } from "@/zustand/uploadStore";
+
 import {
   HiOutlineBell,
   HiChevronDown,
@@ -16,12 +18,13 @@ import ProfileDrop from "@layouts/ProfileDrop";
 import Upload from "@layouts/Modal/Upload";
 
 const ButtonGroup = () => {
+  //state
   const [isProfileDrop, setProfileDrop] = useState(false);
-  const [isUploadOpen, setUploadOpen] = useState(false);
+  const isUploadOpen = useUploadStore((state) => state.isOpen);
 
   const profileToggler = useRef();
-  const uploadtoggler = useRef();
 
+  //profile close handler
   const handProfileClose = () => {
     setProfileDrop(!isProfileDrop);
   };
@@ -42,8 +45,7 @@ const ButtonGroup = () => {
           className={
             "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
           }
-          onClick={() => setUploadOpen(!isUploadOpen)}
-          ref={uploadtoggler}
+          onClick={() => setUpload(!isUploadOpen)}
         >
           <HiUpload className={"w-6 h-6"} />
           <span className="max-xl:hidden">Upload</span>
@@ -86,13 +88,7 @@ const ButtonGroup = () => {
         />
       )}
 
-      {isUploadOpen && (
-        <Upload
-          isOpen={isUploadOpen}
-          setOpen={setUploadOpen}
-          togglerRef={uploadtoggler}
-        />
-      )}
+      {isUploadOpen && <Upload />}
     </>
   );
 };
