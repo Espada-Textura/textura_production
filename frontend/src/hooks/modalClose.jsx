@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useOutSideClose = (refArray, callback, [dependency]) => {
+export const useOutSideClose = (refArray, callback, [dependency]) => {
   useEffect(() => {
     const handler = (event) => {
       !refArray.reduce(
@@ -18,4 +18,16 @@ const useOutSideClose = (refArray, callback, [dependency]) => {
   }, dependency);
 };
 
-export default useOutSideClose;
+export const useEscClose = (key, callBack, dependency) => {
+  useEffect(() => {
+    const handler = (event) => {
+      event.key === key && callBack();
+    };
+
+    document.addEventListener("keydown", handler);
+
+    return () => {
+      document.removeEventListener("keydown", handler);
+    };
+  }, dependency);
+};

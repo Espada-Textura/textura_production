@@ -13,7 +13,7 @@ import {
   HiOutlineSun,
   HiOutlineLogout,
 } from "react-icons/hi";
-import useOutSideClose from "@/hooks/outsideClose";
+import { useOutSideClose, useEscClose } from "@/hooks/modalClose";
 
 const profileDrop = (props) => {
   const profileRef = useRef();
@@ -23,6 +23,8 @@ const profileDrop = (props) => {
     () => props.setDrop(!props.isDrop),
     []
   );
+
+  useEscClose("Escape", () => props.setDrop(!props.isDrop), []);
 
   return (
     <>

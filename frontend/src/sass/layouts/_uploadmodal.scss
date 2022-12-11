@@ -1,3 +1,5 @@
+@use "./../abstract/" as abs;
+
 .upload-portal {
   position: fixed;
   top: 0;
@@ -14,11 +16,26 @@ div:has(.upload-container) {
   height: 100%;
   z-index: 1300;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .upload-portal {
+    position: absolute;
+    top: inherit;
+    left: inherit;
+    width: inherit;
+    height: inherit;
+    background-color: abs.$secondary-color-20;
+  }
+
   .upload-container {
     position: relative;
     left: 0;
-    width: inherit;
-    height: inherit;
-    padding-top: 4rem;
+    top: 0;
+    padding: 3rem;
+    background-color: abs.$primary-color;
+
+    @include abs.border-radius(1rem);
   }
 }

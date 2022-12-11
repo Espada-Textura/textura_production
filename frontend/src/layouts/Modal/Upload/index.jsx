@@ -2,16 +2,19 @@ import { useCallback } from "react";
 
 import FileUpload from "./FileUpload";
 import { Portal } from "react-portal";
-import useOutSideClose from "@/hooks/outsideClose";
+import { useEscClose } from "@/hooks/modalClose";
 
 const Upload = (props) => {
-  const handleClose = (event) => {
+  const handleClose = () => {
     props.setOpen(!props.isOpen);
   };
 
+  useEscClose("Escape", handleClose, []);
+
   return (
     <Portal>
-      <div className="upload-container" onClick={handleClose}>
+      <div className="upload-portal" onClick={handleClose} />
+      <div className="upload-container">
         <p>This is the portal</p>
       </div>
     </Portal>
