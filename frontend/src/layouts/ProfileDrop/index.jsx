@@ -13,23 +13,16 @@ import {
   HiOutlineSun,
   HiOutlineLogout,
 } from "react-icons/hi";
+import useOutSideClose from "@/hooks/outsideClose";
 
 const profileDrop = (props) => {
-  useEffect(() => {
-    const handler = (event) => {
-      !profileRef.current.contains(event.target) &&
-        !props.togglerRef.current.contains(event.target) &&
-        props.setDrop(!props.isDrop);
-    };
-
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
-
   const profileRef = useRef();
+
+  useOutSideClose(
+    [profileRef, props.togglerRef],
+    () => props.setDrop(!props.isDrop),
+    []
+  );
 
   return (
     <>

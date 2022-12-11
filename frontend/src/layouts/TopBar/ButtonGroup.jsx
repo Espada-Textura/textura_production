@@ -1,5 +1,3 @@
-import ProfileDrop from "@layouts/ProfileDrop";
-import UploadModal from "@layouts/UploadModal";
 import { useRef } from "react";
 
 import { useState } from "react";
@@ -14,15 +12,19 @@ import {
 
 import { Link } from "react-router-dom";
 
-export default function ButtonGroup() {
+import ProfileDrop from "@layouts/ProfileDrop";
+import Upload from "@layouts/Modal/Upload";
+
+const ButtonGroup = () => {
   const [isProfileDrop, setProfileDrop] = useState(false);
   const [isUploadOpen, setUploadOpen] = useState(false);
+
+  const profileToggler = useRef();
+  const uploadtoggler = useRef();
 
   const handProfileClose = () => {
     setProfileDrop(!isProfileDrop);
   };
-
-  const togglerRef = useRef();
 
   return (
     <>
@@ -41,6 +43,7 @@ export default function ButtonGroup() {
             "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
           }
           onClick={() => setUploadOpen(!isUploadOpen)}
+          ref={uploadtoggler}
         >
           <HiUpload className={"w-6 h-6"} />
           <span className="max-xl:hidden">Upload</span>
@@ -61,7 +64,7 @@ export default function ButtonGroup() {
         <div
           className={"topbar-profile-btn"}
           onClick={handProfileClose}
-          ref={togglerRef}
+          ref={profileToggler}
         >
           <button
             className={
@@ -79,9 +82,19 @@ export default function ButtonGroup() {
         <ProfileDrop
           isDrop={isProfileDrop}
           setDrop={setProfileDrop}
-          togglerRef={togglerRef}
+          togglerRef={profileToggler}
+        />
+      )}
+
+      {isUploadOpen && (
+        <Upload
+          isOpen={isUploadOpen}
+          setOpen={setUploadOpen}
+          togglerRef={uploadtoggler}
         />
       )}
     </>
   );
-}
+};
+
+export default ButtonGroup;

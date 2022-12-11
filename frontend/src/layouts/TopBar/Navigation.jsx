@@ -9,7 +9,7 @@ import {
 } from "react-icons/hi";
 import { FiCompass } from "react-icons/fi";
 
-export default function Navigation() {
+const Navigation = () => {
   return (
     <nav className="max-md:hidden">
       <ul className={"topbar-navigation-bar max-lg:gap-6"}>
@@ -43,4 +43,6 @@ export default function Navigation() {
       </ul>
     </nav>
   );
-}
+};
+
+export default Navigation;

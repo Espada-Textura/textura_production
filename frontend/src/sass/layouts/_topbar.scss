@@ -92,12 +92,16 @@
       font-weight: 600;
     }
   }
-
-  li:has(a) {
-    &:focus,
-    &:active {
-      outline: none;
-      border: none;
-    }
+}
+li:has(a) {
+  &:focus,
+  &:active {
+    outline: none;
+    border: none;
   }
+}
+
+a:focus-visible {
+  background-color: abs.$secondary-color-10;
+  outline: none;
 }
