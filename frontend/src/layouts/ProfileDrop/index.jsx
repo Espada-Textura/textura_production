@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useOutSideClose, useEscClose } from "@/hooks/modalClose";
+import { setUpload } from "@/zustand/uploadStore";
 
 import {
   HiOutlineUpload,
@@ -15,25 +17,29 @@ import {
 } from "react-icons/hi";
 
 const profileDrop = (props) => {
-  useEffect(() => {
-    const handler = (event) => {
-      !profileRef.current.contains(event.target) && props.setDrop(false);
-    };
-
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
+  const handleOpenNClose = (open) => {
+    open();
+    props.setDrop(!props.isDrop);
+  };
 
   const profileRef = useRef();
+
+  useOutSideClose(
+    [profileRef, props.togglerRef],
+    () => props.setDrop(!props.isDrop),
+    []
+  );
+
+  useEscClose("Escape", () => props.setDrop(!props.isDrop), []);
 
   return (
     <>
       <div className={"drop-container"} ref={profileRef}>
         <div className={"drop-section"}>
-          <button className={"drop-item w-full"}>
+          <button
+            className={"drop-item w-full"}
+            onClick={() => handleOpenNClose(() => setUpload(true))}
+          >
             <HiOutlineUpload />
             <span>Upload</span>
           </button>

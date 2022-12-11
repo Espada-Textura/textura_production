@@ -1,7 +1,8 @@
-import ProfileDrop from "@layouts/ProfileDrop";
-import UploadModal from "@layouts/UploadModal";
+import { useRef } from "react";
 
 import { useState } from "react";
+import { useUploadStore, setUpload } from "@/zustand/uploadStore";
+
 import {
   HiOutlineBell,
   HiChevronDown,
@@ -13,9 +14,20 @@ import {
 
 import { Link } from "react-router-dom";
 
-export default function ButtonGroup() {
+import ProfileDrop from "@layouts/ProfileDrop";
+import Upload from "@layouts/Modal/Upload";
+
+const ButtonGroup = () => {
+  //state
   const [isProfileDrop, setProfileDrop] = useState(false);
-  const [isUploadOpen, setUploadOpen] = useState(false);
+  const isUploadOpen = useUploadStore((state) => state.isOpen);
+
+  const profileToggler = useRef();
+
+  //profile close handler
+  const handProfileClose = () => {
+    setProfileDrop(!isProfileDrop);
+  };
 
   return (
     <>
@@ -33,7 +45,7 @@ export default function ButtonGroup() {
           className={
             "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
           }
-          onClick={() => setUploadOpen(!isUploadOpen)}
+          onClick={() => setUpload(!isUploadOpen)}
         >
           <HiUpload className={"w-6 h-6"} />
           <span className="max-xl:hidden">Upload</span>
@@ -53,7 +65,8 @@ export default function ButtonGroup() {
 
         <div
           className={"topbar-profile-btn"}
-          onClick={() => setProfileDrop(!isProfileDrop)}
+          onClick={handProfileClose}
+          ref={profileToggler}
         >
           <button
             className={
@@ -68,9 +81,16 @@ export default function ButtonGroup() {
         </div>
       </div>
       {isProfileDrop && (
-        <ProfileDrop isDrop={isProfileDrop} setDrop={setProfileDrop} />
+        <ProfileDrop
+          isDrop={isProfileDrop}
+          setDrop={setProfileDrop}
+          togglerRef={profileToggler}
+        />
       )}
-      {isUploadOpen && <UploadModal />}
+
+      {isUploadOpen && <Upload />}
     </>
   );
-}
+};
+
+export default ButtonGroup;

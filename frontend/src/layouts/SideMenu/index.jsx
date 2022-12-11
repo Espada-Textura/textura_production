@@ -15,8 +15,11 @@ import {
 } from "react-icons/hi";
 
 import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
+import { useEscClose } from "@/hooks/modalClose";
 
 const SideMenu = (props) => {
+  useEscClose("Escape", () => props.setMenuOpen(false), []);
+
   return (
     <>
       <aside
