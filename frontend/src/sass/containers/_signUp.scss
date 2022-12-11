@@ -1,17 +1,15 @@
 @use "./../abstract/" as abs;
 
 body {
+  margin: 0px;
+
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 100px 200px;
 
-    position: relative;
-    width: 1920px;
-    height: 1080px;
-
-    background-image: url(/frontend/src/images/sign-up.png);
+    background-image: url(/src/images/sign-up.png);
 
     .content {
       @include abs.border-radius(16px);
