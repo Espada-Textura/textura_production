@@ -15,7 +15,6 @@ button {
     background-color: darken(abs.$accent-color-10, 5);
   }
 
-  &:focus,
   &:focus-visible {
     outline: 2px solid abs.$accent-color-50;
   }
@@ -26,7 +25,6 @@ button {
 }
 
 .button-secondary {
-  &:focus,
   &:focus-visible {
     outline: 2px solid abs.$secondary-color-50;
   }
@@ -36,8 +34,7 @@ button {
   }
 
   &:hover {
-    position: relative;
-    background-color: var(--tr-sa);
+    background-color: abs.$secondary-color-10;
   }
 }
 

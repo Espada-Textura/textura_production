@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 
-export default function Logo({ width, height }) {
+import LogoImage from "@/images/logo.svg";
+
+export default function Logo(props) {
   return (
     <Link to={"/home"} className="flex px-4">
       <img
-        src="/src/images/logo.svg"
+        src={LogoImage}
         alt="logo"
-        style={{ width: width, height: height }}
+        style={{ maxWidth: "initial", ...props.style }}
       />
     </Link>
   );

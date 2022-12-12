@@ -1,4 +1,7 @@
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
+import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
+import { useOutSideClose, useEscClose } from "@/hooks/modalClose";
 
 import {
   HiOutlineHome,
@@ -12,27 +15,31 @@ import {
   HiOutlineLightBulb,
   HiOutlineAtSymbol,
   HiOutlineBookmark,
+  HiOutlineMenuAlt1,
 } from "react-icons/hi";
-
-import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
-import { useEscClose } from "@/hooks/modalClose";
+import { Portal } from "react-portal";
 
 const SideMenu = (props) => {
-  useEscClose("Escape", () => props.setMenuOpen(false), []);
+  const sideMenuRef = useRef();
+
+  const handleClose = () => props.setMenuOpen(false);
+
+  useOutSideClose([sideMenuRef, props.togglerRef], handleClose, []);
+  useEscClose("Escape", handleClose, []);
 
   return (
-    <>
+    <Portal>
       <aside
-        className={`sidebar-container ${
-          props.isOpen ? "translate-x-0" : "translate-x-[-300px]"
-        } ease-in-out duration-300`}
+        ref={sideMenuRef}
+        className={`sidebar-container ease-in-out duration-1000`}
       >
-        <div className={"sidebar-section"}>
-          <input
-            className={"sidebar-search"}
-            type={"search"}
-            placeholder={"Search"}
-          />
+        <div className={"sidebar-section pb-4"}>
+          <button
+            className={"icon-button-medium button-fair-secondary w-fit"}
+            onClick={handleClose}
+          >
+            <HiOutlineMenuAlt1 className={"w-6 h-6"} />
+          </button>
         </div>
 
         <div className={"sidebar-section"}>
@@ -105,13 +112,7 @@ const SideMenu = (props) => {
           <FaYoutube />
         </footer>
       </aside>
-      <div
-        className={`${
-          !props.isOpen && "hidden"
-        } sidebar-empty-space w-full z-0 absolute top-0 right-0 h-full`}
-        onClick={() => props.setMenuOpen(false)}
-      />
-    </>
+    </Portal>
   );
 };
 
