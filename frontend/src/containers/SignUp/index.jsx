@@ -1,24 +1,32 @@
+import Logo from "@components/Logo"
+
 const SignUp = () => {
   return (
-    <div className="container">
-      <div className="content">
+    <div className="signUp-container">
+      <div className="signUp-content">
         <div className="signUp--form">
-          <form className="signUp--form-form">
-            <div className="signUp--logo">Textura</div>
+          <form className="signUp--form-form text-center">
+            <div className="signUp--logo text-center">
+              <Logo />
+            </div>
             <div className="signUp--notes">
               <div className="signUp--notes--main-text">Create an account</div>
               <div className="signUp--note--small-text">
                 Welcome to our neighbourhood. Let's get you started.
               </div>
             </div>
-            <div className="signUp--alternative-signin"></div>
+            <div className="signUp--alternative-signin flex justify-center">
+              <button  className="sign-in--google w-96">
+                Sign in with Google
+              </button>
+            </div>
             <div className="signUp--or-statement"></div>
             <div className="signUp--fills"></div>
             <div className="signUp--submit"></div>
           </form>
         </div>
 
-        <div className="signUp--decor-content">
+        {/* <div className="signUp--decor-content sm:hide">
           <div className="signUp--decor-content-main">
             One of the
             <br />
@@ -39,7 +47,7 @@ const SignUp = () => {
             <br />
             stimulation.
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
