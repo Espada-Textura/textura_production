@@ -24,6 +24,16 @@ button {
   }
 }
 
+.button-primary {
+  &:hover {
+    background-color: darken(abs.$primary-color-70, 5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid abs.$accent-color-10;
+  }
+}
+
 .button-secondary {
   &:focus-visible {
     outline: 2px solid abs.$secondary-color-50;
@@ -85,6 +95,40 @@ button {
 }
 
 //--------------------------- category ----------------------------
+//------ primary color button -------
+.button-filled-primary {
+  @extend .button-primary;
+  color: var(--tr-secondary);
+  background-color: var(--tr-primary);
+}
+
+.button-fair-primary {
+  @extend .button-primary;
+  color: var(--tr-secondary);
+  background-color: abs.$primary-color-70;
+}
+
+.button-plain-primary {
+  @extend .button-primary;
+  background-color: transparent;
+  color: var(--tr-primary);
+}
+
+.button-outlined-primary {
+  @extend .button-primary;
+  background-color: transparent;
+  border: 2px solid var(--tr-primary);
+  color: var(--tr-primary);
+}
+
+.button-outlined-fair-primary {
+  @extend .button-primary;
+  color: var(--tr-primary);
+  background-color: abs.$primary-color-20;
+  border: 2px solid var(--tr-primary);
+}
+
+//------ accent color button -------
 .button-filled-accent {
   @extend .button-accent;
 
@@ -117,7 +161,7 @@ button {
 .button-fair-accent {
   @extend .button-accent;
   color: var(--tr-accent);
-  background-color: abs.$accent-color-30;
+  background-color: abs.$accent-color-10;
 }
 
 //------ secondary color button -------

@@ -50,7 +50,7 @@ button,
 select,
 textarea {
   accent-color: var(--tr-accent);
-  font: inherit !important;
+  font-family: inherit !important;
 }
 
 ::selection {

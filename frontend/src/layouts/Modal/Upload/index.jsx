@@ -18,17 +18,13 @@ const Upload = (props) => {
   return (
     <Portal>
       <div className="upload-portal" onClick={handleClose} />
-      <div className="upload-container w-[90%] max-w-[50rem] font-normal focus-visible:outline-none focus:outline-none">
+      <div className="upload-container my-4 max-sm:my-0 max-sm:rounded-none rounded-lg max-sm:w-full max-sm:h-screen w-[90%] md:max-w-[50rem] font-normal focus-visible:outline-none focus:outline-none">
         <button
-          className=" absolute top-8 right-8 w-10 h-10  button-plain-secondary rounded-lg"
+          className=" absolute top-8 right-8 w-10 h-10 button-plain-secondary rounded-lg"
           onClick={handleClose}
         >
           <HiX className="w-5 h-5" />
         </button>
-        <div className="upload-title mb-5">
-          <h2 className=" font-bold text-xl sm:text-2xl">Upload Artwork</h2>
-          <span>Share us what is your working on?</span>
-        </div>
         <Dropzone />
       </div>
     </Portal>

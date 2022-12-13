@@ -1,30 +1,33 @@
 import { useCallback, useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-import TextareaAutoSize from "react-textarea-autosize";
+import { useUploadStore, addDraftImages } from "@/zustand/uploadStore";
+import { useBase64 } from "@/hooks/useBase64";
+
 import cloudSvg from "@/images/cloud.svg";
 
+import DraftImages from "./DraftImages";
+import UploadButtons from "./UploadButtons";
+
 const Dropzone = () => {
-  const [images, setAcceptedImages] = useState([]);
-  const [addMore, setAddMore] = useState(false);
+  const images = useUploadStore((state) => [...state.draftImages]);
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
-    console.log(acceptedFiles);
-    console.log(rejectedFiles);
-
     //if the total number of image is less than 10, we proceed the post
-    acceptedFiles.length + images.length <= 10 &&
+    if (acceptedFiles.length + images.length <= 10) {
+      //set the add more to false for disable the upload fields for a while
+      setAddMore(false);
+
       acceptedFiles.forEach((file) => {
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          setAcceptedImages((prevState) => [
-            ...prevState,
-            { data: reader.result, name: file.name },
-          ]);
-        };
-
-        reader.readAsDataURL(file);
+        useBase64(file).then(
+          (result) => {
+            addDraftImages(result);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       });
+    }
   }, []);
 
   const {
@@ -34,26 +37,21 @@ const Dropzone = () => {
     isDragAccept,
     isDragReject,
   } = useDropzone({
-    accept: { "image/*": [".png", ".jpg", ".jpeg", ".gif", ".svg"] },
+    accept: { "image/*": [".png", ".jpg", ".jpeg"] },
     onDrop,
     maxSize: 10000000,
+    maxFiles: 10,
   });
-
-  useEffect(() => {
-    console.log(images);
-  }, [images]);
 
   return (
     <>
-      {images.length > 0 && (
-        <>
-          {images.map((image, index) => (
-            <div className={"rounded-lg"} key={index}>
-              <TextareaAutoSize className={"resize-none w-full bg-white"} />
-              <img src={image.data} alt={image.name} className={"rounded-lg"} />
-            </div>
-          ))}
-        </>
+      {images.length <= 0 ? (
+        <div className="w-[80%] mb-5">
+          <h2 className=" font-bold text-xl sm:text-2xl">Upload Artwork</h2>
+          <span>Share us what is your working on?</span>
+        </div>
+      ) : (
+        <DraftImages images={images} />
       )}
 
       <div
@@ -69,8 +67,10 @@ const Dropzone = () => {
           </span>
         </span>
         <span>10 MB for each image, with a maximum of 10 per post.</span>
-        <span> {"(*.png, *.jpg, *.gif, *.svg)"} files are accepted. </span>
+        <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
       </div>
+
+      {images.length > 0 && <UploadButtons />}
     </>
   );
 };
