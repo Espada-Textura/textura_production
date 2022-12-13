@@ -6,7 +6,7 @@
   position: fixed;
   width: inherit;
   background-color: abs.$primary-color-80;
-  height: 5rem;
+  height: 4rem;
   border-bottom: 1.5px solid abs.$secondary-color-10;
   @include abs.backdrop-blur(5rem);
 
@@ -41,7 +41,6 @@
     .topbar-nav-link {
       text-align: center;
 
-      font-size: 1rem;
       font-weight: 600;
       color: abs.$secondary-color-80;
 
@@ -59,8 +58,24 @@
     }
 
     a.active.topbar-nav-link {
+      position: relative;
       color: var(--tr-accent);
       font-weight: bold;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 1.5px;
+        bottom: -20%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        background-color: var(--tr-accent);
+      }
+
+      &:hover {
+        background-color: abs.$accent-color-10;
+      }
     }
   }
 

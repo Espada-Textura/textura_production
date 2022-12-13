@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 
-export default function Logo() {
+import LogoImage from "@/images/logo.svg";
+
+export default function Logo(props) {
   return (
-    <Link
-      to={"/home"}
-      className="flex px-4"
-      style={{ fontFamily: "pacifico", fontSize: "2em", padding: "0, 0.5rem" }}
-    >
-      <p style={{ color: "var(--tr-accent)" }}> Tex </p>
-      <p style={{ color: "var(--tr-secondary)" }}> tura </p>
+    <Link to={"/home"} className="flex px-4">
+      <img
+        src={LogoImage}
+        alt="logo"
+        style={{ maxWidth: "initial", ...props.style }}
+      />
     </Link>
   );
 }
