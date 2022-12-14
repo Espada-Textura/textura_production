@@ -63,25 +63,20 @@ div:has(.upload-container) {
       }
     }
 
-    .upload-title-input {
-      input {
-        color: abs.$secondary-color;
-        background-color: transparent;
-        outline: none;
-        width: 90%;
-        overflow: hidden;
-        padding: 0.25rem;
-      }
+    input[name="title"] {
+      color: abs.$secondary-color;
+      background-color: transparent;
+      outline: none;
+      width: 90%;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      padding: 0.25rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      font-weight: 600;
 
-      input[name="title"] {
-        font-size: 1.5rem;
-        line-height: 2rem;
-        font-weight: 600;
+      &::placeholder {
         color: abs.$secondary-color;
-
-        &::placeholder {
-          color: abs.$secondary-color;
-        }
       }
     }
 
@@ -101,8 +96,10 @@ div:has(.upload-container) {
     }
 
     .upload-dropzone {
-      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%23F4694DFF' stroke-width='2' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+      // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%23F4694DFF' stroke-width='2' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
       border-radius: 0.25rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
     }
   }
 }
