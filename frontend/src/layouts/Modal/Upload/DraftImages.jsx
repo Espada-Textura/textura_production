@@ -1,16 +1,38 @@
+import {
+  useUploadStore,
+  deleteDraftImage,
+  changeDraftImage,
+} from "@/zustand/uploadStore";
+import { useBase64 } from "@/hooks/useBase64";
+
 import TextareaAutoSize from "react-textarea-autosize";
 
 import { HiOutlineRefresh, HiOutlineTrash } from "react-icons/hi";
 
-const DraftImages = ({ images }) => {
+const DraftImages = () => {
+  const images = useUploadStore((state) => state.draftImages);
+
+  const handleImageChange = (event, index) => {
+    const file = event.target.files[0];
+
+    if (file.type !== "image/png" && file.type !== "image/jpeg") return;
+
+    if (file.size > 10000000) return;
+
+    useBase64(file).then(
+      (result) => changeDraftImage(index, result),
+      (error) => console.log(error)
+    );
+  };
+
   return (
-    <>
+    <div className="px-8">
       <div className="upload-title-input">
         <input type="text" name="title" placeholder="Add a title here" />
       </div>
 
       {images.map((image, index) => (
-        <div className={"pb-6 rounded-lg"} key={index}>
+        <div className={" rounded-lg"} key={index}>
           <TextareaAutoSize
             className={"upload-text-input"}
             placeholder={"Express something about your work."}
@@ -18,22 +40,33 @@ const DraftImages = ({ images }) => {
           />
 
           <div className="rounded-lg relative">
-            <button className="button-medium button-fair-primary backdrop:blur-2xl absolute top-4 left-4">
+            <div className=" cursor-pointer button-medium button-fair-primary backdrop:blur-2xl absolute top-4 left-4 flex items-center gap-2 ">
               <HiOutlineRefresh className="w-5 h-5" />
               <span className="font-bold">Change</span>
-            </button>
-            <button className="icon-button-medium button-fair-primary backdrop:blur-2xl absolute top-4 right-4">
+              <input
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                onChange={(event) => handleImageChange(event, index)}
+                className="opacity-0 w-full h-full absolute top-0 left-0"
+                name="image"
+                title=" "
+              />
+            </div>
+            <button
+              onClick={() => deleteDraftImage(index)}
+              className="icon-button-medium button-fair-primary backdrop:blur-2xl absolute top-4 right-4"
+            >
               <HiOutlineTrash className="w-5 h-5" />
             </button>
             <img
               src={image}
               alt={`picture ${index}`}
-              className={"rounded-lg"}
+              className={"rounded-lg min-h-[20rem] object-cover "}
             />
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

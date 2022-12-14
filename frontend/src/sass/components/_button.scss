@@ -51,7 +51,7 @@ button {
 //--------------------------- size ----------------------------
 .button-large {
   padding: 0 2rem 0 1.75rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   @include abs.border-radius(0.1rem);
   height: 3.25rem;
@@ -61,35 +61,35 @@ button {
   padding: 0 1.5rem 0 1.25rem;
   @include abs.border-radius(0.75rem);
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.9rem;
   height: 2.75rem;
 }
 
 .button-small {
   padding: 0 1rem 0 0.75rem;
   @include abs.border-radius(10px);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   height: 2rem;
   font-weight: 500;
 }
 
 .icon-button-large {
   @extend .button-large;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 
   padding: 0 1rem;
 }
 
 .icon-button-medium {
   @extend .button-medium;
-  font-size: 1rem;
+  font-size: 0.9rem;
 
   padding: 0 0.75rem;
 }
 
 .icon-button-small {
   @extend .button-small;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 
   padding: 0 0.75rem;
 }
