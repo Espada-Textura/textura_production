@@ -1,17 +1,29 @@
-import { setUpload, resetDraftImages } from "@/zustand/uploadStore";
-import { useUploadStore } from "@/zustand/uploadStore";
+import { useState } from "react";
+import {
+  useUploadStore,
+  setUpload,
+  resetDraftImages,
+} from "@/zustand/uploadStore";
+
+import BackWarning from "./BackWarning";
 
 const UploadButtons = () => {
-  const handleClose = () => {
+  const images = useUploadStore((state) => state.draftImages);
+
+  const [isWarningOpen, setWarning] = useState(false);
+
+  const closeModal = () => {
     setUpload(false);
     resetDraftImages();
   };
 
-  const images = useUploadStore((state) => state.draftImages);
+  const handleClose = () => {
+    images.length > 0 ? setWarning(true) : closeModal();
+  };
 
   return (
     <>
-      <div className="flex justify-center items-center  border-b-2 border-b-secondary-10 border-solid min-h-[3.5rem] ">
+      <div className="flex justify-center items-center  border-b-[1px] border-b-secondary-20 border-solid min-h-[3.5rem] ">
         (
         <button
           className="h-full text-secondary-100 px-8 font-semibold absolute  left-0"
@@ -29,6 +41,7 @@ const UploadButtons = () => {
           </button>
         )}
       </div>
+      {isWarningOpen && <BackWarning />}
     </>
   );
 };
