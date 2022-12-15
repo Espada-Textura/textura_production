@@ -145,13 +145,14 @@ button {
 .button-outlined-accent {
   @extend .button-accent;
   color: var(--tr-accent);
-  border: solid 3px var(--tr-accent);
+  border: solid 1.5px var(--tr-accent);
 }
 
 .button-outlined-fair-accent {
   @extend .button-accent;
-  color: abs.$accent-color-20;
-  border: solid 3px var(--tr-accent);
+  color: abs.$accent-color;
+  background-color: abs.$accent-color-10;
+  border: solid 1.5px var(--tr-accent);
 }
 
 .button-plain-accent {

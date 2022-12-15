@@ -18,7 +18,7 @@ const BackWarning = () => {
           <button className=" rounded-full button-filled-accent button-medium w-full font-semibold">
             <span>Save</span>
           </button>
-          <button className="button-medium w-full font-semibold button-outlined-fair-accent">
+          <button className="rounded-full button-medium w-full font-semibold button-outlined-accent">
             <span>Do not save</span>
           </button>
         </div>
