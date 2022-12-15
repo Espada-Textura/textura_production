@@ -18,6 +18,7 @@ export const addDraftImages = (image) => {
 export const deleteDraftImage = (elementIndex) => {
   useUploadStore.setState((prevState) => ({
     ...prevState,
+    imageLength: prevState.imageLength - 1,
     draftImages: prevState.draftImages.filter(
       (element, index) => index !== elementIndex
     ),

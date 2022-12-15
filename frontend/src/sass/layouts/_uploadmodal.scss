@@ -94,13 +94,6 @@ div:has(.upload-container) {
         color: abs.$secondary-color-50;
       }
     }
-
-    .upload-dropzone {
-      // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='4' ry='4' stroke='%23F4694DFF' stroke-width='2' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
-      border-radius: 0.25rem;
-      margin-bottom: 1rem;
-      padding: 1rem;
-    }
   }
 }
 
@@ -122,7 +115,7 @@ div:has(.upload-pop-portal) {
     left: 0;
     width: inherit;
     height: inherit;
-    background-color: abs.$secondary-color-60;
+    background-color: darken(abs.$secondary-color-60, 20);
     z-index: -1;
   }
 }

@@ -1,25 +1,45 @@
-import React from "react";
 import { Portal } from "react-portal";
+import { setUpload, resetDraftImages } from "@/zustand/uploadStore.jsx";
 
-import { BsPatchExclamation } from "react-icons/bs";
+const BackWarning = ({ setWarning }) => {
+  const handleCancel = () => {
+    setWarning(false);
+  };
 
-const BackWarning = () => {
+  const handleCloseWithoutSave = () => {
+    resetDraftImages();
+    handleCancel();
+    setUpload(false);
+  };
+
+  const handleCloseWithSave = () => {
+    handleCancel();
+    setUpload(false);
+  };
+
   return (
     <Portal>
-      <div className="upload-pop-portal" />
-      <div className=" max-w-[22rem] mx-4 absolute text-secondary-100 bg-primary-100 rounded-xl pt-8 pb-4 px-8 flex flex-col  justify-center items-center gap-4">
-        <h2 className="font-bold text-xl text-center">Save as Draft</h2>
-        <span className="text-center text-secondary-90">
-          Before heading back, do you want to save as a draft?
-        </span>
-
-        <div className=" upload-pop-buttons flex flex-col w-full py-3 gap-3">
+      <div className="upload-pop-portal" onClick={handleCancel} />
+      <div className=" max-w-[20rem] mx-4 absolute text-secondary-100 bg-primary-100 rounded-xl pt-8 pb-4 px-8 flex flex-col gap-4 ">
+        <div className="flex flex-col gap-2 items-center">
+          <h2 className="font-bold text-xl text-center">Save as Draft</h2>
+          <span className="text-center text-secondary-80 text-sm">
+            Before heading back, do you want to save as a draft?
+          </span>
+        </div>
+        <div className=" upload-pop-buttons flex flex-col w-full pt-4 gap-2">
           {/* <button className="button-medium w-full font-bold">Cancel</button> */}
-          <button className=" rounded-full button-filled-accent button-medium w-full font-semibold">
+          <button
+            className=" button-filled-accent button-medium w-full font-medium"
+            onClick={handleCloseWithSave}
+          >
             <span>Save</span>
           </button>
-          <button className="rounded-full button-medium w-full font-semibold button-outlined-accent">
-            <span>Do not save</span>
+          <button
+            className=" text-accent-100 button-medium w-full font-medium "
+            onClick={handleCloseWithoutSave}
+          >
+            <span>Discard </span>
           </button>
         </div>
       </div>

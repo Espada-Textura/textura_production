@@ -24,14 +24,13 @@ const UploadButtons = () => {
   return (
     <>
       <div className="flex justify-center items-center  border-b-[1px] border-b-secondary-20 border-solid min-h-[3.5rem] ">
-        (
         <button
           className="h-full text-secondary-100 px-8 font-semibold absolute  left-0"
           onClick={handleClose}
         >
           Back
         </button>
-        )
+
         <span className="text-secondary-100 font-semibold sm:text-[1rem] text-center ">
           Create Artwork
         </span>
@@ -41,7 +40,7 @@ const UploadButtons = () => {
           </button>
         )}
       </div>
-      {isWarningOpen && <BackWarning />}
+      {isWarningOpen && <BackWarning setWarning={setWarning} />}
     </>
   );
 };

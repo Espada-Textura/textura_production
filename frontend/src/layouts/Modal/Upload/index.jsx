@@ -1,13 +1,11 @@
-import { useCallback } from "react";
 import { useEscClose } from "@/hooks/modalClose";
 import { useUploadStore, setUpload } from "@/zustand/uploadStore";
 
-import { HiX } from "react-icons/hi";
 import { Portal } from "react-portal";
 import Dropzone from "./Dropzone";
 import UploadButtons from "./UploadButtons";
 
-const Upload = (props) => {
+const Upload = () => {
   const isOpen = useUploadStore((state) => state.isOpen);
 
   const handleClose = () => {
