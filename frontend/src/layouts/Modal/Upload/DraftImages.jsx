@@ -3,7 +3,7 @@ import {
   deleteDraftImage,
   changeDraftImage,
 } from "@/zustand/uploadStore";
-import { useBase64 } from "@/hooks/useBase64";
+import { useAsyncFileRead } from "@/hooks/useBase64";
 
 import TextareaAutoSize from "react-textarea-autosize";
 
@@ -19,7 +19,7 @@ const DraftImages = () => {
 
     if (file.size > 10000000) return;
 
-    useBase64(file).then(
+    useAsyncFileRead(file).then(
       (result) => changeDraftImage(index, result),
       (error) => console.log(error)
     );

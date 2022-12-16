@@ -8,10 +8,15 @@ export const useUploadStore = create(() => ({
 export const setUpload = (state) =>
   useUploadStore.setState((prevState) => ({ ...prevState, isOpen: state }));
 
-export const addDraftImages = (image) => {
+export const addDraftImages = (image, index) => {
   useUploadStore.setState((prevState) => ({
     ...prevState,
-    draftImages: [...prevState.draftImages, image],
+    draftImages: (() => {
+      if (prevState.draftImages[index] === undefined)
+        prevState.draftImages[index] = image;
+      else prevState.draftImages[index + prevState.draftImages.length] = image;
+      return prevState.draftImages;
+    })(),
   }));
 };
 

@@ -5,7 +5,7 @@
 //   };
 // });
 
-export const useBase64 = (file) =>
+export const useAsyncFileRead = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);

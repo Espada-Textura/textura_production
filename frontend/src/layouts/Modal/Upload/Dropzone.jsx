@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUploadStore, addDraftImages } from "@/zustand/uploadStore";
-import { useBase64 } from "@/hooks/useBase64";
+import { useAsyncFileRead } from "@/hooks/useBase64";
 
 import cloudSvg from "@/images/cloud.svg";
 
@@ -13,10 +13,10 @@ const Dropzone = () => {
   const images = useUploadStore((state) => [...state.draftImages]);
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
-    acceptedFiles.forEach((file) => {
-      useBase64(file).then(
+    acceptedFiles.forEach((file, index) => {
+      useAsyncFileRead(file).then(
         (result) => {
-          addDraftImages(result);
+          addDraftImages(result, index + images.length);
         },
         (error) => {
           console.log(error);
