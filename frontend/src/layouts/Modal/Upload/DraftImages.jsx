@@ -59,7 +59,7 @@ const DraftImages = () => {
             <img
               src={image}
               alt={`picture ${index}`}
-              className={"rounded-lg min-h-[20rem] object-cover "}
+              className={"rounded-lg min-h-[20rem] object-cover w-full"}
             />
           </div>
         </div>

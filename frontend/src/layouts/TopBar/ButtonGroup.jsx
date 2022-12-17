@@ -34,7 +34,7 @@ const ButtonGroup = () => {
       <div className={"flex gap-4 items-center"}>
         <Link
           className={
-            "button-plain-secondary icon-button-medium px-3 max-md:hidden xl:hidden items-center flex"
+            "button-plain-secondary icon-button-medium px-3  items-center flex"
           }
           to={"/search"}
         >

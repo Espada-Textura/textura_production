@@ -31,11 +31,10 @@
       position: relative;
       display: flex;
       flex-direction: row;
-      gap: 0.5rem;
       align-items: stretch;
 
       height: 2.75rem;
-      padding: 0 1rem;
+      padding: 0 0.75rem;
     }
 
     .topbar-nav-link {
@@ -46,7 +45,7 @@
 
       @include abs.border-radius(0.75rem);
 
-      padding: 0 1.25rem;
+      padding: 0 1rem;
       height: 2.75rem;
 
       display: flex;
@@ -55,12 +54,21 @@
       &:hover {
         background-color: rgba(abs.$secondary-color, 0.075);
       }
+
+      svg {
+        @include abs.border-radius(1rem);
+        padding: 0.25rem;
+      }
     }
 
     a.active.topbar-nav-link {
       position: relative;
       color: var(--tr-accent);
       font-weight: bold;
+
+      svg {
+        background-color: abs.$accent-color-10;
+      }
 
       &::after {
         content: "";
