@@ -1,14 +1,15 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUploadStore, addDraftImages } from "@/zustand/uploadStore";
 import { useAsyncFileRead } from "@/hooks/useBase64";
 
 import cloudSvg from "@/images/cloud.svg";
 
+import UploadButtons from "./UploadButtons";
 import DraftImages from "./DraftImages";
 
 const Dropzone = () => {
-  let filesNumber = 0;
+  let filesCount = 0;
 
   const images = useUploadStore((state) => [...state.draftImages]);
 
@@ -26,9 +27,9 @@ const Dropzone = () => {
   }, []);
 
   const fileValidator = (file) => {
-    filesNumber++;
+    filesCount++;
 
-    return images.length + filesNumber > 10
+    return images.length + filesCount > 10
       ? {
           code: "limit-files-reached",
           message: "You can only post 10 picture per post.",
@@ -50,6 +51,9 @@ const Dropzone = () => {
 
   return (
     <>
+      <div className=" fixed sm:absolute w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-lg">
+        <UploadButtons />
+      </div>
       {images.length > 0 && (
         <div className="mt-14">
           <DraftImages />

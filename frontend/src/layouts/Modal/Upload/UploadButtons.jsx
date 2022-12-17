@@ -1,8 +1,8 @@
 import { useState } from "react";
 import {
-  useUploadStore,
   setUpload,
   resetDraftImages,
+  useUploadStore,
 } from "@/zustand/uploadStore";
 
 import BackWarning from "./BackWarning";

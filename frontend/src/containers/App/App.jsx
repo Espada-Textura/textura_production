@@ -3,21 +3,26 @@ import "@sass/index.scss";
 
 //components
 import { Route, Routes, Navigate } from "react-router-dom";
+import React, { Suspense } from "react";
 
 //containers
+import Loading from "@layouts/Loading";
 import Main from "@containers/Main";
 import Home from "@containers/Home";
-import SignUp from "@containers/SignUp";
-import SignIn from "@containers/SignIn";
-import RecoveryPassword from "@containers/RecoveryPassword";
-import NotFound from "@containers/NotFound";
 import Discover from "@containers/Discover";
-import Profile from "@containers/Profile";
-import Terms from "@containers/Terms";
-import FullView from "@containers/FullView";
-import Challenge from "@containers/Challenge";
-import Forum from "@containers/Forum";
-import Search from "@containers/Search";
+
+const SignUp = React.lazy(() => import("@containers/SignUp"));
+const SignIn = React.lazy(() => import("@containers/SignIn"));
+const RecoveryPassword = React.lazy(() =>
+  import("@containers/RecoveryPassword")
+);
+const NotFound = React.lazy(() => import("@containers/NotFound"));
+const Profile = React.lazy(() => import("@containers/Profile"));
+const Terms = React.lazy(() => import("@containers/Terms"));
+const FullView = React.lazy(() => import("@containers/FullView"));
+const Challenge = React.lazy(() => import("@containers/Challenge"));
+const Forum = React.lazy(() => import("@containers/Forum"));
+const Search = React.lazy(() => import("@containers/Search"));
 
 //subcontainer
 import { All } from "@containers/Discover/All";
@@ -34,12 +39,40 @@ const App = () => {
     <>
       <Routes>
         <Route path="/" index element={<Navigate to={"/home"} />} />
-        <Route path="sign-up" element={<SignUp />} />
-        <Route path="sign-in" element={<SignIn />} />
+        <Route
+          path="sign-up"
+          element={
+            <Suspense fallback={<Loading />}>
+              <SignUp />
+            </Suspense>
+          }
+        />
+        <Route
+          path="sign-in"
+          element={
+            <Suspense fallback={<Loading />}>
+              <SignIn />
+            </Suspense>
+          }
+        />
         <Route element={<Main />}>
           <Route path="home" element={<Home />} />
-          <Route path="recovery-password" element={<RecoveryPassword />} />
-          <Route path="search/:input" element={<Search />} />
+          <Route
+            path="recovery-password"
+            element={
+              <Suspense fallback={<Loading />}>
+                <RecoveryPassword />
+              </Suspense>
+            }
+          />
+          <Route
+            path="search/:input"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Search />
+              </Suspense>
+            }
+          />
           <Route path="discover" element={<Discover />}>
             <Route index element={<Navigate to={"all"} />} />
             <Route path="all" element={<All />} />
@@ -51,12 +84,40 @@ const App = () => {
             <Route path="stories" element={<Stories />} />
             <Route path="topics" element={<Topics />} />
           </Route>
-          <Route path="artist/:artistId" element={<Profile />} />
+          <Route
+            path="artist/:artistId"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Profile />
+              </Suspense>
+            }
+          />
           <Route path="terms" element={<Terms />} />
           <Route path="art/:artId" element={<FullView />} />
-          <Route path="challenges" element={<Challenge />} />
-          <Route path="forum" element={<Forum />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="challenges"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Challenge />
+              </Suspense>
+            }
+          />
+          <Route
+            path="forum"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Forum />
+              </Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loading />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
     </>
