@@ -1,6 +1,4 @@
-import { useRef } from "react";
-
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useUploadStore, setUpload } from "@/zustand/uploadStore";
 
 import {
@@ -34,7 +32,7 @@ const ButtonGroup = () => {
       <div className={"flex gap-4 items-center"}>
         <Link
           className={
-            "button-plain-secondary icon-button-medium px-3 max-md:hidden xl:hidden items-center flex"
+            "button-plain-secondary icon-button-medium px-3 max-md:hidden items-center flex"
           }
           to={"/search"}
         >
@@ -43,12 +41,11 @@ const ButtonGroup = () => {
 
         <button
           className={
-            "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
+            "button-plain-secondary icon-button-medium max-xl:px-3 max-lg:hidden"
           }
           onClick={() => setUpload(!isUploadOpen)}
         >
           <HiUpload className={"w-6 h-6"} />
-          <span className="max-xl:hidden">Upload</span>
         </button>
 
         <button

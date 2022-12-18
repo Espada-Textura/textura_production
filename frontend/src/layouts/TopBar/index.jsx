@@ -5,8 +5,6 @@ import { useRef } from "react";
 import Logo from "@components/Logo/";
 import ButtonGroup from "./ButtonGroup.jsx";
 import Navigation from "./Navigation.jsx";
-import SearchBar from "@components/SearchBar";
-import Categories from "./Categories.jsx";
 import SideMenu from "@layouts/SideMenu/";
 
 //icons
@@ -23,28 +21,22 @@ const Topbar = () => {
         <div className={"topbar-top-section"}>
           <button
             ref={menuRef}
-            className={"icon-button-medium button-fair-secondary"}
+            className={"icon-button-medium button-fair-secondary md:hidden"}
             onClick={() => setMenuOpen(!isMenuOpen)}
           >
             <HiOutlineMenuAlt1 className={"w-6 h-6"} />
           </button>
-          <Logo
-            style={{
-              height: "3rem",
-              paddingBottom: "0.25rem",
-            }}
-          />
-          <Navigation />
-          <SearchBar />
+          <div className="flex gap-6">
+            <Logo
+              style={{
+                height: "3rem",
+                paddingBottom: "0.25rem",
+              }}
+            />
+            <Navigation />
+          </div>
           <ButtonGroup />
         </div>
-        {/* <div
-        className={
-          "topbar-bottom-section max-xl:justify-around max-xl:gap-0 max-md:hidden"
-        }
-      >
-        <Categories />
-      </div> */}
       </header>
       {isMenuOpen && (
         <SideMenu setMenuOpen={setMenuOpen} togglerRef={menuRef} />

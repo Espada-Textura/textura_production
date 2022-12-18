@@ -1,37 +1,32 @@
-import { useCallback } from "react";
-import { useEscClose } from "@/hooks/modalClose";
+import { useEscClose } from "@/hooks/useModalClose";
 import { useUploadStore, setUpload } from "@/zustand/uploadStore";
+import { useState } from "react";
 
-import { HiX } from "react-icons/hi";
 import { Portal } from "react-portal";
-import Dropzone from "./Dropzone";
 
-const Upload = (props) => {
-  const isOpen = useUploadStore((state) => state.isOpen);
+import Dropzone from "./Dropzone";
+import BackWarning from "./BackWarning";
+
+const Upload = () => {
+  const images = useUploadStore((state) => state.draftImages);
+  const [isWarningOpen, setWarning] = useState(false);
 
   const handleClose = () => {
-    setUpload(!isOpen);
+    images.length > 0 ? setWarning(true) : setUpload(false);
   };
 
   useEscClose("Escape", handleClose, []);
 
   return (
-    <Portal>
-      <div className="upload-portal" onClick={handleClose} />
-      <div className="upload-container w-[90%] max-w-[50rem] font-normal focus-visible:outline-none focus:outline-none">
-        <button
-          className=" absolute top-8 right-8 w-10 h-10  button-plain-secondary rounded-lg"
-          onClick={handleClose}
-        >
-          <HiX className="w-5 h-5" />
-        </button>
-        <div className="upload-title mb-5">
-          <h2 className=" font-bold text-xl sm:text-2xl">Upload Artwork</h2>
-          <span>Share us what is your working on?</span>
+    <>
+      <Portal>
+        <div className="upload-portal" onClick={handleClose} />
+        <div className="upload-container pb-4 max-sm:pt-0 my-4 max-sm:my-0 max-sm:rounded-none rounded-lg max-sm:w-full max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none">
+          <Dropzone />
         </div>
-        <Dropzone />
-      </div>
-    </Portal>
+      </Portal>
+      {isWarningOpen && <BackWarning setWarning={setWarning} />}
+    </>
   );
 };
 
