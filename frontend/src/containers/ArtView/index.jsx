@@ -1,7 +1,1 @@
-
-export default function ArtView(){
-    return (
-        <>
-        </>
-    )
-}
+export { default } from "./ArtView";
