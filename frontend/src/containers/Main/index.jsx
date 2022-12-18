@@ -5,19 +5,21 @@ import { ToastContainer } from "react-toastify";
 const Main = () => {
   return (
     <>
-      <Topbar onContextMenu={(e) => e.preventDefault()} />
+      <Topbar onContextMenu={(e) => false} />
       <Outlet />
       <ToastContainer
+        containerId={"notify"}
         position="top-right"
         autoClose={false}
+        rtl={false}
+        limit={3}
         hideProgressBar
         newestOnTop
         closeOnClick
-        limit={5}
-        rtl={false}
         draggable
         pauseOnHover
         theme="light"
+        enableMultiContainer
       />
     </>
   );

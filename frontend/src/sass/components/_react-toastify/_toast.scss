@@ -44,26 +44,6 @@
   }
 }
 
-.#{$rt-namespace}__toast--warning {
-  outline: 2px solid var(--tr-warning);
-  background-color: #f9f6e3 !important;
-}
-
-.#{$rt-namespace}__toast--success {
-  outline: 2px solid var(--tr-success);
-  background-color: #e8fbec !important;
-}
-
-.#{$rt-namespace}__toast--success {
-  outline: 2px solid var(--tr-info);
-  background-color: #e0f3fc !important;
-}
-
-.#{$rt-namespace}__toast--error {
-  outline: 2px solid var(--tr-error);
-  background-color: #f9ebe9 !important;
-}
-
 .#{$rt-namespace}--animate {
   animation-fill-mode: both;
   animation-duration: 0.7s;

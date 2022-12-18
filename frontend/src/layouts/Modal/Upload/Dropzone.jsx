@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUploadStore, addDraftImages } from "@/zustand/uploadStore";
 import { useAsyncFileRead } from "@/hooks/useFileRead";
+import { useErrorNotify, useWarningNotify } from "@/hooks/useNotify";
 
 import cloudSvg from "@/images/cloud.svg";
 
@@ -20,9 +21,46 @@ const Dropzone = () => {
           addDraftImages(result, index + images.length);
         },
         (error) => {
-          console.log(error);
+          useErrorNotify(
+            "File Reading Error",
+            `There was an error reading your files. Please try again.`
+          );
         }
       );
+    });
+
+    rejectedFiles.forEach((file, index) => {
+      switch (file.errors[0].code) {
+        case "file-invalid-type": {
+          useWarningNotify(
+            "Unsupported File",
+            <span>
+              <span className="font-bold"> {file.file.name} </span> has
+              unsupported extension.
+            </span>
+          );
+        }
+
+        case "file-too-large": {
+          useWarningNotify(
+            "File too large",
+            <span>
+              <span className="font-bold"> {file.file.name} </span> has too
+              large size.
+            </span>
+          );
+        }
+
+        case "limit-files-reached": {
+          useWarningNotify(
+            "Limited Files Reached",
+            <span>
+              You can post up to <span className="font-bold"> {10} </span>{" "}
+              pictures per post only.
+            </span>
+          );
+        }
+      }
     });
   }, []);
 

@@ -60,6 +60,7 @@ const DraftImages = () => {
               src={image}
               alt={`picture ${index}`}
               className={"rounded-lg min-h-[20rem] object-cover w-full"}
+              draggable={false}
             />
           </div>
         </div>

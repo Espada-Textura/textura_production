@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useWarningNotify } from "@/hooks/useNotify";
 
 import {
   setUpload,
@@ -37,10 +36,7 @@ const UploadButtons = () => {
           Create Artwork
         </span>
         {images.length > 0 && (
-          <button
-            className=" h-full text-accent-100 px-8 font-semibold absolute right-0"
-            onClick={() => useWarningNotify("Warnings", "This is a warning")}
-          >
+          <button className=" h-full text-accent-100 px-8 font-semibold absolute right-0">
             Upload
           </button>
         )}
