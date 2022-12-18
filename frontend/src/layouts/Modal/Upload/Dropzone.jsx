@@ -6,7 +6,7 @@ import { useErrorNotify, useWarningNotify } from "@/hooks/useNotify";
 
 import cloudSvg from "@/images/cloud.svg";
 
-import UploadButtons from "./UploadButtons";
+import Header from "./Header";
 import DraftImages from "./DraftImages";
 
 const Dropzone = () => {
@@ -90,7 +90,7 @@ const Dropzone = () => {
   return (
     <>
       <div className=" fixed sm:absolute w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-lg">
-        <UploadButtons />
+        <Header />
       </div>
       {images.length > 0 && (
         <div className="mt-14">

@@ -1,3 +1,1 @@
-export default function Profile() {
-  return <>Profile</>;
-}
+export { default } from "./Profile";
