@@ -10,7 +10,7 @@ const Main = () => {
       <ToastContainer
         containerId={"notify"}
         position="top-right"
-        autoClose={false}
+        autoClose={5000}
         rtl={false}
         limit={3}
         hideProgressBar
