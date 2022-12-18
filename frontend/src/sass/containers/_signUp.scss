@@ -36,7 +36,8 @@ body {
             }
           }
           .signUp--alternative-signin {
-            
+            font-size: 1rem;
+            font-weight: 700;
 
             .sign-in--google {
               @include abs.border-radius(16px);
@@ -45,9 +46,6 @@ body {
 
               background-color: abs.$primary-color;
               color: abs.$secondary-color;
-
-              font-size: 1rem;
-              font-weight: 700;
             }
           }
           .signUp--or-statement {

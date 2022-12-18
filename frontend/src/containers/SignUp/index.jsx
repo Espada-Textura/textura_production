@@ -1,4 +1,4 @@
-import Logo from "@components/Logo"
+import Logo from "@components/Logo";
 
 const SignUp = () => {
   return (
@@ -16,13 +16,34 @@ const SignUp = () => {
               </div>
             </div>
             <div className="signUp--alternative-signin flex justify-center">
-              <button  className="sign-in--google w-96">
+              <button type="button" className="sign-in--google">
                 Sign in with Google
               </button>
             </div>
-            <div className="signUp--or-statement"></div>
-            <div className="signUp--fills"></div>
-            <div className="signUp--submit"></div>
+            <div className="signUp--or-statement">- or -</div>
+            <div className="signUp--fills">
+              <div>
+                <div>
+                  <label>First Name</label>
+                  <input type="text" placeholder="Jonh" required></input>
+                </div>
+                <div>
+                  <label>Last Name</label>
+                  <input type="text" placeholder="Doe" required></input>
+                </div>
+              </div>
+              <div>
+                <label>Email</label>
+                <input
+                  type="text"
+                  placeholder="example@example.com"
+                  required
+                ></input>
+              </div>
+            </div>
+            <div className="signUp--submit">
+              <button type="button">Next</button>
+            </div>
           </form>
         </div>
 
