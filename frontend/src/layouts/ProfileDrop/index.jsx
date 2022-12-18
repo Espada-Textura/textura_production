@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useOutSideClose, useEscClose } from "@/hooks/modalClose";
+import { useOutSideClose, useEscClose } from "@/hooks/useModalClose";
 import { setUpload } from "@/zustand/uploadStore";
 
 import {

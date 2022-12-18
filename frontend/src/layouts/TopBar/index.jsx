@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Logo from "@components/Logo/";
 import ButtonGroup from "./ButtonGroup.jsx";
 import Navigation from "./Navigation.jsx";
-import SearchBar from "@components/SearchBar";
 import SideMenu from "@layouts/SideMenu/";
 
 //icons
@@ -27,13 +26,15 @@ const Topbar = () => {
           >
             <HiOutlineMenuAlt1 className={"w-6 h-6"} />
           </button>
-          <Logo
-            style={{
-              height: "3rem",
-              paddingBottom: "0.25rem",
-            }}
-          />
-          <Navigation />
+          <div className="flex gap-6">
+            <Logo
+              style={{
+                height: "3rem",
+                paddingBottom: "0.25rem",
+              }}
+            />
+            <Navigation />
+          </div>
           <ButtonGroup />
         </div>
       </header>

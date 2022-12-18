@@ -1,4 +1,4 @@
-import { useEscClose } from "@/hooks/modalClose";
+import { useEscClose } from "@/hooks/useModalClose";
 import { useUploadStore, setUpload } from "@/zustand/uploadStore";
 import { useState } from "react";
 

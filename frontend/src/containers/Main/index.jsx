@@ -7,7 +7,18 @@ const Main = () => {
     <>
       <Topbar onContextMenu={(e) => e.preventDefault()} />
       <Outlet />
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={false}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        limit={5}
+        rtl={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

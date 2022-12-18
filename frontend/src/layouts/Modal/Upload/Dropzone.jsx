@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useUploadStore, addDraftImages } from "@/zustand/uploadStore";
-import { useAsyncFileRead } from "@/hooks/useBase64";
+import { useAsyncFileRead } from "@/hooks/useFileRead";
 
 import cloudSvg from "@/images/cloud.svg";
 
@@ -92,7 +92,7 @@ const Dropzone = () => {
               </div>
             ) : (
               <>
-                <button className="self-center text-center w-max button-medium button-fair-secondary rounded-lg">
+                <button className="self-center text-center w-max button-medium button-fair-secondary rounded-lg font-bold">
                   Add More
                 </button>
               </>

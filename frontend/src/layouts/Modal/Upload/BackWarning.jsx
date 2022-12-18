@@ -28,15 +28,14 @@ const BackWarning = ({ setWarning }) => {
           </span>
         </div>
         <div className=" upload-pop-buttons flex flex-col w-full pt-4 gap-2">
-          {/* <button className="button-medium w-full font-bold">Cancel</button> */}
           <button
-            className=" button-medium w-full font-medium"
+            className=" button-medium w-full font-semibold"
             onClick={handleCloseWithSave}
           >
             <span>Save</span>
           </button>
           <button
-            className=" text-accent-100 button-medium w-full font-medium "
+            className=" text-accent-100 button-medium w-full font-semibold "
             onClick={handleCloseWithoutSave}
           >
             <span>Discard </span>

@@ -3,7 +3,7 @@ import {
   deleteDraftImage,
   changeDraftImage,
 } from "@/zustand/uploadStore";
-import { useAsyncFileRead } from "@/hooks/useBase64";
+import { useAsyncFileRead } from "@/hooks/useFileRead";
 
 import TextareaAutoSize from "react-textarea-autosize";
 

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
-import { useOutSideClose, useEscClose } from "@/hooks/modalClose";
+import { useOutSideClose, useEscClose } from "@/hooks/useModalClose";
 
 import {
   HiOutlineHome,
