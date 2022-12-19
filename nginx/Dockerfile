@@ -8,9 +8,9 @@ RUN rm -rf /etc/nginx/nginx.conf
 
 COPY ./nginx.conf /etc/nginx/
 
-# COPY ./certs /etc/certs
+COPY ./certs /etc/certs
 
-# RUN ls /etc/certs
+RUN ls /etc/certs
 
 RUN cat /etc/nginx/nginx.conf
 
