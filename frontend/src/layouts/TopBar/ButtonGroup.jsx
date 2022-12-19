@@ -1,7 +1,6 @@
-import ProfileDrop from "@layouts/ProfileDrop";
-import UploadModal from "@layouts/UploadModal";
+import { useState, useRef } from "react";
+import { useUploadStore, setUpload } from "@/zustand/uploadStore";
 
-import { useState } from "react";
 import {
   HiOutlineBell,
   HiChevronDown,
@@ -13,16 +12,27 @@ import {
 
 import { Link } from "react-router-dom";
 
-export default function ButtonGroup() {
+import ProfileDrop from "@layouts/ProfileDrop";
+import Upload from "@layouts/Modal/Upload";
+
+const ButtonGroup = () => {
+  //state
   const [isProfileDrop, setProfileDrop] = useState(false);
-  const [isUploadOpen, setUploadOpen] = useState(false);
+  const isUploadOpen = useUploadStore((state) => state.isOpen);
+
+  const profileToggler = useRef();
+
+  //profile close handler
+  const handProfileClose = () => {
+    setProfileDrop(!isProfileDrop);
+  };
 
   return (
     <>
       <div className={"flex gap-4 items-center"}>
         <Link
           className={
-            "button-plain-secondary icon-button-medium px-3 max-md:hidden xl:hidden items-center flex"
+            "button-plain-secondary icon-button-medium px-3 max-md:hidden items-center flex"
           }
           to={"/search"}
         >
@@ -31,12 +41,11 @@ export default function ButtonGroup() {
 
         <button
           className={
-            "button-filled-accent button-medium max-xl:px-3 max-md:hidden"
+            "button-plain-secondary icon-button-medium max-xl:px-3 max-lg:hidden"
           }
-          onClick={() => setUploadOpen(!isUploadOpen)}
+          onClick={() => setUpload(!isUploadOpen)}
         >
           <HiUpload className={"w-6 h-6"} />
-          <span className="max-xl:hidden">Upload</span>
         </button>
 
         <button
@@ -53,7 +62,8 @@ export default function ButtonGroup() {
 
         <div
           className={"topbar-profile-btn"}
-          onClick={() => setProfileDrop(!isProfileDrop)}
+          onClick={handProfileClose}
+          ref={profileToggler}
         >
           <button
             className={
@@ -68,9 +78,16 @@ export default function ButtonGroup() {
         </div>
       </div>
       {isProfileDrop && (
-        <ProfileDrop isDrop={isProfileDrop} setDrop={setProfileDrop} />
+        <ProfileDrop
+          isDrop={isProfileDrop}
+          setDrop={setProfileDrop}
+          togglerRef={profileToggler}
+        />
       )}
-      {isUploadOpen && <UploadModal />}
+
+      {isUploadOpen && <Upload />}
     </>
   );
-}
+};
+
+export default ButtonGroup;

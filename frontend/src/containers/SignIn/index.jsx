@@ -1,5 +1,1 @@
-const SignIn = () => {
-  return <div>Signin</div>;
-};
-
-export default SignIn;
+export { default } from "./SignIn";

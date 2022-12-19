@@ -1,43 +1,52 @@
 @use "./../abstract/" as abs;
 
 body {
-  .container {
+  color: abs.$primary-color !important;
+
+  .signUp-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px 200px;
 
-    position: relative;
-    width: 1920px;
-    height: 1080px;
+    background-image: url(/src/images/sign-up.png);
 
-    background-image: url(/frontend/src/images/sign-up.png);
-
-    .content {
+    .signUp-content {
       @include abs.border-radius(16px);
 
       .signUp--form {
         display: flex;
         align-items: center;
-        padding: 100px 0px;
-
-        width: 760px;
-        height: 880px;
 
         .signUp--form-form {
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: ceneter;
+
           .signUp--logo {
           }
           .signUp--notes {
             .signUp--notes--main-text {
-              font-size: 36px;
+              font-size: 2rem;
               font-weight: 700;
             }
             .signUp--notes--small-text {
-              font-size: 16px;
+              font-size: 1rem;
               font-weight: 500;
             }
           }
           .signUp--alternative-signin {
+            font-size: 1rem;
+            font-weight: 700;
+
+            .sign-in--google {
+              @include abs.border-radius(16px);
+
+              height: 55px;
+
+              background-color: abs.$primary-color;
+              color: abs.$secondary-color;
+            }
           }
           .signUp--or-statement {
           }
@@ -49,16 +58,16 @@ body {
       }
     }
 
-    .signUp--decor-content {
-      .signUp--decor-content-main {
-        font-size: 64px;
-        font-weight: 700;
-      }
+    // .signUp--decor-content {
+    //   .signUp--decor-content-main {
+    //     font-size: 64px;
+    //     font-weight: 700;
+    //   }
 
-      .signUp--decor-content-small {
-        font-size: 16px;
-        font-weight: 400;
-      }
-    }
+    //   .signUp--decor-content-small {
+    //     font-size: 16px;
+    //     font-weight: 400;
+    //   }
+    // }
   }
 }

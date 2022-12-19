@@ -1,6 +1,122 @@
-.upload-container {
+@use "./../abstract/" as abs;
+
+div:has(.upload-container) {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  z-index: 1300;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+  }
+
+  .upload-portal {
+    position: absolute;
+    top: inherit;
+    left: inherit;
+    width: inherit;
+    min-height: inherit;
+    background-color: abs.$secondary-color-50;
+  }
+
+  .upload-container {
+    position: relative;
+    left: 0;
+    top: 0;
+
+    background-color: abs.$primary-color;
+
+    @include abs.box-shadow(0 0 1rem rgba(abs.$secondary-color, 0.05));
+
+    overflow: auto;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: abs.$secondary-color-20;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      background-clip: padding-box;
+      display: none;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        display: block;
+      }
+    }
+
+    input[name="title"] {
+      color: abs.$secondary-color;
+      background-color: transparent;
+      outline: none;
+      width: 90%;
+      overflow: hidden;
+      margin-top: 0.5rem;
+      padding: 0.25rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      font-weight: 600;
+
+      &::placeholder {
+        color: abs.$secondary-color;
+      }
+    }
+
+    .upload-text-input {
+      color: abs.$secondary-color;
+      background-color: transparent;
+      resize: none;
+      outline: none;
+      width: 100%;
+      overflow: hidden;
+      padding: 0.25rem;
+      font-weight: 500;
+      text-align: justify;
+      &::placeholder {
+        color: abs.$secondary-color-50;
+      }
+    }
+  }
+}
+
+div:has(.upload-pop-portal) {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 100%;
+  z-index: 1500;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .upload-pop-portal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    background-color: darken(abs.$secondary-color-60, 20);
+    z-index: -1;
+  }
 }

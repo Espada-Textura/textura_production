@@ -1,69 +1,69 @@
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-Light.otf") format("truetype");
+  src: url("/src/fonts/Poppins-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-LightItalic.otf") format("truetype");
+  src: url("/src/fonts/Poppins-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-Regular.otf") format("truetype");
+  src: url("/src/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-Italic.otf") format("truetype");
+  src: url("/src/fonts/Poppins-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-Medium.otf") format("truetype");
+  src: url("/src/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-MediumItalic.otf") format("truetype");
+  src: url("/src/fonts/Poppins-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-SemiBold.otf") format("truetype");
+  src: url("/src/fonts/Poppins-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-SemiBoldItalic.otf") format("truetype");
+  src: url("/src/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-Bold.otf") format("truetype");
+  src: url("/src/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: local("frontend/src/fonts/Poppins-BoldItalic.otf") format("truetype");
+  src: url("/src/fonts/Poppins-BoldItalic.ttf") format("truetype");
   font-weight: bold;
   font-style: italic;
 }
