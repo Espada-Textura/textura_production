@@ -11,6 +11,7 @@ import DraftImages from "./DraftImages";
 
 const Dropzone = () => {
   let filesCount = 0;
+  const limitFiles = 5;
 
   const images = useUploadStore((state) => [...state.draftImages]);
 
@@ -32,33 +33,37 @@ const Dropzone = () => {
     rejectedFiles.forEach((file, index) => {
       switch (file.errors[0].code) {
         case "file-invalid-type": {
-          useWarningNotify(
+          useErrorNotify(
             "Unsupported File",
             <span>
               <span className="font-bold"> {file.file.name} </span> has
               unsupported extension.
             </span>
           );
+          break;
         }
 
         case "file-too-large": {
-          useWarningNotify(
+          useErrorNotify(
             "File too large",
             <span>
               <span className="font-bold"> {file.file.name} </span> has too
               large size.
             </span>
           );
+          break;
         }
 
         case "limit-files-reached": {
           useWarningNotify(
             "Limited Files Reached",
             <span>
-              You can post up to <span className="font-bold"> {10} </span>{" "}
-              pictures per post only.
+              You can post up to{" "}
+              <span className="font-bold"> {limitFiles} </span> pictures per
+              post only.
             </span>
           );
+          break;
         }
       }
     });
@@ -67,7 +72,7 @@ const Dropzone = () => {
   const fileValidator = (file) => {
     filesCount++;
 
-    return images.length + filesCount > 10
+    return images.length + filesCount > limitFiles
       ? {
           code: "limit-files-reached",
           message: "You can only post 10 picture per post.",
@@ -79,7 +84,7 @@ const Dropzone = () => {
     accept: { "image/jpeg": [], "image/png": [] },
     maxSize: 10000000,
     maxFiles: (() => {
-      const max = 10 - images.length;
+      const max = limitFiles - images.length;
       return max > 1 ? max : 1;
     })(),
     multiple: true,
@@ -97,7 +102,7 @@ const Dropzone = () => {
           <DraftImages />
         </div>
       )}
-      {images.length < 10 && (
+      {images.length < limitFiles && (
         <div
           className={"px-8 flex justify-center" + (images > 0 ? " mt-14" : "")}
         >
@@ -124,7 +129,7 @@ const Dropzone = () => {
                   </span>
                 </span>
                 <span>
-                  10 MB for each image, with a maximum of 10 per post.
+                  10 MB for each image, with a maximum of {limitFiles} per post.
                 </span>
                 <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
               </div>
