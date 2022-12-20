@@ -13,5 +13,6 @@ app/db.sqlite3
 postgres
 api/migration
 api/art
-.DS_Store
 ._.DS_Store
+art_uploads
+.DS_Store

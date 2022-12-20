@@ -32,8 +32,8 @@ class ArtSchema(Mixin):
         if not data.get("rpath"):
             return data
 
-        r_full_path = f"{request.headers['Host']}{data.get('rpath')}"
-        t_full_path = f"{request.headers['Host']}{data.get('rpath').split('.')[0]}_thumbnail.{data.get('rpath').split('.')[1]}"
+        r_full_path = f"https://{request.headers['Host']}{data.get('rpath')}"
+        t_full_path = f"https://{request.headers['Host']}{data.get('rpath').split('.')[0]}_thumbnail.{data.get('rpath').split('.')[1]}"
 
         data.update({"rpath": r_full_path})
         data.update({"tpath": t_full_path})
