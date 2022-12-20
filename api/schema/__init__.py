@@ -7,13 +7,20 @@ from .user_schema import (
     UserAuthSchema,
 )
 
-from .art_schema import ArtSchema, NestedArtSchema
+from .art_post_schema import (
+    ArtPostSchema,
+    NestedArtPostSchema,
+    ArtSchema,
+    NestedArtSchema,
+)
 
 
 __all__ = [
     "UserSchema",
     "UserActivateSchema",
     "UserAuthSchema",
+    "ArtPostSchema",
+    "NestedArtPostSchema",
     "ArtSchema",
     "NestedArtSchema",
 ]

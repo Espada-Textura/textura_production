@@ -12,7 +12,6 @@ class ImageJsonSchema(Schema):
 
 class ArtSchema(Mixin):
     aid = fields.Str()
-    title = fields.Str(required=False)
     description = fields.Str(required=False)
     rpath = fields.Str(required=False, dump_only=True)
     status = fields.Str(
@@ -21,10 +20,8 @@ class ArtSchema(Mixin):
         validate=validate.OneOf(["processing", "completed", "failed"]),
     )
     preimage = fields.Str(required=False, dump_only=True)
-    view = fields.Int(required=False, dump_only=True)
-    like = fields.Int(required=False, dump_only=True)
-    user = fields.Nested(UserSchema, dump_only=True)
-    image = fields.Nested(ImageJsonSchema, load_only=True)
+    index = fields.Int(required=False)
+    image = fields.Nested(ImageJsonSchema, load_only=True, required=True)
 
     @post_dump
     def set_full_path(self, data, **kwargs):
@@ -42,4 +39,4 @@ class ArtSchema(Mixin):
 
 
 class NestedArtSchema(NestedSchema):
-    arts = fields.Nested(ArtSchema, attribute="items", many=True)
+    arts = fields.Nested(ArtSchema, attribute="items", exclude=[], many=True)

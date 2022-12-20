@@ -1,7 +1,7 @@
 let postArt = {
   "title" : "art name",
   "description" : "none",
-  "images" : [
+  "arts" : [
     {
       "description" : "none",
       "index" : "0",
@@ -24,7 +24,7 @@ let postArt = {
 
 let get_art= {
     "title": "art",
-    "aid": "GeaEr56SfNPkXXaPQezKbp",
+    "pid": "GeaEr56SfNPkXXaPQezKbp",
     "description": "none",
     "id": 2,
     "like": 0,
@@ -42,7 +42,8 @@ let get_art= {
         "updatedDate": "07-12-2022 17:21",
         "username": ""
     },
-    "images": [{
+    "arts": [{
+      "aid": "GeaEr56SfNPkXXaPQezKbp",
       "index" : 0,
       "description": "none",
       "preimage": "VFE:0npK?cM}-=NDDhx[xtMwE0IUD%ozRP_N-;jb%fXT",
@@ -53,6 +54,7 @@ let get_art= {
       "createdDate": "07-12-2022 19:40",
     },
     { 
+      "aid": "GeaEr56SfNPkXXaPQezKbp",
       "index" : 1,
       "description": "none",
       "preimage": "VFE:0npK?cM}-=NDDhx[xtMwE0IUD%ozRP_N-;jb%fXT",
@@ -69,7 +71,7 @@ let get_arts = {
   "perPage": 2,
   "totalPages": 2,
   "totalRecords": 3,
-  "art" :[{
+  "art_posts" :[{
     "title": "art",
     "aid": "GeaEr56SfNPkXXaPQezKbp",
     "description": "none",
@@ -89,7 +91,7 @@ let get_arts = {
         "updatedDate": "07-12-2022 17:21",
         "username": ""
     },
-    "images": [{
+    "arts": [{
       "index" : 0,
       "description": "none",
       "preimage": "VFE:0npK?cM}-=NDDhx[xtMwE0IUD%ozRP_N-;jb%fXT",

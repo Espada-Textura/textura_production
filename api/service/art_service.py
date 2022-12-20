@@ -16,12 +16,65 @@ from flask_jwt_extended import (
     unset_jwt_cookies,
 )
 
-from dao import UserDao, ArtDao
-from schema import UserSchema, ArtSchema, NestedArtSchema
+from dao import UserDao, ArtDao, ArtPostDao
+from schema import (
+    UserSchema,
+    ArtSchema,
+    NestedArtSchema,
+    ArtPostSchema,
+    NestedArtPostSchema,
+)
 from utils import get_art_path
 
 
 class ArtService:
+    def get_art_post_by_pid(self, pid=None):
+
+        with ArtPostDao() as dao:
+
+            art_post_model = dao.get_by_pid(pid=pid)
+
+            art_post_json = dao.jsonify(
+                ArtPostSchema,
+                art_post_model,
+            )
+
+        return art_post_json
+
+    def get_art_posts(self, user=None, expression=None, pagination=None):
+        """ """
+        with ArtPostDao() as dao:
+
+            art_posts = dao.get_all(expression=expression, pagination=pagination)
+
+            art_posts_json = dao.jsonify(
+                NestedArtPostSchema if hasattr(art_posts, "items") else ArtPostSchema,
+                art_posts,
+                many=True,
+            )
+
+        return art_posts_json
+
+    def create_art_post(self, current_user=None, art_post=None):
+
+        art_post_schema = art_post
+
+        art_post_schema.update({"user_id": current_user.get("id")})
+
+        arts = art_post_schema.get("arts")
+
+        with ArtPostDao() as art_post_dao:
+
+            art_post_model = art_post_dao.add(art_post_schema)
+
+            art_post_json = art_post_dao.jsonify(ArtPostSchema, art_post_model)
+
+            for art_schema in arts:
+                art_schema.update({"art_post_id": art_post_model.id})
+                self.create_art(art=art_schema)
+
+        return art_post_json
+
     def get_arts(self, user=None, expression=None, pagination=None):
         """ """
 
@@ -50,7 +103,7 @@ class ArtService:
 
         return art_json
 
-    def create_art(self, current_user=None, art=None):
+    def create_art(self, art=None):
         """ """
 
         base64_image = art.get("image")
@@ -59,8 +112,6 @@ class ArtService:
 
             art.pop("image", None)
 
-            art.update({"user_id": current_user.get("id")})
-
             art = dao.add(art)
 
             with Image.open(BytesIO(base64.b64decode(base64_image.get("data")))) as img:
@@ -68,6 +119,8 @@ class ArtService:
                 img_type = base64_image.get("mime").split("/")[1]
 
                 img_size = img.size
+
+                # img = img.rotate(90, expand=True)
 
                 img.save(get_art_path(f"{art.aid}.{img_type}"))
 
