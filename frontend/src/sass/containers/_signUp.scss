@@ -4,10 +4,7 @@ body {
   color: abs.$primary-color !important;
 
   .signUp-container {
-
     .signUp-content {
-      // @include abs.border-radius(16px);
-
       .signUp--form {
         .signUp--form-form {
           .signUp--logo {
@@ -34,14 +31,29 @@ body {
             }
           }
           .signUp--or-statement {
+            .signUp--horizontal-line {
+              height: 2px;
+              width: 100%;
+            }
           }
           .signUp--fills {
-            
+            .signUp--fill--name {
+              .signUp--fill--fname {
+              }
+              .signUp--fill--lname {
+              }
+            }
+            .signUp--fill--email {
+            }
           }
           .signUp--submit {
             .signUp--submit-button {
               background-color: abs.$accent-color;
               @include abs.border-radius(16px);
+            }
+          }
+          .signUp--has-account {
+            a {
             }
           }
         }
@@ -59,5 +71,21 @@ body {
         }
       }
     }
+  }
+}
+
+a {
+  cursor: pointer;
+  &:hover {
+    color: abs.$accent-color-80;
+  }
+}
+
+.signUp--inputs {
+  background-color: transparent;
+  border: 2px solid abs.$primary-color-70;
+
+  &:active {
+    border: 2px solid abs.$accent-color;
   }
 }
