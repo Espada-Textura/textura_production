@@ -1,7 +1,11 @@
+import "./../../sass/containers/signUp.scss";
+
 import logoBlackSvg from "@images/logo.svg";
 import logoWhiteSvg from "@/images/logoWhite.svg";
 
 import { FcGoogle } from "react-icons/fc";
+
+import React from "react";
 
 const SignUp = () => {
   return (
@@ -26,7 +30,7 @@ const SignUp = () => {
             <div className="signUp--alternative-signin flex justify-center my-5">
               <button
                 type="button"
-                className="sign-in--google w-full h-14 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-30"
+                className="sign-in--google w-full h-14 rounded-2xl bg-primary-100 text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-30"
               >
                 <FcGoogle size={30} />
                 Sign in with Google
