@@ -94,7 +94,7 @@ const Dropzone = () => {
 
   return (
     <>
-      <div className="fixed  sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
+      <div className="fixed sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
         <Header />
       </div>
 
@@ -107,7 +107,7 @@ const Dropzone = () => {
       {images.length < limitFiles && (
         <div
           className={
-            "px-8 flex justify-center rounded-b-lg border-t-[1px] border-solid border-t-secondary-20"
+            "bg-primary-100 px-8 flex justify-center rounded-lg border-t-[1px] border-solid border-t-secondary-20"
           }
           style={
             images.length > 0
@@ -115,7 +115,7 @@ const Dropzone = () => {
                   position: "absolute",
                   width: "100%",
                   bottom: 0,
-                  backgroundColor: "var(--tr-primary)",
+                  borderRadius: "0 0 0.5rem 0.5rem",
                 }
               : {}
           }
@@ -123,14 +123,13 @@ const Dropzone = () => {
           <div
             {...getRootProps()}
             className={
-              "rounded-sm font-medium text-secondary-90 flex justify-center" +
-              (images.length < 0 ? " w-full" : " w-fit")
+              "rounded-sm font-medium text-secondary-90 flex justify-center w-full"
             }
           >
             <input {...getInputProps()} />
 
             {images.length <= 0 ? (
-              <div className="px-8 mt-8 min-h-[20rem] flex flex-col items-center content-center justify-center text-center gap-2">
+              <div className="px-8 mt-8 min-h-[20rem] flex flex-col items-center content-center justify-center text-center gap-2 ">
                 <img
                   src={cloudSvg}
                   alt="cloud"
@@ -149,7 +148,7 @@ const Dropzone = () => {
                 <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
               </div>
             ) : (
-              <button className="relative  self-center text-center w-full button-medium my-1 button-plain-secondary text-secondary-100 rounded-lg font-bold">
+              <button className="relative  self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-lg font-bold">
                 Add More
               </button>
             )}

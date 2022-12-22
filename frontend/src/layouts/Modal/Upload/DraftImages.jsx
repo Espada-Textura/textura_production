@@ -27,7 +27,12 @@ const DraftImages = () => {
 
   return (
     <div className=" px-6 sm:px-8">
-      <input type="text" name="title" placeholder="Add a title here" />
+      <input
+        type="text"
+        name="title"
+        placeholder="Add a title here"
+        autoFocus
+      />
 
       {images.map((image, index) => (
         <div className={" rounded-lg pb-4"} key={index}>

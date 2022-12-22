@@ -1,6 +1,6 @@
 @use "components/button";
 @use "components/_react-toastify/index.scss";
-@use "abstract/color";
+@use "abstract/color" as color;
 @use "abstract/font" as font;
 
 @tailwind base;
@@ -17,6 +17,10 @@
   border: 0;
   padding: 0;
   margin: 0;
+
+  &:focus-visible {
+    outline: 1px solid color.$accent-color-80;
+  }
 }
 
 html {
