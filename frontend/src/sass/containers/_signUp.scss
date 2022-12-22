@@ -1,9 +1,12 @@
-@use "./../abstract/" as abs;
+@use "./../abstract/color" as colors;
+@use "./../abstract/font" as fonts;
+@use "./../abstract/mixin" as mixins;
 
 body {
-  color: abs.$primary-color !important;
+  color: colors.$primary-color !important;
 
   .signUp-container {
+    position: fixed;
     .signUp-content {
       .signUp--form {
         .signUp--form-form {
@@ -24,10 +27,6 @@ body {
             font-weight: 700;
 
             .sign-in--google {
-              @include abs.border-radius(16px);
-
-              background-color: abs.$primary-color;
-              color: abs.$secondary-color;
             }
           }
           .signUp--or-statement {
@@ -48,8 +47,8 @@ body {
           }
           .signUp--submit {
             .signUp--submit-button {
-              background-color: abs.$accent-color;
-              @include abs.border-radius(16px);
+              background-color: colors.$accent-color;
+              @include mixins.border-radius(16px);
             }
           }
           .signUp--has-account {
@@ -77,15 +76,15 @@ body {
 a {
   cursor: pointer;
   &:hover {
-    color: abs.$accent-color-80;
+    color: colors.$accent-color-80;
   }
 }
 
 .signUp--inputs {
   background-color: transparent;
-  border: 2px solid abs.$primary-color-70;
+  border: 2px solid colors.$primary-color-70;
 
   &:active {
-    border: 2px solid abs.$accent-color;
+    border: 2px solid colors.$accent-color;
   }
 }
