@@ -20,7 +20,7 @@ const Topbar = () => {
         <div className={"topbar-top-section"}>
           <button
             ref={menuRef}
-            className={"icon-button-medium button-fair-secondary lg:hidden"}
+            className={"icon-button-medium button-fair-secondary md:hidden"}
             onClick={() => setMenuOpen(!isMenuOpen)}
           >
             <HiOutlineMenuAlt1 className={"w-6 h-6"} />

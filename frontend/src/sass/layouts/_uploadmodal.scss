@@ -36,8 +36,6 @@ div:has(.upload-container) {
 
     @include abs.box-shadow(0 0 1rem rgba(abs.$secondary-color, 0.05));
 
-    overflow-y: scroll;
-
     /* width */
     &::-webkit-scrollbar {
       width: 0px;

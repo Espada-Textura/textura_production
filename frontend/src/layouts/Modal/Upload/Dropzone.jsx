@@ -94,12 +94,12 @@ const Dropzone = () => {
 
   return (
     <>
-      <div className="fixed sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
+      <div className="fixed  sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
         <Header />
       </div>
 
       {images.length > 0 && (
-        <div className="mt-14 ">
+        <div className="mt-14 sm:max-h-[70vh] overflow-y-scroll scrollbar-hide">
           <DraftImages />
         </div>
       )}
@@ -107,7 +107,17 @@ const Dropzone = () => {
       {images.length < limitFiles && (
         <div
           className={
-            "py-4 px-8 flex justify-center" + (images > 0 ? " mt-10" : "")
+            "px-8 flex justify-center rounded-b-lg border-t-[1px] border-solid border-t-secondary-20"
+          }
+          style={
+            images.length > 0
+              ? {
+                  position: "absolute",
+                  width: "100%",
+                  bottom: 0,
+                  backgroundColor: "var(--tr-primary)",
+                }
+              : {}
           }
         >
           <div
@@ -139,7 +149,7 @@ const Dropzone = () => {
                 <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
               </div>
             ) : (
-              <button className="self-center text-center w-max button-medium button-fair-secondary rounded-lg font-bold">
+              <button className="relative  self-center text-center w-full button-medium my-1 button-plain-secondary text-secondary-100 rounded-lg font-bold">
                 Add More
               </button>
             )}
