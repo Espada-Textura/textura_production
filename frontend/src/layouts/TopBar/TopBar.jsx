@@ -1,5 +1,5 @@
 //hooks
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 //components
 import Logo from "@components/Logo/";
@@ -9,7 +9,6 @@ import SideMenu from "@layouts/SideMenu/";
 
 //icons
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
-import { useState } from "react";
 
 const Topbar = () => {
   const menuRef = useRef();
@@ -21,7 +20,7 @@ const Topbar = () => {
         <div className={"topbar-top-section"}>
           <button
             ref={menuRef}
-            className={"icon-button-medium button-fair-secondary md:hidden"}
+            className={"icon-button-medium button-fair-secondary lg:hidden"}
             onClick={() => setMenuOpen(!isMenuOpen)}
           >
             <HiOutlineMenuAlt1 className={"w-6 h-6"} />
@@ -39,7 +38,7 @@ const Topbar = () => {
         </div>
       </header>
       {isMenuOpen && (
-        <SideMenu setMenuOpen={setMenuOpen} togglerRef={menuRef} />
+        <SideMenu setMenuOpen={setMenuOpen} togglerRef={menuRef} style={""} />
       )}
     </>
   );

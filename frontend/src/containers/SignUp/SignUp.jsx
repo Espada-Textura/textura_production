@@ -1,4 +1,4 @@
-import "./../../sass/containers/signUp.scss";
+
 
 import logoBlackSvg from "@images/logo.svg";
 import logoWhiteSvg from "@/images/logoWhite.svg";

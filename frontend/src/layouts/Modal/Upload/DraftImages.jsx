@@ -26,7 +26,7 @@ const DraftImages = () => {
   };
 
   return (
-    <div className="px-6 sm:px-8 ">
+    <div className="sm:max-h-[70vh] px-6 sm:px-8 overflow-y-scroll scrollbar-hide">
       <input type="text" name="title" placeholder="Add a title here" />
 
       {images.map((image, index) => (

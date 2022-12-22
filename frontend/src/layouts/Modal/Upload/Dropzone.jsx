@@ -11,7 +11,7 @@ import DraftImages from "./DraftImages";
 
 const Dropzone = () => {
   let filesCount = 0;
-  const limitFiles = 5;
+  const limitFiles = 10;
 
   const images = useUploadStore((state) => [...state.draftImages]);
 
@@ -94,17 +94,21 @@ const Dropzone = () => {
 
   return (
     <>
-      <div className=" fixed sm:absolute w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-lg">
+      <div className="fixed sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
         <Header />
       </div>
+
       {images.length > 0 && (
-        <div className="mt-14">
+        <div className="mt-14 ">
           <DraftImages />
         </div>
       )}
+
       {images.length < limitFiles && (
         <div
-          className={"px-8 flex justify-center" + (images > 0 ? " mt-14" : "")}
+          className={
+            "py-4 px-8 flex justify-center" + (images > 0 ? " mt-10" : "")
+          }
         >
           <div
             {...getRootProps()}
@@ -114,6 +118,7 @@ const Dropzone = () => {
             }
           >
             <input {...getInputProps()} />
+
             {images.length <= 0 ? (
               <div className="px-8 mt-8 min-h-[20rem] flex flex-col items-center content-center justify-center text-center gap-2">
                 <img
@@ -134,11 +139,9 @@ const Dropzone = () => {
                 <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
               </div>
             ) : (
-              <>
-                <button className="self-center text-center w-max button-medium button-fair-secondary rounded-lg font-bold">
-                  Add More
-                </button>
-              </>
+              <button className="self-center text-center w-max button-medium button-fair-secondary rounded-lg font-bold">
+                Add More
+              </button>
             )}
           </div>
         </div>

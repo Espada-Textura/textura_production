@@ -1,8 +1,7 @@
-@use "abstract";
-@use "layouts";
-@use "containers";
-@use "utils";
-@use "components";
+@use "components/button";
+@use "components/_react-toastify/index.scss";
+@use "abstract/color";
+@use "abstract/font" as font;
 
 @tailwind base;
 @tailwind components;
@@ -25,7 +24,7 @@ html {
 }
 
 body {
-  font-family: abstract.$plain-text-font, Helvetica, Trebuchet, MS, Verdana;
+  font-family: font.$plain-text-font, Helvetica, Trebuchet, MS, Verdana;
   font-size: 0.9rem;
   font-weight: 500;
   min-height: 100vh;

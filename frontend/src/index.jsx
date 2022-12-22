@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 //styles
-import "./sass/index.scss";
+import "@/sass/index.scss";
 
 //components
 import { BrowserRouter } from "react-router-dom";

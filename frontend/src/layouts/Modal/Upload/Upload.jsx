@@ -21,7 +21,7 @@ const Upload = () => {
     <>
       <Portal>
         <div className="upload-portal" onClick={handleClose} />
-        <div className="upload-container pb-4 max-sm:pt-0 my-4 max-sm:my-0 max-sm:rounded-none rounded-lg max-sm:w-full max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none">
+        <div className="sm:max-0h-[80vh] upload-container  max-sm:pt-0  max-sm:my-0 max-sm:rounded-none rounded-lg max-sm:w-full max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none">
           <Dropzone />
         </div>
       </Portal>

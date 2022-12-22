@@ -12,111 +12,114 @@ div:has(aside.sidebar-container) {
 
 .sidebar-container {
   $side-bar-width: 16.75rem;
-  position: fixed;
+  // position: fixed;
   top: 0;
   left: 0;
 
   min-width: $side-bar-width;
   width: $side-bar-width;
-  height: 100%;
-
-  padding: 0.65rem 1.5rem;
+  height: 100vh;
 
   color: abs.$secondary-color-70;
   font-weight: 600;
   background-color: abs.$primary-color;
-  overflow: auto;
 
   @include abs.backdrop-blur(2rem);
-  .sidebar-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
 
-    .sidebar-section-title {
-      margin: 0.75rem 0;
-      color: abs.$secondary-color-60;
-    }
-
-    .sidebar-item {
+  .sidebar-menu {
+    padding: 0.65rem 1.25rem;
+    overflow-y: scroll;
+    max-height: 82.5vh;
+    .sidebar-section {
       display: flex;
-      align-items: center;
-      justify-items: flex-start;
-      gap: 1.5rem;
-      height: 3.125rem;
-      padding: 0 1rem;
-      border-left: 3px solid transparent;
-      @include abs.border-radius(0.5rem);
+      flex-direction: column;
+      gap: 0.5rem;
 
-      svg {
-        height: 1.5rem;
-        width: 1.5rem;
+      .sidebar-section-title {
+        margin: 0.75rem 0;
+        color: abs.$secondary-color-60;
       }
 
-      &.active {
-        color: var(--tr-accent);
-        background-color: abs.$accent-color-10;
-        border-left: 3px solid var(--tr-accent);
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        justify-items: flex-start;
+        gap: 1.5rem;
+        height: 3.125rem;
+        padding: 0 1rem;
+        border-left: 3px solid transparent;
+        @include abs.border-radius(0.5rem);
 
-        @include abs.border-radius(0.25rem 0.5rem 0.5rem 0.25rem);
+        svg {
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+
+        &.active {
+          color: var(--tr-accent);
+          background-color: abs.$accent-color-10;
+          border-left: 3px solid var(--tr-accent);
+
+          @include abs.border-radius(0.25rem 0.5rem 0.5rem 0.25rem);
+
+          &:hover,
+          &:focus-visible {
+            background-color: abs.$accent-color-10;
+          }
+        }
 
         &:hover,
         &:focus-visible {
-          background-color: abs.$accent-color-10;
+          background-color: abs.$secondary-color-10;
+          outline: none;
         }
       }
+    }
+    /* width */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
 
-      &:hover,
-      &:focus-visible {
-        background-color: abs.$secondary-color-10;
-        outline: none;
+    /* Track */
+    &::-webkit-scrollbar-track {
+      border-radius: 11px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-color: abs.$secondary-color-40;
+      border-radius: 10px;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      display: none;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        display: block;
       }
     }
   }
 
-  .sidebar-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    height: 4rem;
-
-    margin: 1rem 0;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-
-    border-top: 2px solid abs.$secondary-color-20;
-
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-  }
-
-  /* width */
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    border-radius: 11px;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background-color: abs.$secondary-color-40;
-    border-radius: 10px;
-    border: 3px solid transparent;
-    background-clip: padding-box;
-    display: none;
-  }
-
-  &:hover {
-    &::-webkit-scrollbar-thumb {
-      display: block;
-    }
-  }
   /* Handle on hover */
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4rem;
+  width: 100%;
+  // margin: 1rem 0;
+  background-color: var(--tr-primary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  border-top: 1px solid abs.$secondary-color-10;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
