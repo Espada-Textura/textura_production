@@ -3,7 +3,7 @@ const ArtCard = ({ art }) => {
 
   if (art.rpath !== "")
     return (
-      <div className="artcard--container rounded-md mb-6 sm:mb-8">
+      <div className="artcard--container rounded-md mb-6 sm:mb-6">
         <img
           src={art.tpath}
           alt={art.createdDate}

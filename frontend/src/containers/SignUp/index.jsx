@@ -1,3 +1,3 @@
-import "@/sass/containers/signUp.scss";
+import "@/sass/containers/_signUp.scss";
 
 export { default } from "./SignUp";

@@ -92,8 +92,22 @@ const App = () => {
               </Suspense>
             }
           />
-          <Route path="terms" element={<Terms />} />
-          <Route path="art/:artId" element={<FullView />} />
+          <Route
+            path="terms"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Terms />
+              </Suspense>
+            }
+          />
+          <Route
+            path="art/:artId"
+            element={
+              <Suspense fallback={<Loading />}>
+                <FullView />
+              </Suspense>
+            }
+          />
           <Route
             path="challenges"
             element={

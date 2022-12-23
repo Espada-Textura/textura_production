@@ -4,7 +4,7 @@ const Gallery = ({ infos }) => {
   console.log(infos);
 
   return (
-    <div className="gallery--container columns-4 p-6 sm:p-8">
+    <div className="gallery--container columns-4 p-6 sm:p-8 sm:gap-6">
       {infos.map((info) => (
         <Art art={info.arts[0]} key={info.arts[0].id} />
       ))}
