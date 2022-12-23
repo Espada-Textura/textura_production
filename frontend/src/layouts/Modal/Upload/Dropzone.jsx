@@ -11,6 +11,7 @@ import DraftImages from "./DraftImages";
 
 const Dropzone = () => {
   let filesCount = 0;
+  const limitFiles = 10;
 
   const images = useUploadStore((state) => [...state.draftImages]);
 
@@ -32,33 +33,37 @@ const Dropzone = () => {
     rejectedFiles.forEach((file, index) => {
       switch (file.errors[0].code) {
         case "file-invalid-type": {
-          useWarningNotify(
+          useErrorNotify(
             "Unsupported File",
             <span>
               <span className="font-bold"> {file.file.name} </span> has
               unsupported extension.
             </span>
           );
+          break;
         }
 
         case "file-too-large": {
-          useWarningNotify(
+          useErrorNotify(
             "File too large",
             <span>
               <span className="font-bold"> {file.file.name} </span> has too
               large size.
             </span>
           );
+          break;
         }
 
         case "limit-files-reached": {
           useWarningNotify(
             "Limited Files Reached",
             <span>
-              You can post up to <span className="font-bold"> {10} </span>{" "}
-              pictures per post only.
+              You can post up to{" "}
+              <span className="font-bold"> {limitFiles} </span> pictures per
+              post only.
             </span>
           );
+          break;
         }
       }
     });
@@ -67,7 +72,7 @@ const Dropzone = () => {
   const fileValidator = (file) => {
     filesCount++;
 
-    return images.length + filesCount > 10
+    return images.length + filesCount > limitFiles
       ? {
           code: "limit-files-reached",
           message: "You can only post 10 picture per post.",
@@ -79,7 +84,7 @@ const Dropzone = () => {
     accept: { "image/jpeg": [], "image/png": [] },
     maxSize: 10000000,
     maxFiles: (() => {
-      const max = 10 - images.length;
+      const max = limitFiles - images.length;
       return max > 1 ? max : 1;
     })(),
     multiple: true,
@@ -89,28 +94,42 @@ const Dropzone = () => {
 
   return (
     <>
-      <div className=" fixed sm:absolute w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-lg">
+      <div className="fixed sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
         <Header />
       </div>
+
       {images.length > 0 && (
-        <div className="mt-14">
+        <div className="mt-14 sm:max-h-[70vh] overflow-y-scroll scrollbar-hide">
           <DraftImages />
         </div>
       )}
-      {images.length < 10 && (
+
+      {images.length < limitFiles && (
         <div
-          className={"px-8 flex justify-center" + (images > 0 ? " mt-14" : "")}
+          className={
+            "bg-primary-100 px-8 flex justify-center rounded-lg border-t-[1px] border-solid border-t-secondary-20"
+          }
+          style={
+            images.length > 0
+              ? {
+                  position: "absolute",
+                  width: "100%",
+                  bottom: 0,
+                  borderRadius: "0 0 0.5rem 0.5rem",
+                }
+              : {}
+          }
         >
           <div
             {...getRootProps()}
             className={
-              "rounded-sm font-medium text-secondary-90 flex justify-center" +
-              (images.length < 0 ? " w-full" : " w-fit")
+              "rounded-sm font-medium text-secondary-90 flex justify-center w-full"
             }
           >
             <input {...getInputProps()} />
+
             {images.length <= 0 ? (
-              <div className="px-8 mt-8 min-h-[20rem] flex flex-col items-center content-center justify-center text-center gap-2">
+              <div className="px-8 mt-8 min-h-[20rem] flex flex-col items-center content-center justify-center text-center gap-2 ">
                 <img
                   src={cloudSvg}
                   alt="cloud"
@@ -124,16 +143,14 @@ const Dropzone = () => {
                   </span>
                 </span>
                 <span>
-                  10 MB for each image, with a maximum of 10 per post.
+                  10 MB for each image, with a maximum of {limitFiles} per post.
                 </span>
                 <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
               </div>
             ) : (
-              <>
-                <button className="self-center text-center w-max button-medium button-fair-secondary rounded-lg font-bold">
-                  Add More
-                </button>
-              </>
+              <button className="relative  self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-lg font-bold">
+                Add More
+              </button>
             )}
           </div>
         </div>

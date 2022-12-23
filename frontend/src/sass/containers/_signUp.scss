@@ -1,73 +1,90 @@
-@use "./../abstract/" as abs;
+@use "./../abstract/color" as colors;
+@use "./../abstract/font" as fonts;
+@use "./../abstract/mixin" as mixins;
 
 body {
-  color: abs.$primary-color !important;
+  color: colors.$primary-color !important;
 
   .signUp-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-image: url(/src/images/sign-up.png);
-
+    position: fixed;
     .signUp-content {
-      @include abs.border-radius(16px);
-
       .signUp--form {
-        display: flex;
-        align-items: center;
-
         .signUp--form-form {
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-          justify-content: ceneter;
-
           .signUp--logo {
           }
           .signUp--notes {
             .signUp--notes--main-text {
-              font-size: 2rem;
+              font-size: 1.8rem;
               font-weight: 700;
             }
             .signUp--notes--small-text {
-              font-size: 1rem;
+              font-size: 0.9rem;
               font-weight: 500;
             }
           }
           .signUp--alternative-signin {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
 
             .sign-in--google {
-              @include abs.border-radius(16px);
-
-              height: 55px;
-
-              background-color: abs.$primary-color;
-              color: abs.$secondary-color;
             }
           }
           .signUp--or-statement {
+            .signUp--horizontal-line {
+              height: 2px;
+              width: 100%;
+            }
           }
           .signUp--fills {
+            .signUp--fill--name {
+              .signUp--fill--fname {
+              }
+              .signUp--fill--lname {
+              }
+            }
+            .signUp--fill--email {
+            }
           }
           .signUp--submit {
+            .signUp--submit-button {
+              background-color: colors.$accent-color;
+              @include mixins.border-radius(16px);
+            }
+          }
+          .signUp--has-account {
+            a {
+            }
           }
         }
       }
+
+      .signUp--decor-content {
+        .signUp--decor-content-main {
+          font-size: 3.6rem;
+          font-weight: 700;
+        }
+
+        .signUp--decor-content-small {
+          font-size: 0.9rem;
+          font-weight: 400;
+        }
+      }
     }
+  }
+}
 
-    // .signUp--decor-content {
-    //   .signUp--decor-content-main {
-    //     font-size: 64px;
-    //     font-weight: 700;
-    //   }
+a {
+  cursor: pointer;
+  &:hover {
+    color: colors.$accent-color-80;
+  }
+}
 
-    //   .signUp--decor-content-small {
-    //     font-size: 16px;
-    //     font-weight: 400;
-    //   }
-    // }
+.signUp--inputs {
+  background-color: transparent;
+  border: 2px solid colors.$primary-color-70;
+
+  &:active {
+    border: 2px solid colors.$accent-color;
   }
 }

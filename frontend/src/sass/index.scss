@@ -1,8 +1,6 @@
-@use "abstract";
-@use "layouts";
-@use "containers";
-@use "utils";
-@use "components";
+@use "components/button";
+@use "abstract/color" as color;
+@use "abstract/font" as font;
 
 @tailwind base;
 @tailwind components;
@@ -18,6 +16,10 @@
   border: 0;
   padding: 0;
   margin: 0;
+
+  &:focus-visible {
+    outline: 1px solid color.$accent-color-80;
+  }
 }
 
 html {
@@ -25,7 +27,7 @@ html {
 }
 
 body {
-  font-family: abstract.$plain-text-font, Helvetica, Trebuchet, MS, Verdana;
+  font-family: font.$plain-text-font, Helvetica, Trebuchet, MS, Verdana;
   font-size: 0.9rem;
   font-weight: 500;
   min-height: 100vh;

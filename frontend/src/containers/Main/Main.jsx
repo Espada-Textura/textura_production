@@ -1,3 +1,5 @@
+import "@/sass/components/_react-toastify/index.scss";
+
 import Topbar from "@layouts/TopBar";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
