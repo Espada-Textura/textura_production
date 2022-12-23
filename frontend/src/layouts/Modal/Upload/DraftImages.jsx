@@ -26,8 +26,9 @@ const DraftImages = () => {
   };
 
   return (
-    <div className=" px-6 sm:px-8">
+    <div className=" px-6 sm:px-8 w-full">
       <input
+        className="placeholder:text-center text-center w-full"
         type="text"
         name="title"
         placeholder="Add a title here"
@@ -37,7 +38,9 @@ const DraftImages = () => {
       {images.map((image, index) => (
         <div className={" rounded-lg pb-4"} key={index}>
           <TextareaAutoSize
-            className={"upload-text-input "}
+            className={
+              "upload-text-input placeholder:text-center text-center text-base"
+            }
             placeholder={"Express something about your work."}
             required
           />

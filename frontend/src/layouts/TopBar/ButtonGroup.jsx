@@ -61,7 +61,7 @@ const ButtonGroup = () => {
         </button>
 
         <div
-          className={"topbar-profile-btn"}
+          className={"topbar--profile-btn"}
           onClick={handProfileClose}
           ref={profileToggler}
         >

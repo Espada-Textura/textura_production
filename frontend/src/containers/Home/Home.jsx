@@ -1,10 +1,33 @@
-import { useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import artApi from "@/api";
+
+import Gallery from "@/layouts/Gallery";
+
+import { useQuery } from "@tanstack/react-query";
+
+const fetchArt = () => artApi.get("art-posts");
 
 const Home = () => {
-  const [search, setSearch] = useState("");
+  const { isLoading, isError, error, data } = useQuery(["arts"], fetchArt);
 
-  return <></>;
+  if (isLoading) {
+    return (
+      <>
+        <div>Loading...</div>
+      </>
+    );
+  }
+
+  if (isError) {
+    <>
+      <div>{error.message}</div>
+    </>;
+  }
+
+  return (
+    <section className="home-container">
+      <Gallery infos={data?.data.artPosts} />
+    </section>
+  );
 };
 
 export default Home;

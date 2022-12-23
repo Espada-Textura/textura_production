@@ -10,14 +10,14 @@ import SideMenu from "@layouts/SideMenu/";
 //icons
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 
-const Topbar = () => {
+const TopBar = () => {
   const menuRef = useRef();
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-      <header className={"topbar-section"}>
-        <div className={"topbar-top-section"}>
+      <header className={"topbar--section"}>
+        <div className={"topbar--top-section"}>
           <button
             ref={menuRef}
             className={"icon-button-medium button-fair-secondary md:hidden"}
@@ -44,4 +44,4 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+export default TopBar;

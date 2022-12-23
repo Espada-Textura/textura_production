@@ -59,7 +59,6 @@ div:has(.upload-container) {
       color: abs.$secondary-color;
       background-color: transparent;
       outline: none;
-      width: 90%;
       overflow: hidden;
       margin-top: 0.5rem;
       padding: 0.25rem;
@@ -81,7 +80,8 @@ div:has(.upload-container) {
       overflow: hidden;
       padding: 0.25rem;
       font-weight: 500;
-      text-align: justify;
+      text-align: center;
+      color: abs.$secondary-color-90;
       &::placeholder {
         color: abs.$secondary-color-50;
       }

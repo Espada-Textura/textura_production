@@ -1,6 +1,5 @@
 //styles
-import "@sass/index.scss";
-// import "";
+import "@sass/containers/_app.scss";
 
 //components
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -39,7 +38,7 @@ const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" index element={<Navigate to={"/home"} />} />
+        <Route path="/" index element={<Navigate to={"home"} />} />
         <Route
           path="sign-up"
           element={
