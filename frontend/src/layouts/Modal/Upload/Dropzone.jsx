@@ -22,7 +22,8 @@ const Dropzone = () => {
     acceptedFiles.forEach((file, index) => {
       useAsyncFileRead(file).then(
         (result) => {
-          addDraftImages(result, index + images.length);
+          console.log(images.length, index);
+          addDraftImages(result, index);
         },
         (error) => {
           useErrorNotify(

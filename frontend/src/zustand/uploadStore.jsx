@@ -11,7 +11,9 @@ export const useUploadStore = create((set) => ({
     set((prevState) => ({
       ...prevState,
       draftImages: (() => {
-        prevState.draftImages[index] !== undefined
+        console.log(index + prevState.draftImages.length);
+
+        prevState.draftImages[index] === undefined
           ? (prevState.draftImages[index] = image)
           : (prevState.draftImages[index + prevState.draftImages.length] =
               image);

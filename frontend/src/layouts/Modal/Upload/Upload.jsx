@@ -6,6 +6,7 @@ import { Portal } from "react-portal";
 
 import Dropzone from "./Dropzone";
 import BackWarning from "./BackWarning";
+import { useEffect } from "react";
 
 const Upload = () => {
   const [images, setUploadOpen] = useUploadStore((state) => [
@@ -19,6 +20,10 @@ const Upload = () => {
   };
 
   useKeyAction("Escape", handleClose, []);
+
+  useEffect(() => {
+    console.log("Changed");
+  }, [images]);
 
   return (
     <>
