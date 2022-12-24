@@ -32,7 +32,7 @@ const Upload = () => {
         <div className="upload--portal" onClick={handleClose} />
         <div
           className={
-            "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none rounded-t-lg max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
+            "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
           }
         >
           <Dropzone />

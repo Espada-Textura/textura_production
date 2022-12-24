@@ -115,7 +115,7 @@ const Dropzone = () => {
             "bg-primary-100 px-8 flex w-full justify-center border-t-[1px] border-solid border-t-secondary-20 " +
             (images.length > 0
               ? "max-sm:bottom-0 max-sm:absolute rounded-b-lg"
-              : "")
+              : "h-full sm:rounded-lg")
           }
         >
           <div
