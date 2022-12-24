@@ -1,5 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
+import ArtApi from "@/api";
+
+// const useGetArt = (id) => ArtApi.get(id);
+
 const ArtCard = ({ art }) => {
-  console.log(art.preimage);
+  // const { data } = useQuery({
+  //   queryKey: ["art"],
+  //   // queryFn: useGetArt,
+  // });
 
   if (art.rpath !== "")
     return (
@@ -9,9 +17,9 @@ const ArtCard = ({ art }) => {
           alt={art.createdDate}
           className="rounded-md"
           loading="lazy"
-          placeholder={art.preimage}
+          onLoad={() => console.log("loaded")}
         />
-        <div className="absolute"></div>
+        {}
       </div>
     );
 };

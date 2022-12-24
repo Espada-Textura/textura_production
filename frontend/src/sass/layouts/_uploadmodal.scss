@@ -24,13 +24,12 @@ div:has(.upload-container) {
     left: inherit;
     width: inherit;
     min-height: inherit;
-    background-color: abs.$secondary-color-50;
+    background-color: darken(abs.$secondary-color-70, 5);
   }
 
   .upload-container {
     position: relative;
     left: 0;
-    top: 0;
 
     background-color: abs.$primary-color;
 

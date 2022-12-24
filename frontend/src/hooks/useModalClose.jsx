@@ -17,17 +17,3 @@ export const useOutSideClose = (refArray, callback, [dependency]) => {
     };
   }, dependency);
 };
-
-export const useEscClose = (key, callBack, dependency) => {
-  useEffect(() => {
-    const handler = (event) => {
-      event.key === key && callBack();
-    };
-
-    document.addEventListener("keydown", handler);
-
-    return () => {
-      document.removeEventListener("keydown", handler);
-    };
-  }, dependency);
-};

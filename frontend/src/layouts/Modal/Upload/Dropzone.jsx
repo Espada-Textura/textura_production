@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { useUploadStore, addDraftImages } from "@/zustand/uploadStore";
+import { useUploadStore } from "@/zustand/uploadStore";
 import { useAsyncFileRead } from "@/hooks/useFileRead";
 import { useErrorNotify, useWarningNotify } from "@/hooks/useNotify";
 
@@ -13,7 +13,10 @@ const Dropzone = () => {
   let filesCount = 0;
   const limitFiles = 10;
 
-  const images = useUploadStore((state) => [...state.draftImages]);
+  const [images, addDraftImages] = useUploadStore((state) => [
+    state.draftImages,
+    state.addDraftImages,
+  ]);
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     acceptedFiles.forEach((file, index) => {

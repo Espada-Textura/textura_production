@@ -1,27 +1,52 @@
-import {
-  useUploadStore,
-  deleteDraftImage,
-  changeDraftImage,
-} from "@/zustand/uploadStore";
+import { useUploadStore } from "@/zustand/uploadStore";
 import { useAsyncFileRead } from "@/hooks/useFileRead";
+import { useErrorNotify } from "@/hooks/useNotify";
 
 import TextareaAutoSize from "react-textarea-autosize";
 
 import { HiOutlineRefresh, HiOutlineTrash } from "react-icons/hi";
 
 const DraftImages = () => {
-  const images = useUploadStore((state) => state.draftImages);
+  const [images, deleteDraftImage, changeDraftImage] = useUploadStore(
+    (state) => [
+      state.draftImages,
+      state.deleteDraftImage,
+      state.changeDraftImage,
+    ]
+  );
 
   const handleImageChange = (event, index) => {
     const file = event.target.files[0];
 
-    if (file.type !== "image/png" && file.type !== "image/jpeg") return;
+    if (file.type !== "image/png" && file.type !== "image/jpeg") {
+      useErrorNotify(
+        "Unsupported File",
+        <span>
+          <span className="font-bold"> {file.name} </span> has unsupported
+          extension.
+        </span>
+      );
+      return;
+    }
 
-    if (file.size > 10000000) return;
+    if (file.size > 10000000) {
+      useErrorNotify(
+        "File too large",
+        <span>
+          <span className="font-bold"> {file.name} </span> has too large size.
+        </span>
+      );
+      return;
+    }
 
     useAsyncFileRead(file).then(
       (result) => changeDraftImage(index, result),
-      (error) => console.log(error)
+      (error) => {
+        useErrorNotify(
+          "File Reading Error",
+          `There was an error reading your files. Please try again.`
+        );
+      }
     );
   };
 

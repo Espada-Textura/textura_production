@@ -1,7 +1,12 @@
 import { Portal } from "react-portal";
-import { setUpload, resetDraftImages } from "@/zustand/uploadStore.jsx";
+import { useUploadStore } from "@/zustand/uploadStore.jsx";
 
 const BackWarning = ({ setWarning }) => {
+  const [setUploadOpen, resetDraftImages] = useUploadStore((state) => [
+    state.setUploadOpen,
+    state.resetDraftImages,
+  ]);
+
   const handleCancel = () => {
     setWarning(false);
   };
@@ -9,12 +14,12 @@ const BackWarning = ({ setWarning }) => {
   const handleCloseWithoutSave = () => {
     resetDraftImages();
     handleCancel();
-    setUpload(false);
+    setUploadOpen(false);
   };
 
   const handleCloseWithSave = () => {
     handleCancel();
-    setUpload(false);
+    setUploadOpen(false);
   };
 
   return (

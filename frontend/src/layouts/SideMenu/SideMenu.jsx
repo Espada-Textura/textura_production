@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
-import { useOutSideClose, useEscClose } from "@/hooks/useModalClose";
+import { useKeyAction } from "@/hooks/useKeyAction";
 
 import {
   HiOutlineHome,
@@ -25,7 +25,7 @@ const SideMenu = (props) => {
   const handleClose = () => props.setMenuOpen(false);
 
   useOutSideClose([sideMenuRef, props.togglerRef], handleClose, []);
-  useEscClose("Escape", handleClose, []);
+  useKeyAction("Escape", handleClose, []);
 
   return (
     <Portal>

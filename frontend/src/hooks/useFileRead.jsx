@@ -5,10 +5,10 @@
 //   };
 // });
 
-export const useAsyncFileRead = (file) =>
+export const useAsyncFileRead = async (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
+    reader.readAsDataURL(file);
     reader.onerror = (error) => reject(error);
   });
