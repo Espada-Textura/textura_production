@@ -17,7 +17,7 @@ const ArtCard = ({ art }) => {
           alt={art.createdDate}
           className="rounded-md"
           loading="lazy"
-          onLoad={() => console.log("loaded")}
+          // onLoad={() => console.log("loaded")}
         />
         {}
       </div>

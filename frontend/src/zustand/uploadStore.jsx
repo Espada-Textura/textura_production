@@ -2,6 +2,7 @@ import create from "zustand";
 
 export const useUploadStore = create((set) => ({
   isOpen: false,
+  imageLength: 0,
   draftImages: [],
 
   setUploadOpen: (state) =>
@@ -10,9 +11,8 @@ export const useUploadStore = create((set) => ({
   addDraftImages: (image, index) => {
     set((prevState) => ({
       ...prevState,
+      imageLength: prevState.imageLength + 1,
       draftImages: (() => {
-        console.log(index + prevState.draftImages.length);
-
         prevState.draftImages[index] === undefined
           ? (prevState.draftImages[index] = image)
           : (prevState.draftImages[index + prevState.draftImages.length] =
@@ -45,6 +45,7 @@ export const useUploadStore = create((set) => ({
   resetDraftImages: () =>
     set((prevState) => ({
       ...prevState,
+      imageLength: 0,
       draftImages: [],
     })),
 }));

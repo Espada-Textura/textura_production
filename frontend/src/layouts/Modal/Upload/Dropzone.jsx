@@ -4,6 +4,8 @@ import { useUploadStore } from "@/zustand/uploadStore";
 import { useAsyncFileRead } from "@/hooks/useFileRead";
 import { useErrorNotify, useWarningNotify } from "@/hooks/useNotify";
 
+import shallow from "zustand/shallow";
+
 import cloudSvg from "@/images/cloud.svg";
 
 import Header from "./Header";
@@ -13,16 +15,15 @@ const Dropzone = () => {
   let filesCount = 0;
   const limitFiles = 10;
 
-  const [images, addDraftImages] = useUploadStore((state) => [
-    state.draftImages,
-    state.addDraftImages,
-  ]);
+  const [images, imageLength, addDraftImages] = useUploadStore(
+    (state) => [state.draftImages, state.imageLength, state.addDraftImages],
+    shallow
+  );
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     acceptedFiles.forEach((file, index) => {
       useAsyncFileRead(file).then(
         (result) => {
-          console.log(images.length, index);
           addDraftImages(result, index);
         },
         (error) => {
@@ -76,7 +77,7 @@ const Dropzone = () => {
   const fileValidator = (file) => {
     filesCount++;
 
-    return images.length + filesCount > limitFiles
+    return imageLength + filesCount > limitFiles
       ? {
           code: "limit-files-reached",
           message: "You can only post 10 picture per post.",
@@ -98,30 +99,23 @@ const Dropzone = () => {
 
   return (
     <>
-      <div className="fixed sm:fixed w-[100%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
+      <div className="fixed sm:fixed sm:w-[90%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
         <Header />
       </div>
 
       {images.length > 0 && (
-        <div className="mt-14 sm:max-h-[70vh] overflow-y-scroll scrollbar-hide">
+        <div className="upload--image-container mt-14 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll">
           <DraftImages />
         </div>
       )}
 
-      {images.length < limitFiles && (
+      {imageLength < limitFiles && (
         <div
           className={
-            "bg-primary-100 px-8 flex justify-center rounded-lg border-t-[1px] border-solid border-t-secondary-20"
-          }
-          style={
-            images.length > 0
-              ? {
-                  position: "absolute",
-                  width: "100%",
-                  bottom: 0,
-                  borderRadius: "0 0 0.5rem 0.5rem",
-                }
-              : {}
+            "bg-primary-100 px-8 flex w-full justify-center border-t-[1px] border-solid border-t-secondary-20 " +
+            (images.length > 0
+              ? "max-sm:bottom-0 max-sm:absolute rounded-b-lg"
+              : "")
           }
         >
           <div
@@ -152,7 +146,7 @@ const Dropzone = () => {
                 <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
               </div>
             ) : (
-              <button className="relative  self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-lg font-bold">
+              <button className="relative self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-lg font-bold">
                 Add More
               </button>
             )}
