@@ -74,25 +74,3 @@ $info_color_40: rgba($info_color, 0.4);
 $info_color_30: rgba($info_color, 0.3);
 $info_color_20: rgba($info_color, 0.2);
 $info_color_10: rgba($info_color, 0.1);
-
-light {
-  $primary-color: #f9fbfc;
-  $accent_color: #f4694d;
-  $secondary_color: #1a212f;
-}
-
-dark {
-  $secondary-color: #f9fbfc;
-  $accent_color: #f4694d;
-  $primary_color: #1a212f;
-}
-
-:root {
-  --tr-accent: #{$accent_color};
-  --tr-primary: #{$primary-color};
-  --tr-secondary: #{$secondary_color};
-  --tr-warning: #{$warning_color};
-  --tr-success: #{$success_color};
-  --tr-error: #{$error_color};
-  --tr-info: #{$info_color};
-}

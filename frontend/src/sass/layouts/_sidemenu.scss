@@ -1,7 +1,7 @@
 @use "../abstract" as abs;
 
 div:has(aside.sidebar-container) {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1500;

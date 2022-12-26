@@ -8,4 +8,12 @@ div.artcard--container {
     height: 100%;
     object-fit: cover;
   }
+
+  div.artcard--blurhash {
+    position: absolute !important;
+
+    canvas {
+      position: relative !important;
+    }
+  }
 }

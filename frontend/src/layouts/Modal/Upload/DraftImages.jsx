@@ -1,32 +1,61 @@
-import {
-  useUploadStore,
-  deleteDraftImage,
-  changeDraftImage,
-} from "@/zustand/uploadStore";
+import { useUploadStore } from "@/zustand/uploadStore";
 import { useAsyncFileRead } from "@/hooks/useFileRead";
+import { useErrorNotify } from "@/hooks/useNotify";
 
 import TextareaAutoSize from "react-textarea-autosize";
 
 import { HiOutlineRefresh, HiOutlineTrash } from "react-icons/hi";
 
 const DraftImages = () => {
-  const images = useUploadStore((state) => state.draftImages);
+  const [images, deleteDraftImage, changeDraftImage] = useUploadStore(
+    (state) => [
+      state.draftImages,
+      state.deleteDraftImage,
+      state.changeDraftImage,
+    ]
+  );
 
   const handleImageChange = (event, index) => {
     const file = event.target.files[0];
 
-    if (file.type !== "image/png" && file.type !== "image/jpeg") return;
+    if (file.type !== "image/png" && file.type !== "image/jpeg") {
+      useErrorNotify(
+        "Unsupported File",
+        <span>
+          <span className="font-bold"> {file.name} </span> has unsupported
+          extension.
+        </span>
+      );
+      return;
+    }
 
-    if (file.size > 10000000) return;
+    if (file.size > 10000000) {
+      useErrorNotify(
+        "File too large",
+        <span>
+          <span className="font-bold"> {file.name} </span> has too large size.
+        </span>
+      );
+      return;
+    }
 
     useAsyncFileRead(file).then(
       (result) => changeDraftImage(index, result),
-      (error) => console.log(error)
+      (error) => {
+        useErrorNotify(
+          "File Reading Error",
+          `There was an error reading your files. Please try again.`
+        );
+      }
     );
   };
 
   return (
-    <div className=" px-6 sm:px-8 w-full">
+    <div
+      className={
+        "bg-primary-100 max-sm:h-screen px-6 sm:px-8 w-full flex flex-col gap-4"
+      }
+    >
       <input
         className="placeholder:text-center text-center w-full"
         type="text"
@@ -35,11 +64,11 @@ const DraftImages = () => {
         autoFocus
       />
 
-      {images.map((image, index) => (
-        <div className={" rounded-lg pb-4"} key={index}>
+      {images.map((image) => (
+        <div className={" rounded-lg"} key={crypto.randomUUID()}>
           <TextareaAutoSize
             className={
-              "upload-text-input placeholder:text-center text-center text-base"
+              "upload--text-input placeholder:text-center text-center text-base"
             }
             placeholder={"Express something about your work."}
             required
@@ -66,8 +95,11 @@ const DraftImages = () => {
             </button>
             <img
               src={image}
-              className={"rounded-lg min-h-[20rem] object-cover w-full"}
+              className={
+                "rounded-lg min-h-[20rem] object-cover w-full shadow shadow-secondary-20"
+              }
               draggable={false}
+              loading={"eager"}
             />
           </div>
         </div>

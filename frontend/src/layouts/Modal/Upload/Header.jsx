@@ -1,20 +1,20 @@
 import { useState } from "react";
 
-import {
-  setUpload,
-  resetDraftImages,
-  useUploadStore,
-} from "@/zustand/uploadStore";
+import { useUploadStore } from "@/zustand/uploadStore";
 
 import BackWarning from "./BackWarning";
 
 const UploadButtons = () => {
-  const images = useUploadStore((state) => state.draftImages);
+  const [images, setUploadOpen, resetDraftImages] = useUploadStore((state) => [
+    state.draftImages,
+    state.setUploadOpen,
+    state.resetDraftImages,
+  ]);
 
   const [isWarningOpen, setWarning] = useState(false);
 
   const closeModal = () => {
-    setUpload(false);
+    setUploadOpen(false);
     resetDraftImages();
   };
 

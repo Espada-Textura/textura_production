@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useUploadStore, setUpload } from "@/zustand/uploadStore";
+import { useUploadStore } from "@/zustand/uploadStore";
 
 import {
   HiOutlineBell,
@@ -18,7 +18,10 @@ import Upload from "@layouts/Modal/Upload";
 const ButtonGroup = () => {
   //state
   const [isProfileDrop, setProfileDrop] = useState(false);
-  const isUploadOpen = useUploadStore((state) => state.isOpen);
+  const [isUploadOpen, setUploadOpen] = useUploadStore((state) => [
+    state.isOpen,
+    state.setUploadOpen,
+  ]);
 
   const profileToggler = useRef();
 
@@ -43,7 +46,7 @@ const ButtonGroup = () => {
           className={
             "button-plain-secondary icon-button-medium max-xl:px-3 max-lg:hidden"
           }
-          onClick={() => setUpload(!isUploadOpen)}
+          onClick={() => setUploadOpen(!isUploadOpen)}
         >
           <HiUpload className={"w-6 h-6"} />
         </button>

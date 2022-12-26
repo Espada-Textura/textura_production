@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import { useOutSideClose, useEscClose } from "@/hooks/useModalClose";
-import { setUpload } from "@/zustand/uploadStore";
+import { useOutSideClose } from "@/hooks/useModalClose";
+import { useKeyAction } from "@/hooks/useKeyAction";
+import { useUploadStore } from "@/zustand/uploadStore";
 
 import {
   HiOutlineUpload,
@@ -17,6 +18,8 @@ import {
 } from "react-icons/hi";
 
 const ProfileDrop = (props) => {
+  const setUploadOpen = useUploadStore((state) => state.setUploadOpen);
+
   const handleOpenNClose = (open) => {
     open();
     props.setDrop(!props.isDrop);
@@ -30,7 +33,7 @@ const ProfileDrop = (props) => {
     []
   );
 
-  useEscClose("Escape", () => props.setDrop(!props.isDrop), []);
+  useKeyAction("Escape", () => props.setDrop(!props.isDrop), []);
 
   return (
     <>
@@ -38,7 +41,7 @@ const ProfileDrop = (props) => {
         <div className={"drop-section"}>
           <button
             className={"drop-item w-full"}
-            onClick={() => handleOpenNClose(() => setUpload(true))}
+            onClick={() => handleOpenNClose(() => setUploadOpen(true))}
           >
             <HiOutlineUpload />
             <span>Upload</span>

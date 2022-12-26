@@ -1,5 +1,6 @@
-import { useEscClose } from "@/hooks/useModalClose";
-import { useUploadStore, setUpload } from "@/zustand/uploadStore";
+import { useKeyAction } from "@/hooks/useKeyAction";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { useUploadStore } from "@/zustand/uploadStore";
 import { useState } from "react";
 
 import { Portal } from "react-portal";
@@ -8,20 +9,32 @@ import Dropzone from "./Dropzone";
 import BackWarning from "./BackWarning";
 
 const Upload = () => {
-  const images = useUploadStore((state) => state.draftImages);
+  const [imageLength, setUploadOpen] = useUploadStore((state) => [
+    state.imageLength,
+    state.setUploadOpen,
+  ]);
   const [isWarningOpen, setWarning] = useState(false);
 
   const handleClose = () => {
-    images.length > 0 ? setWarning(true) : setUpload(false);
+    if (imageLength > 0) {
+      setWarning(true);
+    } else {
+      setUploadOpen(false);
+    }
   };
 
-  useEscClose("Escape", handleClose, []);
+  useBodyScrollLock(true);
+  useKeyAction("Escape", handleClose, []);
 
   return (
     <>
       <Portal>
-        <div className="upload-portal" onClick={handleClose} />
-        <div className="sm:max-h-[80vh] upload-container  max-sm:pt-0  max-sm:my-0 max-sm:rounded-none rounded-lg max-sm:w-full max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none">
+        <div className="upload--portal" onClick={handleClose} />
+        <div
+          className={
+            "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
+          }
+        >
           <Dropzone />
         </div>
       </Portal>
