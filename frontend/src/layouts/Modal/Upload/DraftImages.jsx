@@ -51,7 +51,11 @@ const DraftImages = () => {
   };
 
   return (
-    <div className=" px-6 sm:px-8 w-full">
+    <div
+      className={
+        "bg-primary-100 max-sm:h-screen px-6 sm:px-8 w-full flex flex-col gap-4"
+      }
+    >
       <input
         className="placeholder:text-center text-center w-full"
         type="text"
@@ -60,11 +64,11 @@ const DraftImages = () => {
         autoFocus
       />
 
-      {images.map((image, index) => (
-        <div className={" rounded-lg pb-4"} key={index}>
+      {images.map((image) => (
+        <div className={" rounded-lg"} key={crypto.randomUUID()}>
           <TextareaAutoSize
             className={
-              "upload-text-input placeholder:text-center text-center text-base"
+              "upload--text-input placeholder:text-center text-center text-base"
             }
             placeholder={"Express something about your work."}
             required
@@ -91,8 +95,11 @@ const DraftImages = () => {
             </button>
             <img
               src={image}
-              className={"rounded-lg min-h-[20rem] object-cover w-full"}
+              className={
+                "rounded-lg min-h-[20rem] object-cover w-full shadow shadow-secondary-20"
+              }
               draggable={false}
+              loading={"eager"}
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 @use "./../abstract/" as abs;
 
-div:has(.upload-container) {
+div:has(.upload--container) {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@ div:has(.upload-container) {
     outline: none;
   }
 
-  .upload-portal {
+  .upload--portal {
     position: absolute;
     top: inherit;
     left: inherit;
@@ -27,38 +27,44 @@ div:has(.upload-container) {
     background-color: darken(abs.$secondary-color-70, 5);
   }
 
-  .upload-container {
+  .upload--container {
     position: relative;
     left: 0;
-
-    background-color: abs.$primary-color;
-
+    top: 0;
     @include abs.box-shadow(0 0 1rem rgba(abs.$secondary-color, 0.05));
 
-    /* width */
-    &::-webkit-scrollbar {
-      width: 0px;
-    }
+    .upload--image-container {
+      &:hover {
+        &::-webkit-scrollbar-thumb {
+          display: block;
+        }
+      }
 
-    /* Track */
-    &::-webkit-scrollbar-track {
-      border-radius: 0px;
-    }
+      /* width */
+      &::-webkit-scrollbar {
+        width: 0.75rem;
+        background-color: var(--tr-primary);
+      }
 
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-      background-color: abs.$secondary-color-20;
-      border-radius: 0px;
-      border: 0px solid transparent;
-      background-clip: padding-box;
-      display: none;
+      /* Track */
+      &::-webkit-scrollbar-track {
+        @include abs.border-radius(1rem);
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background-color: abs.$secondary-color-20;
+        border: 0.15rem solid transparent;
+        background-clip: padding-box;
+        @include abs.border-radius(1rem);
+        display: none;
+      }
     }
 
     input[name="title"] {
       color: abs.$secondary-color;
       background-color: transparent;
       outline: none;
-      overflow: hidden;
       margin-top: 0.5rem;
       padding: 0.25rem;
       font-size: 1.5rem;
@@ -70,7 +76,7 @@ div:has(.upload-container) {
       }
     }
 
-    .upload-text-input {
+    .upload--text-input {
       color: abs.$secondary-color;
       background-color: transparent;
       resize: none;
@@ -88,7 +94,7 @@ div:has(.upload-container) {
   }
 }
 
-div:has(.upload-pop-portal) {
+div:has(.upload--pop-portal) {
   position: fixed;
   left: 0;
   top: 0;
@@ -101,7 +107,7 @@ div:has(.upload-pop-portal) {
   align-items: center;
   justify-content: center;
 
-  .upload-pop-portal {
+  .upload--pop-portal {
     position: absolute;
     top: 0;
     left: 0;
