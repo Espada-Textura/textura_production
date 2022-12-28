@@ -28,13 +28,13 @@ const ConfirmPasswordForm = () => {
           <div className="flex flex-col text-left mb-4">
             <label
               className="text-base font-semibold lg:text-secondary-100 my-1"
-              for="password"
+              for="signUpPassword"
             >
               Password
             </label>
             <input
               className="h-14 placeholder-[#F9FBFC]/70 text-primary-100 text-sm border-2 border-solid border-primary-70 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:placeholder-secondary-50 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
-              id="password"
+              id="signUpPassword"
               type="password"
               placeholder="Enter your password"
               required
@@ -43,13 +43,13 @@ const ConfirmPasswordForm = () => {
           <div className="flex flex-col text-left my-4">
             <label
               className="text-base font-semibold lg:text-secondary-100 my-1"
-              for="cfpassword"
+              for="signUpCfPassword"
             >
               Confirm Password
             </label>
             <input
               className="h-14 placeholder-[#F9FBFC]/70 text-primary-100 text-sm border-2 border-solid border-primary-70 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:placeholder-secondary-50 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
-              id="cfpassword"
+              id="signUpCfPassword"
               type="password"
               placeholder="Re-enter your password"
               required

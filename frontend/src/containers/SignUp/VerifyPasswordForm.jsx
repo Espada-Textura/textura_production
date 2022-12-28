@@ -20,7 +20,7 @@ const VerifyPasswordForm = () => {
           <div className="mt-2 text-base font-medium lg:text-secondary-70 my-4">
             We sent you a verification code to your email address.
           </div>
-          <div className="mt-2 text-base font-bold lg:text-accent-100">
+          <div className="my-2 text-base font-bold lg:text-accent-100">
             email@example.com
           </div>
         </div>
@@ -28,48 +28,60 @@ const VerifyPasswordForm = () => {
         <div className="mb-8">
           <div className="flex flex-col text-left">
             <label
-              className="text-base font-semibold lg:text-secondary-100 my-1"
+              className="text-base font-semibold lg:text-secondary-100 my-2"
               for="number"
             >
               Verification Code
             </label>
             <div className="flex flex-row justify-between items-center">
-              {/* <input
-                className="w-16 h-16 text-primary-100 text-sm border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
+              <input
+                className="w-16 h-16 text-center text-primary-100 text-2xl border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
                 id="number"
-                type="number"
+                type="text"
+                maxlength="1"
+                onInput="this.value=this.value.replace(/[^0-9]/g,'');"
                 required
               ></input>
               <input
-                className="w-16 h-16 text-primary-100 text-sm border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
+                className="w-16 h-16 text-center text-primary-100 text-2xl border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
                 id="number"
-                type="number"
+                type="text"
+                maxlength="1"
+                onInput="this.value=this.value.replace(/[^0-9]/g,'');"
                 required
               ></input>
               <input
-                className="w-16 h-16 text-primary-100 text-sm border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
+                className="w-16 h-16 text-center text-primary-100 text-2xl border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
                 id="number"
-                type="number"
+                type="text"
+                maxlength="1"
+                onInput="this.value=this.value.replace(/[^0-9]/g,'');"
                 required
               ></input>
               <input
-                className="w-16 h-16 text-primary-100 text-sm border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
+                className="w-16 h-16 text-center text-primary-100 text-2xl border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
                 id="number"
-                type="number"
+                type="text"
+                maxlength="1"
+                onInput="this.value=this.value.replace(/[^0-9]/g,'');"
                 required
               ></input>
               <input
-                className="w-16 h-16 text-primary-100 text-sm border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
+                className="w-16 h-16 text-center text-primary-100 text-2xl border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
                 id="number"
-                type="number"
+                type="text"
+                maxlength="1"
+                onInput="this.value=this.value.replace(/[^0-9]/g,'');"
                 required
               ></input>
               <input
-                className="w-16 h-16 text-primary-100 text-sm border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
+                className="w-16 h-16 text-center text-primary-100 text-2xl border-2 border-solid border-primary-100 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
                 id="number"
-                type="number"
+                type="text"
+                maxlength="1"
+                onInput="this.value=this.value.replace(/[^0-9]/g,'');"
                 required
-              ></input> */}
+              ></input>
             </div>
           </div>
         </div>

@@ -65,12 +65,12 @@ const SignUpForm = () => {
             </div>
           </div>
           <div className="flex flex-col text-left">
-            <label className="text-base font-semibold lg:text-secondary-100 my-1" for="email">
+            <label className="text-base font-semibold lg:text-secondary-100 my-1" for="signUpEmail">
               Email
             </label>
             <input
               className="h-14 placeholder-[#F9FBFC]/70 text-primary-100 text-sm border-2 border-solid border-primary-70 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:placeholder-secondary-50 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
-              id="email"
+              id="signUpEmail"
               type="email"
               placeholder="example@example.com"
               required
