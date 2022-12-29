@@ -3,7 +3,7 @@ import "@/sass/components/_button.scss";
 import logoBlackSvg from "@images/logo.svg";
 import logoWhiteSvg from "@/images/logoWhite.svg";
 
-import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const ConfirmPasswordForm = () => {
   return (
@@ -11,7 +11,7 @@ const ConfirmPasswordForm = () => {
       <form className="text-center flex flex-col">
         <div className="flex justify-center pt-5">
           <picture>
-            <source media="(min-width: 1024px)" srcset={logoBlackSvg} />
+            <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
             <img src={logoWhiteSvg} alt="logo" draggable="false" />
           </picture>
         </div>
@@ -28,7 +28,7 @@ const ConfirmPasswordForm = () => {
           <div className="flex flex-col text-left mb-4">
             <label
               className="text-base font-semibold lg:text-secondary-100 my-1"
-              for="signUpPassword"
+              htmlFor="signUpPassword"
             >
               Password
             </label>
@@ -43,7 +43,7 @@ const ConfirmPasswordForm = () => {
           <div className="flex flex-col text-left my-4">
             <label
               className="text-base font-semibold lg:text-secondary-100 my-1"
-              for="signUpCfPassword"
+              htmlFor="signUpCfPassword"
             >
               Confirm Password
             </label>
@@ -69,9 +69,12 @@ const ConfirmPasswordForm = () => {
         </div>
         <div className="mb-8 lg:text-secondary-70">
           You acknowledge that you have read and agree to our{" "}
-          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+          <Link
+            to="/terms"
+            className="text-accent-100 hover:text-accent-80 cursor-pointer"
+          >
             terms and conditions
-          </a>{" "}
+          </Link>{" "}
           and{" "}
           <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
             privacy policy

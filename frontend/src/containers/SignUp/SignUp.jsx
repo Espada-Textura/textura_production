@@ -10,9 +10,9 @@ const SignUp = () => {
   return (
     <div className="signUp-container bg-[url(/src/images/sign-up.png)] bg-auto bg-no-repeat bg-center w-full h-screen md:p-14 flex justify-center items-center">
       <div className="signUp-content backdrop-blur-xl md:rounded-2xl lg:flex lg:flex-row">
-        {/* <SignUpForm />
-        <ConfirmPasswordForm /> */}
-        <VerifyPasswordForm />
+        <SignUpForm />
+        {/* <ConfirmPasswordForm /> */}
+        {/* <VerifyPasswordForm /> */}
         <div className="signUp--decor-content hidden p-14 lg:w-[50%] lg:flex lg:flex-col lg:justify-end lg:content-end">
           <div className="signUp--decor-content-main text-6xl font-bold text-right">
             One Of The Largest Artistic Platform In Cambodia.

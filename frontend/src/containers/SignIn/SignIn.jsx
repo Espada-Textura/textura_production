@@ -5,6 +5,8 @@ import logoWhiteSvg from "@/images/logoWhite.svg";
 
 import { FcGoogle } from "react-icons/fc";
 
+import { Link } from "react-router-dom";
+
 const SignIn = () => {
   return (
     <div className="signIn-container bg-[url(/src/images/sign-up.png)] bg-auto bg-no-repeat bg-center w-full h-screen md:p-14 flex justify-center items-center">
@@ -13,7 +15,7 @@ const SignIn = () => {
           <form className="text-center flex flex-col">
             <div className="flex justify-center pt-5">
               <picture>
-                <source media="(min-width: 1024px)" srcset={logoBlackSvg} />
+                <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
                 <img src={logoWhiteSvg} alt="logo" draggable="false" />
               </picture>
             </div>
@@ -43,7 +45,7 @@ const SignIn = () => {
               <div className="flex flex-col text-left mb-5">
                 <label
                   className="text-base font-semibold lg:text-secondary-100 my-1"
-                  for="signInEmail"
+                  htmlFor="signInEmail"
                 >
                   Email
                 </label>
@@ -58,7 +60,7 @@ const SignIn = () => {
               <div className="flex flex-col text-left">
                 <label
                   className="text-base font-semibold lg:text-secondary-100 my-1"
-                  for="signInPassword"
+                  htmlFor="signInPassword"
                 >
                   Password
                 </label>
@@ -70,7 +72,12 @@ const SignIn = () => {
                   required
                 ></input>
                 <div className="font-semibold text-accent-100 text-right mt-1">
-                  <a className="text-accent-100 hover:text-accent-80 cursor-pointer">Forget Password</a>
+                  <Link
+                    to="/recovery-password"
+                    className="text-accent-100 hover:text-accent-80 cursor-pointer"
+                  >
+                    Forget Password
+                  </Link>
                 </div>
               </div>
             </div>
@@ -84,15 +91,21 @@ const SignIn = () => {
             </div>
             <div className="mb-8 lg:text-secondary-70">
               Not a member?{" "}
-              <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+              <Link
+                to="/sign-up"
+                className="text-accent-100 hover:text-accent-80 cursor-pointer"
+              >
                 Sign Up
-              </a>
+              </Link>
             </div>
             <div className="mb-8 lg:text-secondary-70">
               You acknowledge that you have read and agree to our{" "}
-              <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+              <Link
+                to="/terms"
+                className="text-accent-100 hover:text-accent-80 cursor-pointer"
+              >
                 terms and conditions
-              </a>{" "}
+              </Link>{" "}
               and{" "}
               <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
                 privacy policy

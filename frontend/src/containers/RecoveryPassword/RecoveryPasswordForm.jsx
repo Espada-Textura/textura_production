@@ -3,13 +3,15 @@ import "@/sass/components/_button.scss";
 import logoBlackSvg from "@images/logo.svg";
 import logoWhiteSvg from "@/images/logoWhite.svg";
 
+import { Link } from "react-router-dom";
+
 const RecoveryPasswordForm = () => {
   return (
     <div className="recoveryPassword--form p-14 rounded-l-2xl max-md:h-screen lg:w-[50%] lg:bg-primary-100 xl:px-24 2xl:px-36">
       <form className="text-center flex flex-col">
         <div className="flex justify-center pt-5">
           <picture>
-            <source media="(min-width: 1024px)" srcset={logoBlackSvg} />
+            <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
             <img src={logoWhiteSvg} alt="logo" draggable="false" />
           </picture>
         </div>
@@ -25,7 +27,7 @@ const RecoveryPasswordForm = () => {
           <div className="flex flex-col text-left">
             <label
               className="text-base font-semibold lg:text-secondary-100 my-1"
-              for="recoveryPasswordEmail"
+              htmlFor="recoveryPasswordEmail"
             >
               Email
             </label>
@@ -48,9 +50,12 @@ const RecoveryPasswordForm = () => {
         </div>
         <div className="mb-8 lg:text-secondary-70">
           Not a member?{" "}
-          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+          <Link
+            to="/sign-up"
+            className="text-accent-100 hover:text-accent-80 cursor-pointer"
+          >
             Sign Up
-          </a>
+          </Link>
         </div>
       </form>
     </div>

@@ -5,13 +5,35 @@ import logoWhiteSvg from "@/images/logoWhite.svg";
 
 import { FcGoogle } from "react-icons/fc";
 
+import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const SignUpForm = () => {
+  const [signUpFormData, setSignUpFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
+  console.log(signUpFormData);
+
+  function handleChange(event) {
+    setSignUpFormData((prevSignUpFormData) => {
+      const { name, value } = event.target;
+      return {
+        ...prevSignUpFormData,
+        [name]: value,
+      };
+    });
+  }
+
   return (
     <div className="signUp--form p-14 rounded-l-2xl max-md:h-screen lg:w-[50%] lg:bg-primary-100 xl:px-24 2xl:px-36">
       <form className="text-center flex flex-col">
         <div className="flex justify-center pt-5">
           <picture>
-            <source media="(min-width: 1024px)" srcset={logoBlackSvg} />
+            <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
             <img src={logoWhiteSvg} alt="logo" draggable="false" />
           </picture>
         </div>
@@ -40,39 +62,57 @@ const SignUpForm = () => {
         <div className="mb-8">
           <div className="flex justify-between mb-5">
             <div className="flex flex-col text-left w-[49%]">
-              <label className="text-base font-semibold lg:text-secondary-100 my-1" for="fname">
+              <label
+                className="text-base font-semibold lg:text-secondary-100 my-1"
+                htmlFor="firstName"
+              >
                 First Name
               </label>
               <input
                 className="h-14 placeholder-[#F9FBFC]/70 text-primary-100 text-sm border-2 border-solid border-primary-70 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:placeholder-secondary-50 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
-                id="fname"
+                id="firstName"
+                name="firstName"
                 type="text"
                 placeholder="Jonh"
+                onChange={handleChange}
+                value={signUpFormData.firstName}
                 required
               ></input>
             </div>
             <div className="flex flex-col text-left w-[49%]">
-              <label className="text-base font-semibold lg:text-secondary-100 my-1" for="lname">
+              <label
+                className="text-base font-semibold lg:text-secondary-100 my-1"
+                htmlFor="lastName"
+              >
                 Last Name
               </label>
               <input
                 className="h-14 placeholder-[#F9FBFC]/70 text-primary-100 text-sm border-2 border-solid border-primary-70 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:placeholder-secondary-50 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
-                id="lname"
+                id="lastName"
+                name="lastName"
                 type="text"
                 placeholder="Doe"
+                onChange={handleChange}
+                value={signUpFormData.lastName}
                 required
               ></input>
             </div>
           </div>
           <div className="flex flex-col text-left">
-            <label className="text-base font-semibold lg:text-secondary-100 my-1" for="signUpEmail">
+            <label
+              className="text-base font-semibold lg:text-secondary-100 my-1"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
               className="h-14 placeholder-[#F9FBFC]/70 text-primary-100 text-sm border-2 border-solid border-primary-70 hover:border-primary-100 active:border-accent-100 focus:border-accent-100 focus:hover:border-accent-100 rounded-2xl p-3 lg:text-secondary-100 lg:placeholder-secondary-50 lg:border-2 lg:border-solid lg:border-secondary-50 lg:hover:border-secondary-100"
-              id="signUpEmail"
+              id="email"
+              name="email"
               type="email"
               placeholder="example@example.com"
+              onChange={handleChange}
+              value={signUpFormData.signUpEmail}
               required
             ></input>
           </div>
@@ -86,12 +126,27 @@ const SignUpForm = () => {
           </button>
         </div>
         <div className="mb-8 lg:text-secondary-70">
-          Already have an account? <a className="text-accent-100 hover:text-accent-80 cursor-pointer">Sign In</a>
+          Already have an account?{" "}
+          <Link
+            className="text-accent-100 hover:text-accent-80 cursor-pointer"
+            to="/sign-in"
+          >
+            Sign In
+          </Link>
         </div>
         <div className="mb-8 lg:text-secondary-70">
           You acknowledge that you have read and agree to our{" "}
-          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">terms and conditions</a> and{" "}
-          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">privacy policy</a>.
+          <Link
+            to="/terms"
+            className="text-accent-100 hover:text-accent-80 cursor-pointer"
+          >
+            terms and conditions
+          </Link>{" "}
+          and{" "}
+          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+            privacy policy
+          </a>
+          .
         </div>
       </form>
     </div>

@@ -3,13 +3,15 @@ import "@/sass/components/_button.scss";
 import logoBlackSvg from "@images/logo.svg";
 import logoWhiteSvg from "@/images/logoWhite.svg";
 
+import { Link } from "react-router-dom";
+
 const VerifyPasswordForm = () => {
   return (
     <div className="verify-password--form p-14 rounded-l-2xl max-md:h-screen lg:w-[50%] lg:bg-primary-100 xl:px-24 2xl:px-36">
       <form className=" text-center flex flex-col">
         <div className="flex justify-center pt-5">
           <picture>
-            <source media="(min-width: 1024px)" srcset={logoBlackSvg} />
+            <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
             <img src={logoWhiteSvg} alt="logo" draggable="false" />
           </picture>
         </div>
@@ -29,7 +31,7 @@ const VerifyPasswordForm = () => {
           <div className="flex flex-col text-left">
             <label
               className="text-base font-semibold lg:text-secondary-100 my-2"
-              for="number"
+              htmlFor="number"
             >
               Verification Code
             </label>
@@ -101,9 +103,12 @@ const VerifyPasswordForm = () => {
         </div>
         <div className="mb-8 lg:text-secondary-70">
           You acknowledge that you have read and agree to our{" "}
-          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+          <Link
+            to="/terms"
+            className="text-accent-100 hover:text-accent-80 cursor-pointer"
+          >
             terms and conditions
-          </a>{" "}
+          </Link>{" "}
           and{" "}
           <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
             privacy policy
