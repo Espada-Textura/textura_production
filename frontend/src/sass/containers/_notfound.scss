@@ -1,3 +1,11 @@
-.Notfound {
-  color: initial;
+@use "./../abstract/color" as colors;
+@use "./../abstract/font" as fonts;
+@use "./../abstract/mixin" as mixins;
+
+body {
+  color: colors.$primary-color !important;
+
+  .not-found-container {
+    position: fixed;
+  }
 }
