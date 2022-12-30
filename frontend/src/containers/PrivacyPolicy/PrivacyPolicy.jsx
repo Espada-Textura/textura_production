@@ -1,13 +1,13 @@
 const PrivacyPolicy = () => {
   return (
-    <div className="privacy-container pt-24 p-16">
+    <div className="privacy-container p-16">
       <div className="text-3xl font-bold text-accent-100 mt-4 mb-3">
         Privacy Policy
       </div>
       <div className="text-base font-light mb-3">
         Last updated: December 30, 2022
       </div>
-      <div className="w-[100%] h-0.5 bg-primary-100 lg:bg-secondary-30 my-6"></div>
+      <div className="w-full h-0.5 bg-secondary-40 my-6"></div>
       <div className="text-base font-normal my-2">
         This Privacy Policy describes Our policies and procedures on the
         collection, use and disclosure of Your information when You use the
