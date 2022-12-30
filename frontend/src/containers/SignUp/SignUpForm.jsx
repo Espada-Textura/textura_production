@@ -143,9 +143,12 @@ const SignUpForm = () => {
             terms and conditions
           </Link>{" "}
           and{" "}
-          <a className="text-accent-100 hover:text-accent-80 cursor-pointer">
+          <Link
+            to="/privacy-policy"
+            className="text-accent-100 hover:text-accent-80 cursor-pointer"
+          >
             privacy policy
-          </a>
+          </Link>
           .
         </div>
       </form>
