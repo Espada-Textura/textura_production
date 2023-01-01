@@ -38,14 +38,11 @@ class EmailSender:
         self.subject = subject
         self.message = message
 
-        # if template:
-        #     html_content = self.read_template(template=template)
+        if template:
+            html_content = self.read_template(template=template)
 
-        # print(html_content)
-
-        # if html_content:
-
-        #     self.message = Template(html_content).substitute(**temp_conts)
+        if html_content:
+            self.message = Template(html_content).safe_substitute(**temp_conts)
 
     def send(self):
         smtpserver = smtplib.SMTP(self.f_host, self.f_port)
