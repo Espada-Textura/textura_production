@@ -61,7 +61,7 @@ div:has(.upload--container) {
       }
     }
 
-    input[name="title"] {
+    textarea[name="title"] {
       color: abs.$secondary-color;
       background-color: transparent;
       outline: none;
@@ -72,7 +72,7 @@ div:has(.upload--container) {
       font-weight: 600;
 
       &::placeholder {
-        color: abs.$secondary-color;
+        color: abs.$secondary-color-80;
       }
     }
 

@@ -1,1 +1,1 @@
-export { default } from "./art.api";
+export { default, useUpload } from "./art.api";

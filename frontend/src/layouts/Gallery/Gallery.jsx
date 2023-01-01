@@ -11,7 +11,6 @@ const Gallery = () => {
     queryKey: ["gallery"],
     queryFn: fetchGallery,
     refetchOnWindowFocus: false,
-    enabled: false,
   });
 
   if (isLoading) {
@@ -27,8 +26,6 @@ const Gallery = () => {
       <div>{error.message}</div>
     </>;
   }
-
-  console.log(data);
 
   return (
     <div className="gallery--container columns-4 p-6 sm:p-8 sm:gap-6">

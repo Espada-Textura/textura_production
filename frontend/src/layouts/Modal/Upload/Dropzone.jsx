@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { useForm, useFieldArray } from "react-hook-form";
 import { useUploadStore } from "@/zustand/uploadStore";
-import { useAsyncFileRead } from "@/hooks/useFileRead";
-import { useErrorNotify, useWarningNotify } from "@/hooks/useNotify";
+import { useAsyncFileRead, useHandleSubmit } from "@/hooks/upload";
+import { useErrorNotify, useWarningNotify } from "@/hooks/notification";
 
 import shallow from "zustand/shallow";
 
@@ -20,13 +21,28 @@ const Dropzone = () => {
     shallow
   );
 
+  const form = useForm(
+    {
+      defaultValues: {
+        title: "",
+        desc: [{ input: "" }],
+      },
+    },
+    { shouldFocusError: true }
+  );
+
+  const fieldArray = useFieldArray(
+    { control: form.control, name: "desc" },
+    { shouldUnregister: true }
+  );
+
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     acceptedFiles.forEach((file, index) => {
       useAsyncFileRead(file).then(
         (result) => {
           addDraftImages(result, index);
         },
-        (error) => {
+        (_error) => {
           useErrorNotify(
             "File Reading Error",
             `There was an error reading your files. Please try again.`
@@ -35,7 +51,7 @@ const Dropzone = () => {
       );
     });
 
-    rejectedFiles.forEach((file, index) => {
+    rejectedFiles.forEach((file, _index) => {
       switch (file.errors[0].code) {
         case "file-invalid-type": {
           useErrorNotify(
@@ -74,7 +90,7 @@ const Dropzone = () => {
     });
   }, []);
 
-  const fileValidator = (file) => {
+  const fileValidator = useCallback((_file) => {
     filesCount++;
 
     return imageLength + filesCount > limitFiles
@@ -83,7 +99,7 @@ const Dropzone = () => {
           message: "You can only post 10 picture per post.",
         }
       : null;
-  };
+  });
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/jpeg": [], "image/png": [] },
@@ -98,14 +114,19 @@ const Dropzone = () => {
   });
 
   return (
-    <>
+    <form
+      className={
+        "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
+      }
+      onSubmit={form.handleSubmit((data) => useHandleSubmit(data, images))}
+    >
       <div className="fixed sm:fixed sm:w-[90%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
-        <Header />
+        <Header trigger={form.trigger} formState={form.formState} />
       </div>
 
       {images.length > 0 && (
-        <div className="upload--image-container mt-14 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll">
-          <DraftImages />
+        <div className="upload--image-container mt-14 pb-8 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll">
+          <DraftImages form={form} fieldArray={fieldArray} />
         </div>
       )}
 
@@ -153,7 +174,7 @@ const Dropzone = () => {
           </div>
         </div>
       )}
-    </>
+    </form>
   );
 };
 

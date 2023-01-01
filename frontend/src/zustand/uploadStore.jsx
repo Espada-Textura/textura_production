@@ -15,8 +15,7 @@ export const useUploadStore = create((set) => ({
       draftImages: (() => {
         prevState.draftImages[index] === undefined
           ? (prevState.draftImages[index] = image)
-          : (prevState.draftImages[index + prevState.draftImages.length] =
-              image);
+          : (prevState.draftImages[prevState.draftImages.length] = image);
 
         return prevState.draftImages;
       })(),
@@ -28,7 +27,7 @@ export const useUploadStore = create((set) => ({
       ...prevState,
       imageLength: prevState.imageLength - 1,
       draftImages: prevState.draftImages.filter(
-        (element, elementIndex) => index !== elementIndex
+        (_element, elementIndex) => index !== elementIndex
       ),
     }));
   },

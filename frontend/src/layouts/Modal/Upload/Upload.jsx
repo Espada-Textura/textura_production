@@ -16,11 +16,7 @@ const Upload = () => {
   const [isWarningOpen, setWarning] = useState(false);
 
   const handleClose = () => {
-    if (imageLength > 0) {
-      setWarning(true);
-    } else {
-      setUploadOpen(false);
-    }
+    imageLength > 0 ? setWarning(true) : setUploadOpen(false);
   };
 
   useBodyScrollLock(true);
@@ -30,13 +26,7 @@ const Upload = () => {
     <>
       <Portal>
         <div className="upload--portal" onClick={handleClose} />
-        <div
-          className={
-            "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
-          }
-        >
-          <Dropzone />
-        </div>
+        <Dropzone />
       </Portal>
       {isWarningOpen && <BackWarning setWarning={setWarning} />}
     </>

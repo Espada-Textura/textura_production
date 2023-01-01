@@ -1,9 +1,4 @@
-// resp.then((resp) => {
-//   resp = {
-//     mime: file.files[0].type,
-//     data: resp.replace("data:", "").replace(/^.+,/, ""),
-//   };
-// });
+
 
 export const useAsyncFileRead = async (file) =>
   new Promise((resolve, reject) => {
