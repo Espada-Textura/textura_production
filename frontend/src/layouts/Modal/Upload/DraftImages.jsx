@@ -17,14 +17,12 @@ const DraftImages = ({ form, fieldArray }) => {
   );
 
   const {
-    control,
     register,
     unregister,
-    getValues,
     formState: { errors },
   } = form;
 
-  const { remove, move, fields } = fieldArray;
+  const { remove } = fieldArray;
 
   const handleImageChange = useCallback((event, index) => {
     const file = event.target.files[0];
@@ -61,11 +59,10 @@ const DraftImages = ({ form, fieldArray }) => {
     );
   }, []);
 
-  const handleDeleteImage = (index) => {
-    console.log(getValues(`desc[${index}].input`), index);
-    unregister(`desc[${index}].input`); //remove the validation from react-hook-form
-    remove(index); //remove the input from the form
-    deleteDraftImage(index);
+  const handleDeleteImage = async (index) => {
+    await unregister(`desc[${index}].input`); //remove the validation from react-hook-form
+    await remove(index); //remove the input from the form
+    await deleteDraftImage(index);
   };
 
   return (
@@ -91,7 +88,6 @@ const DraftImages = ({ form, fieldArray }) => {
       </section>
 
       {images.map((image, index) => {
-        console.log(index);
         return (
           <section className={" rounded-lg"} key={index}>
             <TextareaAutoSize
@@ -116,6 +112,7 @@ const DraftImages = ({ form, fieldArray }) => {
                 />
               </div>
               <button
+                type="button"
                 onClick={() => handleDeleteImage(index)}
                 className="icon-button-medium backdrop-brightness-75 bg-secondary-50 text-primary-100 backdrop:blur-2xl absolute top-4 right-4"
               >

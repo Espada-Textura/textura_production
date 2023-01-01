@@ -43,7 +43,7 @@ div:has(.upload--container) {
       /* width */
       &::-webkit-scrollbar {
         width: 0.75rem;
-        background-color: var(--tr-primary);
+        background-color: transparent;
       }
 
       /* Track */
@@ -58,6 +58,10 @@ div:has(.upload--container) {
         background-clip: padding-box;
         @include abs.border-radius(1rem);
         display: none;
+
+        &:hover {
+          background-color: abs.$secondary-color-40;
+        }
       }
     }
 

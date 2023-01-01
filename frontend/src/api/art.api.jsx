@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import axios from "@/axios";
 
 const fetchGallery = () => {
   return axios.get("art-posts");
@@ -8,10 +8,6 @@ const fetchGallery = () => {
 const uploadArts = (data) => {
   return axios.post("art-posts/new", data);
 };
-
-const ArtApi = axios.create({
-  baseURL: "https://web.textura-art.com/api",
-});
 
 export const useFetchGallery = () => {
   return useQuery({
@@ -23,12 +19,12 @@ export const useFetchGallery = () => {
 };
 
 //upload method for uploading images
-export const useUpload = (data) => {
+export const useUpload = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["art-upload"],
-    mutationFn: uploadArts(data),
+    mutationFn: (data) => uploadArts(data),
     onMutate: async (newData) => {
       //cancel out the query before posting a new one
       await queryClient.cancelQueries(["gallery"]);
@@ -52,4 +48,20 @@ export const useUpload = (data) => {
     },
   });
 };
-export default ArtApi;
+
+export const login = () => {
+  return useMutation({
+    mutationKey: "login",
+    mutationFn: () =>
+      axios.post("login", {
+        email: "misapisatto@gmail.com",
+        password: "Misa5454",
+      }),
+  });
+};
+
+export const art = {
+  useFetchGallery: useFetchGallery,
+  useUpload: useUpload,
+  login: login,
+};

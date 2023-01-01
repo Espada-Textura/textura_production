@@ -1,16 +1,27 @@
-import { useUpload } from "@/api";
-
-// resp.then((resp) => {
-//   resp = {
-//     mime: file.files[0].type,
-//     data: resp.replace("data:", "").replace(/^.+,/, ""),
-//   };
-// });
-
 export const useHandleSubmit = (fieldsData, imagesData) => {
-  console.log(
-    fieldsData.desc.filter((element, _index) => element !== undefined)
-  );
+  const data = {
+    title: fieldsData.title,
+    arts: [],
+  };
 
-  console.log(imagesData.filter((element) => element !== undefined));
+  fieldsData.desc = fieldsData.desc.filter(
+    (element, _index) => element !== undefined
+  );
+  imagesData = imagesData.filter((element) => element !== undefined);
+
+  imagesData.map((image, index) => {
+    data.arts.push({
+      desc: fieldsData.desc[index],
+      index: index,
+      image: {
+        mime: image.substring(
+          image.lastIndexOf(":") + 1,
+          image.lastIndexOf(";")
+        ),
+        data: image.substring(image.lastIndexOf("base64,") + 7),
+      },
+    });
+  });
+
+  return data;
 };

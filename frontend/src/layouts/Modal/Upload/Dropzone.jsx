@@ -4,6 +4,8 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { useUploadStore } from "@/zustand/uploadStore";
 import { useAsyncFileRead, useHandleSubmit } from "@/hooks/upload";
 import { useErrorNotify, useWarningNotify } from "@/hooks/notification";
+import { art } from "@/api";
+import axios from "@/axios";
 
 import shallow from "zustand/shallow";
 
@@ -11,10 +13,36 @@ import cloudSvg from "@/images/cloud.svg";
 
 import Header from "./Header";
 import DraftImages from "./DraftImages";
+import { useEffect } from "react";
 
 const Dropzone = () => {
   let filesCount = 0;
   const limitFiles = 10;
+
+  const { data: auth, mutate: login, isSuccess: isLoginSucess } = art.login();
+
+  //login
+  useEffect(() => {
+    login();
+  }, []);
+
+  if (isLoginSucess) {
+    console.log(auth);
+    axios.defaults.headers.common.Authorization = `Bearer ${auth.data.accessToken}`;
+  }
+
+  const {
+    data,
+    error,
+    isError,
+    isIdle,
+    isLoading,
+    isPaused,
+    isSuccess,
+    mutate,
+    reset,
+    status,
+  } = art.useUpload();
 
   const [images, imageLength, addDraftImages] = useUploadStore(
     (state) => [state.draftImages, state.imageLength, state.addDraftImages],
@@ -118,14 +146,20 @@ const Dropzone = () => {
       className={
         "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
       }
-      onSubmit={form.handleSubmit((data) => useHandleSubmit(data, images))}
+      onSubmit={form.handleSubmit((data) => {
+        isLoginSucess && mutate(useHandleSubmit(data, images));
+      })}
     >
       <div className="fixed sm:fixed sm:w-[90%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-lg">
         <Header trigger={form.trigger} formState={form.formState} />
       </div>
 
       {images.length > 0 && (
-        <div className="upload--image-container mt-14 pb-8 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll">
+        <div
+          className={`upload--image-container mt-14 pb-8 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll ${
+            imageLength === limitFiles ? "rounded-b-lg" : ""
+          }`}
+        >
           <DraftImages form={form} fieldArray={fieldArray} />
         </div>
       )}
