@@ -4,7 +4,7 @@ import { useUploadStore } from "@/zustand/uploadStore";
 
 import BackWarning from "./BackWarning";
 
-const UploadButtons = () => {
+const Header = ({ trigger }) => {
   const [images, setUploadOpen, resetDraftImages] = useUploadStore((state) => [
     state.draftImages,
     state.setUploadOpen,
@@ -22,6 +22,10 @@ const UploadButtons = () => {
     images.length > 0 ? setWarning(true) : closeModal();
   };
 
+  const handleFormValidate = async () => {
+    await trigger();
+  };
+
   return (
     <>
       <div className="flex bg-transparent justify-center items-center  border-b-[1px] border-b-secondary-20 border-solid min-h-[3.5rem] ">
@@ -36,7 +40,10 @@ const UploadButtons = () => {
           Create Artwork
         </span>
         {images.length > 0 && (
-          <button className=" h-full text-accent-100 px-8 font-semibold absolute right-0 shadow-none">
+          <button
+            onClick={handleFormValidate}
+            className=" h-full text-accent-100 px-8 font-semibold absolute right-0 shadow-none"
+          >
             Upload
           </button>
         )}
@@ -46,4 +53,4 @@ const UploadButtons = () => {
   );
 };
 
-export default UploadButtons;
+export default Header;

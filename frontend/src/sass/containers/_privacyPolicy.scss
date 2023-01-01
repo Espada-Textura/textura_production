@@ -3,9 +3,9 @@
 @use "./../abstract/mixin" as mixins;
 
 body {
-  color: colors.$primary-color !important;
+  color: colors.$secondary-color !important;
 
-  .not-found-container {
-    position: fixed;
+  .privacy-container {
+    position: relative;
   }
 }
