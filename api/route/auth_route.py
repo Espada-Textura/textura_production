@@ -40,13 +40,15 @@ def user_login(user_auth):
 
     user_json = service.login(user=user_auth)
 
-    resp = make_response(user_json, 200)
-
     access_token = create_access_token(user_json.get("id"), additional_claims=user_json)
 
     refresh_token = create_refresh_token(
         user_json.get("id"), additional_claims=user_json
     )
+
+    user_json.update({"accessToken": access_token, "refreshToken": refresh_token})
+
+    resp = make_response(user_json, 200)
 
     set_access_cookies(resp, access_token)
     set_refresh_cookies(resp, refresh_token)
@@ -75,6 +77,15 @@ def user_signup(user_auth):
         to=[new_user_json.get("email")],
         subject="Verifying Textura account",
         message=f"Your OTP code is {otp_code}",
+        template="login_template",
+        temp_conts={
+            "otp_code": otp_code,
+            "client_info": f"""
+            Request from:
+                IP : {request.remote_addr}
+                Agent : {request.environ.get("HTTP_USER_AGENT")}
+            """,
+        },
     )
 
     notification.emit_send()
@@ -103,6 +114,14 @@ def user_verify(user_activate):
             to=[user_json.get("email")],
             subject="Textura account",
             message="Your account has been activated.",
+            template="user_activate_template",
+            temp_conts={
+                "client_info": f"""
+            Request from:
+                IP : {request.remote_addr}
+                Agent : {request.environ.get("HTTP_USER_AGENT")}
+            """,
+            },
         )
 
         notification.emit_send()
@@ -135,6 +154,15 @@ def user_resend_otp(user_auth):
         to=[user_json.get("email")],
         subject="Verifying Textura account",
         message=f"Hey Your OTP code is {otp_code}",
+        template="otp_template",
+        temp_conts={
+            "otp_code": otp_code,
+            "client_info": f"""
+            Request from:
+                IP : {request.remote_addr}
+                Agent : {request.environ.get("HTTP_USER_AGENT")}
+            """,
+        },
     )
     notification.emit_send()
 
@@ -167,12 +195,12 @@ def user_reset_password(user_auth, step):
             to=[user_json.get("email")],
             subject="Reset Textura account password",
             message=f"Your OTP code is {otp_code}",
-            template="forget_password",
+            template="otp_template",
             temp_conts={
                 "otp_code": otp_code,
                 "client_info": f"""
             Request from:
-                IP : -
+                IP : {request.remote_addr}
                 Agent : {request.environ.get("HTTP_USER_AGENT")}
             """,
             },
@@ -248,14 +276,16 @@ def user_reset_password(user_auth, step):
         notification = EmailSender(
             to=[user_json.get("email")],
             subject="Textura Account",
-            message=f"""
-            Your account password have been changed.
-
+            message="Your account password have been changed.",
+            template="content_template",
+            temp_conts={
+                "content": "Your account password have been changed.",
+                "client_info": f"""
             Request from:
-                IP : -
+                IP : {request.remote_addr}
                 Agent : {request.environ.get("HTTP_USER_AGENT")}
-                Location : -
             """,
+            },
         )
 
         notification.emit_send()
