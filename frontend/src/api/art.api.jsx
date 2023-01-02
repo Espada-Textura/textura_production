@@ -33,7 +33,14 @@ export const useUpload = () => {
       const previousData = queryClient.getQueryData(["gallery"]);
 
       //optimistically updates the new value to the gallery
-      queryClient.setQueryData(["gallery"], (old) => [...old, newData]);
+      // queryClient.setQueryData(["gallery"], (old) => {
+      //   console.log(old, newData);
+
+      //   return {
+      //     ...old,
+      //     data: { ...old.data, artPosts: [...old.data.artPosts, newData] },
+      //   };
+      // });
 
       //return the prepared context for errors
       return { previousData };

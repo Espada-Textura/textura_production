@@ -3,7 +3,11 @@ import { useDropzone } from "react-dropzone";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useUploadStore } from "@/zustand/uploadStore";
 import { useAsyncFileRead, useHandleSubmit } from "@/hooks/upload";
-import { useErrorNotify, useWarningNotify } from "@/hooks/notification";
+import {
+  useErrorNotify,
+  useWarningNotify,
+  useSuccessNotify,
+} from "@/hooks/notification";
 import { art } from "@/api";
 import axios from "@/axios";
 
@@ -27,7 +31,6 @@ const Dropzone = () => {
   }, []);
 
   if (isLoginSucess) {
-    console.log(auth);
     axios.defaults.headers.common.Authorization = `Bearer ${auth.data.accessToken}`;
   }
 
@@ -148,9 +151,12 @@ const Dropzone = () => {
     validator: fileValidator,
   });
 
-  console.log(status);
-
   if (isUploadSuccess) {
+    useSuccessNotify(
+      "Uploaded Successfully",
+      `You can check the gallery to view your artworks.`
+    );
+
     form.reset();
     resetUpload();
     setUploadOpen(false);
