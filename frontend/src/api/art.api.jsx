@@ -33,7 +33,7 @@ export const useUpload = () => {
       const previousData = queryClient.getQueryData(["gallery"]);
 
       //optimistically updates the new value to the gallery
-      queryClient.setQueryData(["gallery"], newData);
+      queryClient.setQueryData(["gallery"], (old) => [...old, newData]);
 
       //return the prepared context for errors
       return { previousData };
@@ -44,7 +44,7 @@ export const useUpload = () => {
       queryClient.setQueryData(["gallery"], context.previousData);
     },
     onSettled: () => {
-      queryClient.invalidateQuery(["gallery"]);
+      queryClient.invalidateQueries({ queryKey: ["gallery"] });
     },
   });
 };

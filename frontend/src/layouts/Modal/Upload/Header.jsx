@@ -39,7 +39,6 @@ const Header = () => {
         {images.length > 0 && (
           <button
             type="submit"
-            // onClick={handleClose}
             className=" h-full text-accent-100 px-8 font-semibold absolute right-0 shadow-none"
           >
             Upload
