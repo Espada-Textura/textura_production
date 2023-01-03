@@ -1,6 +1,7 @@
-import { art } from "@/api";
-import Art from "@/components/ArtCard";
 import { useEffect } from "react";
+import { art } from "@/api";
+
+import Art from "@/components/ArtCard";
 
 const Gallery = () => {
   const {
@@ -20,9 +21,7 @@ const Gallery = () => {
       const { scrollHeight, scrollTop, clientHeight } =
         event.target.scrollingElement;
 
-      if (!fetch && scrollHeight - scrollTop <= clientHeight * 1) {
-        fetch = true;
-        if (hasNextPage) await fetchNextPage();
+      if (!fetch && scrollHeight - scrollTop <= clientHeight * 1.5) {
       }
     };
 
@@ -41,14 +40,19 @@ const Gallery = () => {
     <div>{error.message}</div>;
   }
 
+  console.log(isFetching, data);
+
   return (
-    <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6`}>
-      {data?.pages.map((page) =>
-        page?.data?.artPosts.map((info) => (
-          <Art title={info.title} art={info.arts[0]} key={info.arts[0].id} />
-        ))
-      )}
-    </div>
+    <>
+      <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6`}>
+        {data?.pages.map((page) =>
+          page?.data?.artPosts.map((info) => (
+            <Art title={info.title} art={info.arts[0]} key={info.arts[0].id} />
+          ))
+        )}
+      </div>
+      {isFetching && <div>Loading More</div>}
+    </>
   );
 };
 

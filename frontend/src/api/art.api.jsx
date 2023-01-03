@@ -6,7 +6,7 @@ import {
 import axios from "@/axios";
 
 const fetchGallery = (page) => {
-  return axios.get(`art-posts?page=${page}`);
+  return axios.get(`art-posts?page=${page}&perPage=30`);
 };
 
 const uploadArts = (data) => {
