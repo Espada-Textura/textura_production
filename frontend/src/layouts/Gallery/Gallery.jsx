@@ -22,6 +22,8 @@ const Gallery = () => {
         event.target.scrollingElement;
 
       if (!fetch && scrollHeight - scrollTop <= clientHeight * 1.5) {
+        fetch = true;
+        if (hasNextPage) fetchNextPage();
       }
     };
 
