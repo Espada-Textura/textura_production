@@ -3,17 +3,20 @@
 div.artcard--container {
   img {
     display: inline-block;
-    min-height: 25rem;
+    min-height: 15rem;
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    @include mixin.border-radius(0.5rem);
   }
 
   div.artcard--blurhash {
     position: absolute !important;
-
+    @include mixin.border-radius(0.5rem);
     canvas {
       position: relative !important;
+      @include mixin.border-radius(0.5rem);
     }
   }
 }

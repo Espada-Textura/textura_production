@@ -1,3 +1,3 @@
-export default function Terms() {
-  return <>Terms</>;
-}
+import "@/sass/containers/_terms.scss";
+
+export {default} from "./TermsAndCondition"

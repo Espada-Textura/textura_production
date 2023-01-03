@@ -1,5 +1,3 @@
-// const useGetArt = (id) => ArtApi.get(id);
-
 import { useState } from "react";
 import { Blurhash } from "react-blurhash";
 
@@ -13,13 +11,18 @@ const ArtCard = ({ art, title }) => {
 
   if (art.rpath !== "" && art.preimage !== "")
     return (
-      <div className="artcard--container relative rounded-md mb-6 sm:mb-6">
+      <div
+        className={`artcard--container relative rounded-md mb-6 sm:mb-6 aspect-[${
+          art.height + "/" + art.width
+        }]`}
+      >
         <img
           src={art.tpath}
           alt={title}
-          className={"rounded-md " + isLoaded ? "visible" : "invisible"}
+          className={`rounded-md ` + isLoaded ? "visible" : "invisible"}
           loading="lazy"
           onLoad={() => setLoad(true)}
+          draggable={false}
         />
 
         {!isLoaded && (

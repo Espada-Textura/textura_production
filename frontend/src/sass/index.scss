@@ -1,7 +1,7 @@
 @use "components/button";
 @use "abstract/color" as color;
 @use "abstract/font" as font;
-
+@use "abstract/mixin" as mixin;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,7 +38,28 @@ body {
   padding: 0;
   border: none;
 
-  overflow-y: visible;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+    background-color: transparent;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    @include mixin.border-radius(1rem);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background-color: color.$secondary-color-40;
+    border: 0.15rem solid transparent;
+    background-clip: padding-box;
+    @include mixin.border-radius(1rem);
+
+    &:hover {
+      background-color: color.$secondary-color-60;
+    }
+  }
 }
 
 image,

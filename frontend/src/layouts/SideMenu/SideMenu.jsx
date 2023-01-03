@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { NavLink } from "react-router-dom";
-import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
 import { useKeyAction } from "@/hooks/useKeyAction";
-import { useOutSideClose } from "@/hooks/useModalClose";
+import { useOutSideClose } from "@/hooks/modal";
 
 import {
   HiOutlineHome,
@@ -18,6 +17,8 @@ import {
   HiOutlineBookmark,
   HiOutlineMenuAlt1,
 } from "react-icons/hi";
+import { FaFacebook, FaTwitter, FaYoutube, FaGithub } from "react-icons/fa";
+
 import { Portal } from "react-portal";
 
 const SideMenu = (props) => {

@@ -4,7 +4,7 @@ import { useUploadStore } from "@/zustand/uploadStore";
 
 import BackWarning from "./BackWarning";
 
-const UploadButtons = () => {
+const Header = () => {
   const [images, setUploadOpen, resetDraftImages] = useUploadStore((state) => [
     state.draftImages,
     state.setUploadOpen,
@@ -26,6 +26,7 @@ const UploadButtons = () => {
     <>
       <div className="flex bg-transparent justify-center items-center  border-b-[1px] border-b-secondary-20 border-solid min-h-[3.5rem] ">
         <button
+          type="button"
           className="h-full rounded-lg text-secondary-100 px-8 font-semibold absolute left-0 shadow-none"
           onClick={handleClose}
         >
@@ -36,7 +37,10 @@ const UploadButtons = () => {
           Create Artwork
         </span>
         {images.length > 0 && (
-          <button className=" h-full text-accent-100 px-8 font-semibold absolute right-0 shadow-none">
+          <button
+            type="submit"
+            className=" h-full text-accent-100 px-8 font-semibold absolute right-0 shadow-none"
+          >
             Upload
           </button>
         )}
@@ -46,4 +50,4 @@ const UploadButtons = () => {
   );
 };
 
-export default UploadButtons;
+export default Header;

@@ -3,6 +3,8 @@ import create from "zustand";
 export const useUploadStore = create((set) => ({
   isOpen: false,
   imageLength: 0,
+  title: "",
+  desc: [{ input: "" }],
   draftImages: [],
 
   setUploadOpen: (state) =>
@@ -15,8 +17,7 @@ export const useUploadStore = create((set) => ({
       draftImages: (() => {
         prevState.draftImages[index] === undefined
           ? (prevState.draftImages[index] = image)
-          : (prevState.draftImages[index + prevState.draftImages.length] =
-              image);
+          : (prevState.draftImages[prevState.draftImages.length] = image);
 
         return prevState.draftImages;
       })(),
@@ -28,7 +29,7 @@ export const useUploadStore = create((set) => ({
       ...prevState,
       imageLength: prevState.imageLength - 1,
       draftImages: prevState.draftImages.filter(
-        (element, elementIndex) => index !== elementIndex
+        (_element, elementIndex) => index !== elementIndex
       ),
     }));
   },
@@ -48,4 +49,17 @@ export const useUploadStore = create((set) => ({
       imageLength: 0,
       draftImages: [],
     })),
+
+  setTitle: (title) =>
+    set((prevState) => ({
+      ...prevState,
+      title: title,
+    })),
+
+  setInputs: (inputs) => {
+    set((prevState) => ({
+      ...prevState,
+      desc: [...prevState.desc, ...inputs],
+    }));
+  },
 }));

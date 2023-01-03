@@ -120,12 +120,16 @@ class ArtService:
 
                 img_size = img.size
 
-                # img = img.rotate(90, expand=True)
+                art.width = img_size[0]
+                art.height = img_size[1]
 
-                img.save(get_art_path(f"{art.aid}.{img_type}"))
+                img.save(
+                    get_art_path(f"{art.aid}.{img_type}"),
+                    optimize=True,
+                )
 
                 img.resize(
-                    (round(img_size[0] / 2), round(img_size[1] / 2)), Image.ANTIALIAS
+                    (round(img_size[0] / 3), round(img_size[1] / 3)), Image.ANTIALIAS
                 )
 
                 img.save(
@@ -153,8 +157,12 @@ class ArtService:
 
         preimage = blurhash.encode(
             get_art_path(path),
-            x_components=5,
-            y_components=4,
+            x_components=round(4 * (art.get("width") / art.get("height")))
+            if (art.get("width") / art.get("height")) > 1
+            else 4,
+            y_components=round(4 * (art.get("height") / art.get("width")))
+            if (art.get("width") / art.get("height")) <= 1
+            else 4,
         )
 
         with ArtDao() as dao:

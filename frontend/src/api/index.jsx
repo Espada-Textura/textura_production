@@ -1,1 +1,1 @@
-export { default } from "./art.api";
+export { art } from "./art.api";

@@ -1,5 +1,7 @@
 from flask import Blueprint, make_response, abort, request
 from flask_jwt_extended import jwt_required
+from flask_cors import cross_origin
+
 
 from schema import ArtSchema, NestedArtSchema
 from dao import ArtDao
@@ -10,13 +12,14 @@ art_post_route = Blueprint("art_post_route", __name__, url_prefix="/api")
 
 
 @art_post_route.route("/art-posts", methods=["GET"])
+@cross_origin()
 @validate_params("ArtSchema")
 def art_post_view(expression=None, pagination=None):
 
     service = ArtService()
 
     if not pagination:
-        pagination = {"per_page": 30}
+        pagination = {"per_page": 100}
 
     art_posts_json = service.get_art_posts(expression=expression, pagination=pagination)
 
@@ -35,7 +38,7 @@ def art_post_view_by_pid(pid=None, expression=None, pagination=None):
 
 
 @art_post_route.route("/art-posts/new", methods=["POST"])
-@jwt_required()
+@jwt_required(locations=["headers"])
 @validate_request("ArtPostSchema", exclude=["user"])
 def art_post_create(art_post=None):
 
@@ -51,7 +54,7 @@ def art_post_create(art_post=None):
 
 
 @art_post_route.route("/art-posts", methods=["PUT"])
-@jwt_required()
+@jwt_required(locations=["headers"])
 @validate_request("ArtPostSchema", exclude=["arts"])
 def art_post_upadte(art_post=None):
 

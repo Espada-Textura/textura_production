@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useOutSideClose } from "@/hooks/useModalClose";
+import { useOutSideClose } from "@/hooks/modal";
 import { useKeyAction } from "@/hooks/useKeyAction";
 import { useUploadStore } from "@/zustand/uploadStore";
 

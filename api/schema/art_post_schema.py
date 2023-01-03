@@ -15,13 +15,14 @@ class ArtPostSchema(Mixin):
     pid = fields.Str()
     title = fields.Str(required=False)
     description = fields.Str(required=False, allow_none=True)
-    status = fields.Str(
-        required=False,
-        dump_only=True,
-        validate=validate.OneOf(["processing", "completed", "failed"]),
-    )
+    # status = fields.Str(
+    #     required=False,
+    #     dump_only=True,
+    #     validate=validate.OneOf(["processing", "completed", "failed"]),
+    # )
     view = fields.Int(required=False, dump_only=True)
     like = fields.Int(required=False, dump_only=True)
+    # is_publishing = fields.Bool(required=False, dump_only=True)
 
     user = fields.Nested(UserSchema, dump_only=True)
     arts = fields.Nested(ArtSchema, many=True)

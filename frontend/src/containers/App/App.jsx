@@ -19,6 +19,7 @@ const RecoveryPassword = React.lazy(() =>
 const NotFound = React.lazy(() => import("@containers/NotFound"));
 const Profile = React.lazy(() => import("@containers/Profile"));
 const Terms = React.lazy(() => import("@containers/Terms"));
+const PrivacyPolicy = React.lazy(() => import("@containers/PrivacyPolicy"));
 const FullView = React.lazy(() => import("@containers/FullView"));
 const Challenge = React.lazy(() => import("@containers/Challenge"));
 const Forum = React.lazy(() => import("@containers/Forum"));
@@ -97,6 +98,14 @@ const App = () => {
             element={
               <Suspense fallback={<Loading />}>
                 <Terms />
+              </Suspense>
+            }
+          />
+          <Route
+            path="privacy-policy"
+            element={
+              <Suspense fallback={<Loading />}>
+                <PrivacyPolicy />
               </Suspense>
             }
           />
