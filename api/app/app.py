@@ -1,7 +1,9 @@
-from flask import Flask
+from flask import Flask, url_for, send_from_directory
 import datetime
 
 from flask_jwt_extended import JWTManager
+
+from .config import DevConfigs
 
 app = Flask(
     __name__,
@@ -10,9 +12,11 @@ app = Flask(
     root_path="/api",
 )
 
+app.config["JWT_TOKEN_LOCATION"] = ["headers", "json", "query_string"]
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(seconds=3600)
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = datetime.timedelta(seconds=3600)
-
+app.config["JWT_COOKIE_SECURE"] = False
+app.config["JWT_SECRET_KEY"] = DevConfigs.JWT_SECRET_KEY
 jwt = JWTManager(app)
 
 

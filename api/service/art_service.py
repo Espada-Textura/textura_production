@@ -120,12 +120,16 @@ class ArtService:
 
                 img_size = img.size
 
-                # img = img.rotate(90, expand=True)
+                art.width = img_size[0]
+                art.height = img_size[1]
 
-                img.save(get_art_path(f"{art.aid}.{img_type}"))
+                img.save(
+                    get_art_path(f"{art.aid}.{img_type}"),
+                    optimize=True,
+                )
 
                 img.resize(
-                    (round(img_size[0] / 2), round(img_size[1] / 2)), Image.ANTIALIAS
+                    (round(img_size[0] / 3), round(img_size[1] / 3)), Image.ANTIALIAS
                 )
 
                 img.save(
