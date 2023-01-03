@@ -1,57 +1,53 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 import axios from "@/axios";
 
-const fetchGallery = () => {
-  return axios.get("art-posts");
+const fetchGallery = (page) => {
+  return axios.get(`art-posts?per_page=30&page=${page}`);
 };
 
 const uploadArts = (data) => {
   return axios.post("art-posts/new", data);
 };
 
+/**
+ * The function for fetching data infinitely using react-query's useInfiniteQuery hooks
+ *
+ */
 export const useFetchGallery = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["gallery"],
-    queryFn: fetchGallery,
+    queryFn: ({ pageParam = 1 }) => fetchGallery(pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      const maxPages = lastPage.data.totalPages;
+      const nextPage = allPages.length + 1;
+      return nextPage <= maxPages ? nextPage : undefined;
+    },
+    refetchOnReconnect: true,
     refetchOnWindowFocus: false,
-    refetchIntervalInBackground: 150000,
+    staleTime: 150000,
   });
 };
 
-//upload method for uploading images
+/**
+ * Function for uploading the posts using useMutation hooks from react-query
+ */
 export const useUpload = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["art-upload"],
     mutationFn: (data) => uploadArts(data),
-    onMutate: async (newData) => {
-      //cancel out the query before posting a new one
-      await queryClient.cancelQueries(["gallery"]);
-
-      //get the old data from the cache to prepare for errors
-      const previousData = queryClient.getQueryData(["gallery"]);
-
-      //optimistically updates the new value to the gallery
-      // queryClient.setQueryData(["gallery"], (old) => {
-      //   console.log(old, newData);
-
-      //   return {
-      //     ...old,
-      //     data: { ...old.data, artPosts: [...old.data.artPosts, newData] },
-      //   };
-      // });
-
-      //return the prepared context for errors
-      return { previousData };
-    },
-
-    //if error occured, use the context from above to rollback the query
-    onError: (_err, _newData, context) => {
-      queryClient.setQueryData(["gallery"], context.previousData);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["gallery"] });
+      queryClient.refetchQueries({ queryKey: ["gallery"] });
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["gallery"] });
+      queryClient.refetchQueries({ queryKey: ["gallery"] });
     },
   });
 };
@@ -67,6 +63,9 @@ export const login = () => {
   });
 };
 
+/**
+ * export function for naming convention
+ */
 export const art = {
   useFetchGallery: useFetchGallery,
   useUpload: useUpload,

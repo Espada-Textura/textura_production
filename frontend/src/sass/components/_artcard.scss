@@ -13,9 +13,10 @@ div.artcard--container {
 
   div.artcard--blurhash {
     position: absolute !important;
-
+    @include mixin.border-radius(0.5rem);
     canvas {
       position: relative !important;
+      @include mixin.border-radius(0.5rem);
     }
   }
 }

@@ -35,16 +35,11 @@ const Dropzone = () => {
   }
 
   const {
-    data,
-    error,
+    mutate: upload,
     isError: isUploadError,
-    isIdle,
     isLoading: isUploadLoading,
-    isPaused,
     isSuccess: isUploadSuccess,
-    mutate,
     reset: resetUpload,
-    status,
   } = art.useUpload();
 
   const [images, imageLength, addDraftImages, resetDraftImages, setUploadOpen] =
@@ -157,10 +152,12 @@ const Dropzone = () => {
       `You can check the gallery to view your artworks.`
     );
 
-    form.reset();
-    resetUpload();
-    setUploadOpen(false);
-    resetDraftImages();
+    (async () => {
+      form.reset();
+      await resetUpload();
+      await resetDraftImages();
+      await setUploadOpen(false);
+    })();
   }
 
   if (isUploadError) {
@@ -177,7 +174,7 @@ const Dropzone = () => {
           "upload--container sm:max-h-[80vh] max-sm:pt-0  max-sm:my-0 max-sm:rounded-none max-sm:w-full max-sm:bg-primary-100 max-sm:h-screen w-[90%] sm:max-w-[40rem] font-normal focus-visible:outline-none focus:outline-none"
         }
         onSubmit={form.handleSubmit((data) => {
-          mutate(useHandleSubmit(data, images));
+          upload(useHandleSubmit(data, images));
         })}
       >
         <div className="fixed sm:fixed sm:w-[90%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-xl">

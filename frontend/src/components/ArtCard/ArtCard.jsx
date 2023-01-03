@@ -22,6 +22,7 @@ const ArtCard = ({ art, title }) => {
           className={`rounded-md ` + isLoaded ? "visible" : "invisible"}
           loading="lazy"
           onLoad={() => setLoad(true)}
+          draggable={false}
         />
 
         {!isLoaded && (

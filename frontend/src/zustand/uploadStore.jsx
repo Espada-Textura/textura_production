@@ -3,6 +3,8 @@ import create from "zustand";
 export const useUploadStore = create((set) => ({
   isOpen: false,
   imageLength: 0,
+  title: "",
+  desc: [{ input: "" }],
   draftImages: [],
 
   setUploadOpen: (state) =>
@@ -47,4 +49,17 @@ export const useUploadStore = create((set) => ({
       imageLength: 0,
       draftImages: [],
     })),
+
+  setTitle: (title) =>
+    set((prevState) => ({
+      ...prevState,
+      title: title,
+    })),
+
+  setInputs: (inputs) => {
+    set((prevState) => ({
+      ...prevState,
+      desc: [...prevState.desc, ...inputs],
+    }));
+  },
 }));
