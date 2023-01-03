@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 export const useBodyScrollLock = (state) => {
-  const [isLocked, _setLock] = useState(body.style.overflowY === "hidden");
   const body = document.getElementsByTagName("body")[0];
   const header = document.getElementsByClassName("topbar--section")[0];
+  const [isLocked, _setLock] = useState(body.style.overflowY === "hidden");
 
   useEffect(() => {
     if (state) {

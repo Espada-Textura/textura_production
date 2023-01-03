@@ -6,7 +6,7 @@ import {
 import axios from "@/axios";
 
 const fetchGallery = (page) => {
-  return axios.get(`art-posts?per_page=30&page=${page}`);
+  return axios.get(`art-posts?page=${page}`);
 };
 
 const uploadArts = (data) => {
@@ -43,11 +43,9 @@ export const useUpload = () => {
     mutationFn: (data) => uploadArts(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["gallery"] });
-      queryClient.refetchQueries({ queryKey: ["gallery"] });
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["gallery"] });
-      queryClient.refetchQueries({ queryKey: ["gallery"] });
     },
   });
 };
