@@ -1,5 +1,7 @@
 from flask import Blueprint, make_response, abort, request
 from flask_jwt_extended import jwt_required
+from flask_cors import cross_origin
+
 
 from schema import ArtSchema, NestedArtSchema
 from dao import ArtDao
@@ -10,6 +12,7 @@ art_post_route = Blueprint("art_post_route", __name__, url_prefix="/api")
 
 
 @art_post_route.route("/art-posts", methods=["GET"])
+@cross_origin()
 @validate_params("ArtSchema")
 def art_post_view(expression=None, pagination=None):
 

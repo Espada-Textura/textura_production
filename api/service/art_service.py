@@ -157,8 +157,12 @@ class ArtService:
 
         preimage = blurhash.encode(
             get_art_path(path),
-            x_components=5,
-            y_components=4,
+            x_components=round(4 * (art.get("width") / art.get("height")))
+            if (art.get("width") / art.get("height")) > 1
+            else 4,
+            y_components=round(4 * (art.get("height") / art.get("width")))
+            if (art.get("width") / art.get("height")) <= 1
+            else 4,
         )
 
         with ArtDao() as dao:
