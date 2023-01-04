@@ -22,13 +22,13 @@ export const useFetchGallery = () => {
     queryKey: ["gallery"],
     queryFn: ({ pageParam = 1 }) => fetchGallery(pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      const maxPages = lastPage.data.totalPages;
       const nextPage = allPages.length + 1;
-      return nextPage <= maxPages ? nextPage : undefined;
+      return nextPage <= lastPage.data.totalPages ? nextPage : undefined;
     },
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
     staleTime: 150000,
+    retry: 2,
   });
 };
 

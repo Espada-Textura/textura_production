@@ -42,23 +42,32 @@ const Dropzone = () => {
     reset: resetUpload,
   } = art.useUpload();
 
-  const [images, imageLength, addDraftImages, resetDraftImages, setUploadOpen] =
-    useUploadStore(
-      (state) => [
-        state.draftImages,
-        state.imageLength,
-        state.addDraftImages,
-        state.resetDraftImages,
-        state.setUploadOpen,
-      ],
-      shallow
-    );
+  const [
+    images,
+    title,
+    desc,
+    imageLength,
+    addDraftImages,
+    resetDraftImages,
+    setUploadOpen,
+  ] = useUploadStore(
+    (state) => [
+      state.draftImages,
+      state.title,
+      state.desc,
+      state.imageLength,
+      state.addDraftImages,
+      state.resetDraftImages,
+      state.setUploadOpen,
+    ],
+    shallow
+  );
 
   const form = useForm(
     {
       defaultValues: {
-        title: "",
-        desc: [{ input: "" }],
+        title: title,
+        desc: [...desc],
       },
     },
     { shouldFocusError: true }
@@ -178,7 +187,7 @@ const Dropzone = () => {
         })}
       >
         <div className="fixed sm:fixed sm:w-[90%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-xl">
-          <Header trigger={form.trigger} formState={form.formState} />
+          <Header form={form} />
         </div>
 
         {images.length > 0 && (
@@ -229,7 +238,10 @@ const Dropzone = () => {
                   <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
                 </div>
               ) : (
-                <button className="relative self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-xl font-bold">
+                <button
+                  type="button"
+                  className="relative self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-xl font-bold"
+                >
                   Add More
                 </button>
               )}

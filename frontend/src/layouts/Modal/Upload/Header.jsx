@@ -4,18 +4,24 @@ import { useUploadStore } from "@/zustand/uploadStore";
 
 import BackWarning from "./BackWarning";
 
-const Header = () => {
-  const [images, setUploadOpen, resetDraftImages] = useUploadStore((state) => [
-    state.draftImages,
-    state.setUploadOpen,
-    state.resetDraftImages,
-  ]);
+const Header = ({ form }) => {
+  const [images, title, desc, setUploadOpen, resetUpload] = useUploadStore(
+    (state) => [
+      state.draftImages,
+      state.title,
+      state.desc,
+      state.setUploadOpen,
+      state.resetUpload,
+      state.setTitle,
+      state.setDecs,
+    ]
+  );
 
   const [isWarningOpen, setWarning] = useState(false);
 
   const closeModal = () => {
     setUploadOpen(false);
-    resetDraftImages();
+    resetUpload();
   };
 
   const handleClose = () => {
@@ -45,7 +51,9 @@ const Header = () => {
           </button>
         )}
       </div>
-      {isWarningOpen && <BackWarning setWarning={setWarning} />}
+      {isWarningOpen && (
+        <BackWarning setWarning={setWarning} formData={form.getValues()} />
+      )}
     </>
   );
 };

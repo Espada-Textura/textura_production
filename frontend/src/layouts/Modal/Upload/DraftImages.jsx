@@ -11,6 +11,7 @@ const DraftImages = ({ form, fieldArray }) => {
   const [images, deleteDraftImage, changeDraftImage] = useUploadStore(
     (state) => [
       state.draftImages,
+
       state.deleteDraftImage,
       state.changeDraftImage,
     ]
