@@ -27,7 +27,6 @@ const Gallery = () => {
       const { scrollHeight, scrollTop, clientHeight } =
         event.target.scrollingElement;
 
-      console.log(fetch, scrollHeight - scrollTop <= clientHeight * 1.5);
       if (!fetch && scrollHeight - scrollTop <= clientHeight * 1.5) {
         fetch = true;
         if (hasNextPage) await fetchNextPage();
@@ -46,8 +45,6 @@ const Gallery = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
-  console.log(data);
 
   return (
     <>

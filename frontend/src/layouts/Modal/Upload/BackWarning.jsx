@@ -12,7 +12,6 @@ const BackWarning = ({ setWarning, formData }) => {
       state.desc,
     ]);
 
-  console.log(title, desc);
   const handleCloseWarning = () => {
     setWarning(false);
   };
