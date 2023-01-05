@@ -29,6 +29,8 @@ class ArtModel(Based, BaseModel):
     is_publishing = Column("is_publishing", Boolean(), default=True)
     width = Column("width", Integer(), default=0)
     height = Column("height", Integer(), default=0)
+    twidth = Column("twidth", Integer(), default=0)
+    theight = Column("theight", Integer(), default=0)
 
     art_post_id = Column(Integer, ForeignKey("art_post.id"), index=True, nullable=False)
 

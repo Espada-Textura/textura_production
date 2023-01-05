@@ -12,6 +12,17 @@ from schema import UserSchema
 
 
 class AuthService:
+    def is_email_exist(user=None):
+
+        with UserDao() as dao:
+
+            user_model = dao.get_by_email(user)
+
+            if user_model:
+                abort(200)
+
+        return True
+
     def login(self, user=None):
         """
         Login

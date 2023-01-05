@@ -30,6 +30,24 @@ from service import AuthService
 auth_route = Blueprint("auth_route", __name__, url_prefix="/api")
 
 
+@auth_route.route("/validate-email", methods=["POST"])
+@cross_origin()
+@validate_request(
+    "UserAuthSchema", partial=True, only=("email", "password", "username")
+)
+def validate_email(user_auth):
+
+    service = AuthService()
+
+    resp = None
+
+    user_json = service.is_email_exist(user=user_auth)
+
+    resp = make_response(200)
+
+    return resp
+
+
 @auth_route.route("/login", methods=["POST"])
 @cross_origin()
 @validate_request(

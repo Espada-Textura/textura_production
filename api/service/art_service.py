@@ -126,17 +126,16 @@ class ArtService:
                 img_type = base64_image.get("mime").split("/")[1]
 
                 img_size = img.size
-
                 art.width = img_size[0]
                 art.height = img_size[1]
 
                 img.save(get_art_path(f"{art.aid}.{img_type}"))
 
-                # img = img.resize(
-                #     (round(img_size[0] / 2), round(img_size[1] / 2)), Image.LANCZOS
-                # )
-
                 img.thumbnail(ArtServiceConfigs.APT_MAX_SIZE, Image.LANCZOS)
+
+                img_size = img.size
+                art.twidth = img_size[0]
+                art.theight = img_size[1]
 
                 img.save(
                     get_art_path(f"{art.aid}_thumbnail.{img_type}"),
@@ -162,12 +161,8 @@ class ArtService:
 
         preimage = blurhash.encode(
             get_art_path(path),
-            x_components=round(4 * (art.get("width") / art.get("height")))
-            if (art.get("width") / art.get("height")) > 1
-            else 4,
-            y_components=round(4 * (art.get("height") / art.get("width")))
-            if (art.get("width") / art.get("height")) <= 1
-            else 4,
+            x_components=ArtServiceConfigs.BH_X_COMPONENT,
+            y_components=ArtServiceConfigs.BH_Y_COMPONENT,
         )
 
         with ArtDao() as dao:
