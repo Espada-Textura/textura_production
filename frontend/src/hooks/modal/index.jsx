@@ -1,1 +1,0 @@
-export { useOutSideClose } from "./useModalClose";

@@ -1,0 +1,129 @@
+@use "../abstract/" as abs;
+
+.topbar--section {
+  z-index: 1100;
+  position: fixed;
+  width: inherit;
+  background-color: abs.$primary-color-90;
+  height: 4rem;
+  border-bottom: 1.5px solid abs.$secondary-color-10;
+  @include abs.backdrop-blur(5rem);
+
+  .topbar--top-section {
+    height: inherit;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1024;
+    padding: 0.75rem 1.5rem;
+
+    .topbar--profile-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tr-secondary);
+      cursor: pointer;
+    }
+
+    .topbar--navigation-bar {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+
+      height: 2.75rem;
+      padding: 0 0.75rem;
+    }
+
+    .topbar--nav-link {
+      text-align: center;
+
+      font-weight: 600;
+      color: abs.$secondary-color-80;
+
+      @include abs.border-radius(0.75rem);
+
+      padding: 0 1rem;
+      height: 2.75rem;
+
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background-color: rgba(abs.$secondary-color, 0.075);
+      }
+
+      svg {
+        @include abs.border-radius(1rem);
+        padding: 0.25rem;
+      }
+    }
+
+    a.active.topbar--nav-link {
+      position: relative;
+      color: var(--tr-accent);
+      font-weight: bold;
+
+      svg {
+        background-color: abs.$accent-color-10;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 50%;
+        height: 2px;
+        bottom: -25%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        background-color: var(--tr-accent);
+      }
+
+      &:hover {
+        background-color: abs.$accent-color-10;
+      }
+    }
+  }
+
+  .topbar--bottom-section {
+    display: flex;
+    overflow-x: scroll;
+    justify-content: center;
+    gap: 2rem;
+
+    padding: 0.5rem;
+    background-color: var(--primary);
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      color: abs.$secondary-color-80;
+      padding: 0.25rem 1rem;
+      @include abs.border-radius(0.5rem);
+    }
+
+    & > a.active {
+      background-color: abs.$accent-color-20;
+      color: var(--tr-accent);
+      font-weight: 600;
+    }
+  }
+}
+li:has(a) {
+  &:focus,
+  &:active {
+    outline: none;
+    border: none;
+  }
+}
+
+a:focus-visible {
+  background-color: abs.$secondary-color-10;
+  outline: none;
+}
