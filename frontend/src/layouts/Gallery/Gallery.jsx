@@ -56,6 +56,8 @@ const Gallery = () => {
               title={info.title}
               art={info.arts[0]}
               like={info.like}
+              view={info.view}
+              artCount={info.arts.length}
               key={info.arts[0].id}
             />
           ))
