@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # thirt-party imports
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from passlib.hash import sha256_crypt
 from json import loads, dumps, JSONDecodeError
@@ -26,6 +26,11 @@ class ArtModel(Based, BaseModel):
     index = Column("index", Integer(), default=0, index=True)
     view = Column("view", Integer(), default=0)
     like = Column("like", Integer(), default=0)
+    is_publishing = Column("is_publishing", Boolean(), default=True)
+    width = Column("width", Integer(), default=0)
+    height = Column("height", Integer(), default=0)
+    twidth = Column("twidth", Integer(), default=0)
+    theight = Column("theight", Integer(), default=0)
 
     art_post_id = Column(Integer, ForeignKey("art_post.id"), index=True, nullable=False)
 

@@ -63,7 +63,7 @@ def art_upadte(art=None):
 
 
 @art_route.route("/arts/<aid>", methods=["DELETE"])
-@jwt_required()
+@jwt_required(locations=["headers"])
 def art_delete(aid=None):
 
     service = ArtService()

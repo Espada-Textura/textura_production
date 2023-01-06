@@ -21,6 +21,12 @@ class ArtSchema(Mixin):
     )
     preimage = fields.Str(required=False, dump_only=True)
     index = fields.Int(required=False)
+    width = fields.Int(required=False, dump_only=True)
+    height = fields.Int(required=False, dump_only=True)
+    twidth = fields.Int(required=False, dump_only=True)
+    theight = fields.Int(required=False, dump_only=True)
+    # is_publishing = fields.Bool(required=False, dump_only=True)
+
     image = fields.Nested(ImageJsonSchema, load_only=True, required=True)
 
     @post_dump

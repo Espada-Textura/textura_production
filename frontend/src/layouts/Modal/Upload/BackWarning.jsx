@@ -1,32 +1,39 @@
 import { Portal } from "react-portal";
 import { useUploadStore } from "@/zustand/uploadStore.jsx";
 
-const BackWarning = ({ setWarning }) => {
-  const [setUploadOpen, resetDraftImages] = useUploadStore((state) => [
-    state.setUploadOpen,
-    state.resetDraftImages,
-  ]);
+const BackWarning = ({ setWarning, formData }) => {
+  const [setUploadOpen, resetUpload, setTitle, setDesc, title, desc] =
+    useUploadStore((state) => [
+      state.setUploadOpen,
+      state.resetUpload,
+      state.setTitle,
+      state.setDesc,
+      state.title,
+      state.desc,
+    ]);
 
-  const handleCancel = () => {
+  const handleCloseWarning = () => {
     setWarning(false);
   };
 
   const handleCloseWithoutSave = () => {
-    resetDraftImages();
-    handleCancel();
+    resetUpload();
     setUploadOpen(false);
+    handleCloseWarning();
   };
 
   const handleCloseWithSave = () => {
-    handleCancel();
+    setTitle(formData.title);
+    setDesc(formData.desc);
     setUploadOpen(false);
+    handleCloseWarning();
   };
 
   return (
     <Portal>
       <div
         className="upload--pop-portal w-full h-screen min-h-screen"
-        onClick={handleCancel}
+        onClick={handleCloseWarning}
       />
       <div className=" max-w-[20rem] max-sm:w-[80%] fixed text-secondary-100 bg-primary-100 rounded-xl flex flex-col gap-4 ">
         <div className="flex flex-col gap-2 items-center p-8 pb-2">

@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # thirt-party imports
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from passlib.hash import sha256_crypt
 from json import loads, dumps, JSONDecodeError
@@ -24,6 +24,7 @@ class ArtPostModel(Based, BaseModel):
     status = Column("status", String(), default="processing")
     view = Column("view", Integer(), default=0)
     like = Column("like", Integer(), default=0)
+    is_publishing = Column("is_publishing", Boolean(), default=True)
 
     user_id = Column(Integer, ForeignKey("user.id"), index=True, nullable=False)
 

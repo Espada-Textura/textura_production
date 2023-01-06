@@ -3,6 +3,8 @@ import create from "zustand";
 export const useUploadStore = create((set) => ({
   isOpen: false,
   imageLength: 0,
+  title: "",
+  desc: [],
   draftImages: [],
 
   setUploadOpen: (state) =>
@@ -15,8 +17,7 @@ export const useUploadStore = create((set) => ({
       draftImages: (() => {
         prevState.draftImages[index] === undefined
           ? (prevState.draftImages[index] = image)
-          : (prevState.draftImages[index + prevState.draftImages.length] =
-              image);
+          : (prevState.draftImages[prevState.draftImages.length] = image);
 
         return prevState.draftImages;
       })(),
@@ -27,8 +28,11 @@ export const useUploadStore = create((set) => ({
     set((prevState) => ({
       ...prevState,
       imageLength: prevState.imageLength - 1,
+      desc: prevState.desc.filter(
+        (_element, elementIndex) => index !== elementIndex
+      ),
       draftImages: prevState.draftImages.filter(
-        (element, elementIndex) => index !== elementIndex
+        (_element, elementIndex) => index !== elementIndex
       ),
     }));
   },
@@ -46,6 +50,32 @@ export const useUploadStore = create((set) => ({
     set((prevState) => ({
       ...prevState,
       imageLength: 0,
+      draftImages: [],
+    })),
+
+  setTitle: (title) =>
+    set((prevState) => ({
+      ...prevState,
+      title: title,
+    })),
+
+  setDesc: (inputs) =>
+    set((prevState) => {
+      if (prevState.desc.length > prevState.draftImages.length) {
+        prevState.desc.shift();
+        return { ...prevState, desc: [...prevState.desc, ...inputs] };
+      }
+
+      return { ...prevState, desc: [...prevState.desc, ...inputs] };
+    }),
+
+  resetUpload: () =>
+    set((prevState) => ({
+      ...prevState,
+
+      imageLength: 0,
+      title: "",
+      desc: [{ input: "" }],
       draftImages: [],
     })),
 }));

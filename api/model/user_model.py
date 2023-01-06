@@ -25,6 +25,7 @@ class UserModel(Based, BaseModel):
     type = Column("type", String(16), nullable=False)
     first_name = Column(String(64))
     last_name = Column(String(64))
+    avatar = Column(String())
 
     metas = relationship(
         "UserMetaModel",

@@ -43,7 +43,7 @@ div:has(.upload--container) {
       /* width */
       &::-webkit-scrollbar {
         width: 0.75rem;
-        background-color: var(--tr-primary);
+        background-color: transparent;
       }
 
       /* Track */
@@ -58,10 +58,14 @@ div:has(.upload--container) {
         background-clip: padding-box;
         @include abs.border-radius(1rem);
         display: none;
+
+        &:hover {
+          background-color: abs.$secondary-color-40;
+        }
       }
     }
 
-    input[name="title"] {
+    textarea[name="title"] {
       color: abs.$secondary-color;
       background-color: transparent;
       outline: none;
@@ -72,7 +76,7 @@ div:has(.upload--container) {
       font-weight: 600;
 
       &::placeholder {
-        color: abs.$secondary-color;
+        color: abs.$secondary-color-80;
       }
     }
 
