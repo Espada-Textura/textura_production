@@ -4,11 +4,14 @@ import {
   HiOutlineZoomOut,
   HiOutlineArrowsExpand,
 } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
-    <header className="flex justify-between items-center z-50 h-16 absolute top-0 left-0 w-full px-10">
-      <button className="flex pl-3 ">
+    <header className="flex justify-between items-center z-50 h-16 absolute top-0 left-0 w-full sm:px-10 p-4">
+      <button className="flex" onClick={() => navigate("/home")}>
         <HiOutlineChevronLeft className="w-5 h-5" />
         <span>Back</span>
       </button>

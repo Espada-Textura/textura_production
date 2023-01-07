@@ -46,7 +46,7 @@ import { Artists } from "@containers/Discover/Artists";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route errorElement={<NotFound/>}>
       <Route path="/" index element={<Navigate to={"home"} />} />
 
       <Route
@@ -185,7 +185,7 @@ const App = () => {
           content="Textura is a place, likely a community, for our Cambodian Artists to share their arts, earn recognition, express feeling and emotion through art, and more importantly is to improve the artist community in Cambodia. Textura mainly focuses on Digital Art and Digital painting. We are developing and growing bigger and will add more than just Digital Arts."
         />
       </Helmet>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </>
   );
 };

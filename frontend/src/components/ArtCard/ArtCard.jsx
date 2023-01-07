@@ -17,7 +17,7 @@ const ArtCard = ({ data }) => {
 
   const navigate = useNavigate();
 
-  const art = data.arts[0];
+  const art = data?.arts[0];
 
   if (art.rpath !== "" && art.preimage !== "")
     return (
@@ -25,13 +25,13 @@ const ArtCard = ({ data }) => {
         className={`artcard--container relative rounded-md mb-6 sm:mb-6 cursor-pointer`}
         onClick={(event) => {
           if (overLayRef.find((element) => element.current === event.target))
-            navigate(`/post/${data.pid}`);
+            navigate(`/post/${data?.pid}`);
         }}
       >
         <img
           ref={imgRef}
           src={art.tpath}
-          alt={data.title}
+          alt={data?.title}
           className={`rounded-md ${
             isLoaded ? "inline-block relative" : "hidden absolute"
           }`}
@@ -52,17 +52,17 @@ const ArtCard = ({ data }) => {
           >
             <div className="flex gap-4 justify-items-start items-center">
               <img
-                src={data.user.avatar}
-                alt={data.user.lastName}
+                src={data?.user.avatar}
+                alt={data?.user.lastName}
                 className="w-8 h-8 rounded-full"
               />
-              <span className=" text-base">{`${data.user.firstName} ${data.user.lastName}`}</span>
+              <span className=" text-base">{`${data?.user.firstName} ${data?.user.lastName}`}</span>
             </div>
 
             <div className="w-full flex gap-4">
               <div className="w-full flex flex-col gap-2 overflow-clip">
                 <span className="uppercase text-xl font-semibold">
-                  {data.title}
+                  {data?.title}
                 </span>
                 <p className="overflow-hidden text-sm font-light max-h-10 h-full text-ellipsis text-justify">
                   {art.desc
@@ -72,7 +72,7 @@ const ArtCard = ({ data }) => {
                 <div className="flex gap-8 mt-1">
                   <div className="flex gap-3">
                     <HiOutlineEye className="w-5 h-5" />
-                    <span>{data.view}</span>
+                    <span>{data?.view}</span>
                   </div>
                   <div className="flex gap-3">
                     <HiOutlineChatAlt2 className="w-5 h-5" />
@@ -80,7 +80,7 @@ const ArtCard = ({ data }) => {
                   </div>
                   <div className="flex gap-3">
                     <HiOutlineHeart className="w-5 h-5" />
-                    <span>{data.like}</span>
+                    <span>{data?.like}</span>
                   </div>
                 </div>
               </div>
@@ -89,9 +89,11 @@ const ArtCard = ({ data }) => {
                 onClick={() => setLike(!likeByUser)}
               >
                 {likeByUser ? (
-                  <HiHeart className="w-7 h-7 text-primary-100 m-4" />
+                  <HiHeart className="w-7 h-7 text-accent-100 m-4" />
                 ) : (
-                  <HiOutlineHeart className={`w-7 h-7 m-4`} />
+                  <HiOutlineHeart
+                    className={`w-7 h-7 m-4 hover:text-accent-100`}
+                  />
                 )}
               </button>
             </div>

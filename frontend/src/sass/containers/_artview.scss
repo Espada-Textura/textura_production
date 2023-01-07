@@ -2,7 +2,7 @@
 
 .artview--art-container {
   img {
-    max-height: calc(100vh - var(--tr-header-height) - 2rem);
-    filter: drop-shadow(0px 0px 10px rgba(26, 33, 47, 0.25));
+    max-height: calc(100vh - var(--tr-header-height) - 4rem);
+    filter: drop-shadow(0px 0px 10px rgba(26, 33, 47, 0.325));
   }
 }

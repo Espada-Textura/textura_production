@@ -1,6 +1,6 @@
 const Art = ({ art }) => {
   return (
-    <div className="artview--art-container top-16 relative w-full overflow-y-scroll h-full  p-4 bg-secondary-10">
+    <div className="artview--art-container mt-16 relative w-full overflow-y-auto py-8 px-10 bg-secondary-10">
       {art?.arts?.map((image) => (
         <img
           key={image.aid}
