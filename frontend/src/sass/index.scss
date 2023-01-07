@@ -92,22 +92,24 @@ textarea {
 
 light {
   $primary-color: #f9fbfc;
-  $accent_color: #f4694d;
-  $secondary_color: #1a212f;
+  $secondary-color: #1a212f;
+  $accent-color: #f4694d;
 }
 
 dark {
   $secondary-color: #f9fbfc;
+  $secondary-color-2: #e9eff2;
   $accent_color: #f4694d;
   $primary_color: #1a212f;
 }
 
 :root {
-  --tr-accent: #{color.$accent_color};
+  --tr-accent: #{color.$accent-color};
   --tr-primary: #{color.$primary-color};
-  --tr-secondary: #{color.$secondary_color};
-  --tr-warning: #{color.$warning_color};
-  --tr-success: #{color.$success_color};
-  --tr-error: #{color.$error_color};
-  --tr-info: #{color.$info_color};
+  --tr-secondary: #{color.$secondary-color};
+  --tr-warning: #{color.$warning-color};
+  --tr-success: #{color.$success-color};
+  --tr-error: #{color.$error-color};
+  --tr-info: #{color.$info-color};
+  --tr-header-height: 4rem;
 }

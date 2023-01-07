@@ -90,7 +90,7 @@ const DraftImages = ({ form, fieldArray }) => {
 
       {images.map((image, index) => {
         return (
-          <section className={" rounded-lg"} key={index}>
+          <section className={"rounded-lg pb-4"} key={index}>
             <TextareaAutoSize
               {...register(`desc.${index}.input`)}
               className={

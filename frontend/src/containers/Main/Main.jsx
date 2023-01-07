@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 const Main = () => {
   return (
     <>
-      <Topbar onContextMenu={(e) => false} />
+      <Topbar onContextMenu={(e) => e.preventDefault()} />
       <Outlet />
       <ToastContainer
         containerId={"notify"}

@@ -2,11 +2,16 @@ import {
   useMutation,
   useQueryClient,
   useInfiniteQuery,
+  useQuery,
 } from "@tanstack/react-query";
 import axios from "@/axios";
 
 const fetchGallery = (page) => {
   return axios.get(`art-posts?page=${page}&perPage=30`);
+};
+
+const fetchPost = (pid) => {
+  return axios.get(`art-posts/${pid}`);
 };
 
 const uploadArts = (data) => {
@@ -28,7 +33,16 @@ export const useFetchGallery = () => {
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
     staleTime: 150000,
-    retry: 2,
+  });
+};
+
+export const useFetchPost = (pid) => {
+  return useQuery({
+    queryKey: ["post", pid],
+    queryFn: ({ queryKey }) => fetchPost(queryKey[1]),
+    refetchOnReconnect: true,
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
   });
 };
 
@@ -66,6 +80,7 @@ export const login = () => {
  */
 export const art = {
   useFetchGallery: useFetchGallery,
+  useFetchPost: useFetchPost,
   useUpload: useUpload,
   login: login,
 };

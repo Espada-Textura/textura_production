@@ -192,7 +192,7 @@ const Dropzone = () => {
 
         {images.length > 0 && (
           <div
-            className={`upload--image-container mt-14 pb-8 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll ${
+            className={`upload--image-container mt-14 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll ${
               imageLength === limitFiles ? "rounded-b-xl" : ""
             }`}
           >
@@ -203,7 +203,7 @@ const Dropzone = () => {
         {imageLength < limitFiles && (
           <div
             className={
-              "bg-primary-100 px-8 flex w-full justify-center border-t-[1px] border-solid border-t-secondary-20 " +
+              "bg-primary-100 px-8 flex w-full justify-center " +
               (images.length > 0
                 ? "max-sm:bottom-0 max-sm:absolute rounded-b-xl"
                 : "h-full sm:rounded-xl")
@@ -240,7 +240,7 @@ const Dropzone = () => {
               ) : (
                 <button
                   type="button"
-                  className="relative self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-xl font-bold"
+                  className="relative self-center text-center w-full button-medium  my-1 text-secondary-100 rounded-xl font-bold shadow-none"
                 >
                   Add More
                 </button>

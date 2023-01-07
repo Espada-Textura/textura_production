@@ -8,14 +8,10 @@ const Gallery = () => {
   const {
     isLoading,
     isFetching,
-    isFetched,
     isFetchingNextPage,
     isError,
-    isSuccess,
-    status,
     error,
     data,
-    result,
     hasNextPage,
     fetchNextPage,
   } = art.useFetchGallery();
@@ -51,15 +47,7 @@ const Gallery = () => {
       <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6`}>
         {data?.pages.map((page) =>
           page?.data?.artPosts.map((info) => (
-            <Art
-              artist={info.user}
-              title={info.title}
-              art={info.arts[0]}
-              like={info.like}
-              view={info.view}
-              artCount={info.arts.length}
-              key={info.arts[0].id}
-            />
+            <Art data={info} key={info.arts[0].id} />
           ))
         )}
       </div>

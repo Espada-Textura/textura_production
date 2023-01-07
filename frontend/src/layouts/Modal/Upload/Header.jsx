@@ -30,7 +30,7 @@ const Header = ({ form }) => {
 
   return (
     <>
-      <div className="flex bg-transparent justify-center items-center  border-b-[1px] border-b-secondary-20 border-solid min-h-[3.5rem] ">
+      <div className="flex bg-transparent justify-center items-center min-h-[3.5rem] ">
         <button
           type="button"
           className="h-full rounded-lg text-secondary-100 px-8 font-semibold absolute left-0 shadow-none"
