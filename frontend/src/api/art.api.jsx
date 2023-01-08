@@ -25,7 +25,7 @@ const uploadArts = (data) => {
 export const useFetchGallery = () => {
   return useInfiniteQuery({
     queryKey: ["gallery"],
-    queryFn: ({ pageParam = 1 }) => fetchGallery(pageParam),
+    queryFn: async ({ pageParam = 1 }) => await fetchGallery(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1;
       return nextPage <= lastPage.data.totalPages ? nextPage : undefined;
@@ -39,7 +39,7 @@ export const useFetchGallery = () => {
 export const useFetchPost = (pid) => {
   return useQuery({
     queryKey: ["post", pid],
-    queryFn: ({ queryKey }) => fetchPost(queryKey[1]),
+    queryFn: async ({ queryKey }) => await fetchPost(queryKey[1]),
     refetchOnReconnect: true,
     refetchOnWindowFocus: false,
     refetchInterval: false,
@@ -54,7 +54,7 @@ export const useUpload = () => {
 
   return useMutation({
     mutationKey: ["art-upload"],
-    mutationFn: (data) => uploadArts(data),
+    mutationFn: async (data) => await uploadArts(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["gallery"] });
     },

@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { useParams } from "react-router-dom";
-import { useBodyScrollLock } from "@/hooks";
 import { art } from "@/api";
 
 import Header from "./Header";
@@ -10,8 +9,6 @@ import Gallery from "@/layouts/Gallery";
 import Comments from "./Comments";
 
 const ArtView = () => {
-  // useBodyScrollLock(true, true);
-
   const param = useParams();
 
   const { data, isLoading } = art.useFetchPost(param.postId);
@@ -20,7 +17,7 @@ const ArtView = () => {
 
   return (
     <Fragment>
-      <section className="w-full h-screen flex max-lg:flex-col">
+      <section className="w-full h-full flex max-lg:flex-col">
         <section className="relative h-screen w-full">
           <Header />
           <Art art={artData} />

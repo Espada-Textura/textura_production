@@ -17,31 +17,15 @@ export const useTimeDifference = (time) => {
 
   const secondsDifference = Math.floor(difference / 1000);
 
-  console.log(
-    "difference = " +
-      yearDifference +
-      " years" +
-      monthsDifference +
-      " months" +
-      weeksDifference +
-      " weeks" +
-      daysDifference +
-      " day/s " +
-      hoursDifference +
-      " hour/s " +
-      minutesDifference +
-      " minute/s " +
-      secondsDifference +
-      " second/s "
-  );
-
   return {
-    yearDifference,
-    monthsDifference,
-    weeksDifference,
-    daysDifference,
-    hoursDifference,
-    minutesDifference,
-    secondsDifference,
+    all: {
+      yearDifference,
+      monthsDifference,
+      weeksDifference,
+      daysDifference,
+      hoursDifference,
+      minutesDifference,
+      secondsDifference,
+    },
   };
 };

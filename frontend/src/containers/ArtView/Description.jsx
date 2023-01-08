@@ -6,12 +6,33 @@ import {
   HiOutlineChatAlt2,
   HiOutlineShare,
 } from "react-icons/hi";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const Description = ({ art }) => {
   const [isShowMore, setShowMore] = useState(false);
+  const [isOverFlown, setOverFlow] = useState(false);
+  const descRef = useRef();
 
   const postedTime = useTimeDifference(art?.createdDate);
   // console.log(art?.createdDate + 1000);
+
+  useEffect(() => {
+    const resize = () => {
+      const height = descRef.current.scrollHeight;
+
+      // console.log(descRef.current.clientHeight);
+      setOverFlow(height > 109);
+
+      console.log(descRef.current.scrollHeight);
+    };
+
+    window.addEventListener("resize", resize);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
     <>
@@ -26,9 +47,7 @@ const Description = ({ art }) => {
             <span className="font-semibold self-start">
               {`${art?.user.firstName} ${art?.user.lastName}`}
             </span>
-            <span className=" text-secondary-90 self-start">
-              {art?.createdDate}
-            </span>
+            <span className=" text-secondary-90 self-start"></span>
           </div>
           <button type="button">
             <HiOutlineDotsVertical className="w-5 h-5" />
@@ -39,6 +58,7 @@ const Description = ({ art }) => {
       <article className="flex flex-col gap-2 ">
         <h2 className="font-semibold text-xl">{art?.title}</h2>
         <p
+          ref={descRef}
           className={`text-ellipsis text-justify text-secondary-90 ${
             isShowMore ? "" : "overflow-hidden max-h-[6.8rem]"
           }`}
@@ -47,17 +67,19 @@ const Description = ({ art }) => {
             ? art?.arts[0].desc
             : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam iste quidem pariatur tenetur officiis. Totam veniam voluptas tempore culpa, quos ut quia, blanditiis corrupti numquam cumque quo! Repellendus officia id et? Ullam nam ea assumenda nobis? Fugit placeat corrupti ipsa."}
         </p>
-        <button className="self-start">
-          <span
-            className="text-left font-bold"
-            onClick={() => setShowMore(!isShowMore)}
-          >
-            {isShowMore ? "Show Less" : "Show More"}
-          </span>
-        </button>
+        {isOverFlown && (
+          <button className="self-start">
+            <span
+              className="text-left font-bold"
+              onClick={() => setShowMore(!isShowMore)}
+            >
+              {isShowMore ? "Show Less" : "Show More"}
+            </span>
+          </button>
+        )}
       </article>
 
-      <section className="flex flex-col gap-2 text-secondary-90 ">
+      <section className="flex flex-col gap-2 text-secondary-100 ">
         <div className="flex justify-between">
           <span>0 Like</span>
           <span>{`${art?.view} view${art?.view > 0 ? "s" : ""}`}</span>
