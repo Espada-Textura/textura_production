@@ -9,15 +9,9 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
+
 const SignUpForm = () => {
-  const [signUpFormData, setSignUpFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
-
-  console.log(signUpFormData);
-
   function handleChange(event) {
     setSignUpFormData((prevSignUpFormData) => {
       const { name, value } = event.target;
@@ -28,9 +22,23 @@ const SignUpForm = () => {
     });
   }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const trySignUp = (signUpFormData) => {
+    console.log(signUpFormData);
+  };
+
   return (
     <div className="signUp--form p-14 rounded-l-2xl max-md:h-screen lg:w-[50%] lg:bg-primary-100 xl:px-24 2xl:px-36">
-      <form className="text-center flex flex-col">
+      <form
+        className="text-center flex flex-col"
+        onSubmit={handleSubmit(trySignUp)}
+      >
         <div className="flex justify-center pt-5">
           <picture>
             <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
@@ -74,10 +82,13 @@ const SignUpForm = () => {
                 name="firstName"
                 type="text"
                 placeholder="Jonh"
-                onChange={handleChange}
-                value={signUpFormData.firstName}
-                required
+                {...register("firstName", {
+                  required: "First Name is required",
+                })}
               ></input>
+              <p className="text-sm font-normal text-error-100">
+                {errors.firstName?.message}
+              </p>
             </div>
             <div className="flex flex-col text-left w-[49%]">
               <label
@@ -92,10 +103,13 @@ const SignUpForm = () => {
                 name="lastName"
                 type="text"
                 placeholder="Doe"
-                onChange={handleChange}
-                value={signUpFormData.lastName}
-                required
+                {...register("lastName", {
+                  required: "Lsat name is required",
+                })}
               ></input>
+              <p className="text-sm font-normal text-error-100">
+                {errors.lastName?.message}
+              </p>
             </div>
           </div>
           <div className="flex flex-col text-left">
@@ -111,16 +125,24 @@ const SignUpForm = () => {
               name="email"
               type="email"
               placeholder="example@example.com"
-              onChange={handleChange}
-              value={signUpFormData.signUpEmail}
-              required
+              {...register("email", {
+                required: "Email is required.",
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: "Invalid email format.",
+                },
+              })}
             ></input>
+            <p className="text-sm font-normal text-error-100">
+              {errors.email?.message}
+            </p>
           </div>
         </div>
         <div className="flex justify-center mb-8">
           <button
             className="button-filled-accent w-full h-14 rounded-2xl"
-            type="button"
+            type="submit"
           >
             Next
           </button>

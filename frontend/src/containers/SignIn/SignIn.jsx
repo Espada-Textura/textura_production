@@ -3,16 +3,55 @@ import "@/sass/components/_button.scss";
 import logoBlackSvg from "@images/logo.svg";
 import logoWhiteSvg from "@/images/logoWhite.svg";
 
+import { auth } from "@/api";
 import { FcGoogle } from "react-icons/fc";
-
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { userAuthStore } from "@/zustand";
+import axios from "@/axios";
 
 const SignIn = () => {
+  const client = useQueryClient();
+
+  const setCurrentUser = userAuthStore((state) => state.setCurrentUser);
+  const currentUser = userAuthStore((state) => state.currentUser);
+
+  const {
+    data,
+    error,
+    isError,
+    isIdle,
+    isLoading,
+    isPaused,
+    isSuccess,
+    mutate,
+  } = auth.login();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const tryToSignIn = (form) => {
+    mutate(form, {
+      onSuccess: (resp) => {
+        setCurrentUser(resp.data);
+        axios.defaults.headers.common.Authorization = `Bearer ${resp.data.accessToken}`;
+      },
+    });
+  };
+
   return (
     <div className="signIn-container bg-[url(/src/images/sign-up.png)] bg-auto bg-no-repeat bg-center w-full h-screen md:p-14 flex justify-center items-center">
       <div className="signIn-content backdrop-blur-xl md:rounded-2xl lg:flex lg:flex-row">
         <div className="signIn--form p-14 rounded-l-2xl max-md:h-screen lg:w-[50%] lg:bg-primary-100 xl:px-24 2xl:px-36">
-          <form className="text-center flex flex-col">
+          <form
+            className="text-center flex flex-col"
+            onSubmit={handleSubmit(tryToSignIn)}
+          >
             <div className="flex justify-center pt-5">
               <picture>
                 <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
@@ -21,7 +60,7 @@ const SignIn = () => {
             </div>
             <div>
               <div className="mt-4 text-3xl font-bold lg:text-secondary-100 my-4">
-                Welcome Back
+                Welcome Back {currentUser.email}
               </div>
               <div className="mt-2 text-base font-medium lg:text-secondary-70 my-4">
                 Happy to see you again! Let's get you started.
@@ -54,7 +93,14 @@ const SignIn = () => {
                   id="signInEmail"
                   type="email"
                   placeholder="Eneter your email"
-                  required
+                  {...register("email", {
+                    required: "Email is required.",
+                    pattern: {
+                      value:
+                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: "Invalid email format.",
+                    },
+                  })}
                 ></input>
               </div>
               <div className="flex flex-col text-left">
@@ -69,7 +115,17 @@ const SignIn = () => {
                   id="signInPassword"
                   type="password"
                   placeholder="Eneter your password"
-                  required
+                  {...register("password", {
+                    required: "Password is required.",
+                    maxLength: {
+                      value: 64,
+                      message: "Password is too many characters.",
+                    },
+                    minLength: {
+                      value: 8,
+                      message: "Password is must be more than 8 characters.",
+                    },
+                  })}
                 ></input>
                 <div className="font-semibold text-accent-100 text-right mt-1">
                   <Link
@@ -84,7 +140,7 @@ const SignIn = () => {
             <div className="flex justify-center mb-8">
               <button
                 className="button-filled-accent w-full h-14 rounded-2xl"
-                type="button"
+                type="submit"
               >
                 Log In
               </button>
