@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="footer-container w-full relative bottom-0">
+    <section className="footer-container w-full relative bottom-0 border-t-2 border-solid border-secondary-20">
       <div className="footer--contents px-16 pt-12 pb-6 ">
         <div className="footer--content 2xl:flex gap-24 items-center">
           <div className="logo w-[300px] 2xl:my-3">
@@ -154,23 +154,23 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <section className="w-[100%] h-[1px] bg-secondary-10"></section>
+        <section className="w-[100%] h-[1px] bg-secondary-30"></section>
         <section className="footer--link">
           <div className="flex justify-center items-end my-3 md:justify-between">
             <div className="mx-1">&copy; 2022 Textura.</div>
             <div className="flex justify-center items-center max-sm:hidden">
-              <FaFacebook size={24} className="text-accent-100 mx-4" />{" "}
-              <FaTwitter size={24} className="text-accent-100 mx-4" />{" "}
-              <FaYoutube size={24} className="text-accent-100 mx-4" />{" "}
-              <FaGithub size={24} className="text-accent-100 mx-4" />
+              <FaFacebook size={24} className="text-secondary-100 mx-4" />{" "}
+              <FaTwitter size={24} className="text-secondary-100 mx-4" />{" "}
+              <FaYoutube size={24} className="text-secondary-100 mx-4" />{" "}
+              <FaGithub size={24} className="text-secondary-100 mx-4" />
             </div>
             <div className="mx-1">All Rights Reserved.</div>
           </div>
           <div className="flex justify-center items-center sm:hidden">
-            <FaFacebook size={24} className="text-accent-100 mx-4" />{" "}
-            <FaTwitter size={24} className="text-accent-100 mx-4" />{" "}
-            <FaYoutube size={24} className="text-accent-100 mx-4" />{" "}
-            <FaGithub size={24} className="text-accent-100 mx-4" />
+            <FaFacebook size={24} className="text-secondary-100 mx-4" />{" "}
+            <FaTwitter size={24} className="text-secondary-100 mx-4" />{" "}
+            <FaYoutube size={24} className="text-secondary-100 mx-4" />{" "}
+            <FaGithub size={24} className="text-secondary-100 mx-4" />
           </div>
         </section>
       </div>

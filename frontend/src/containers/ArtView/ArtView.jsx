@@ -33,11 +33,8 @@ const ArtView = () => {
         <section className="relative w-full">
           <Header />
           <Art art={artData} />
-          {/* <section>
-            <Gallery />
-          </section> */}
         </section>
-        <section className="relative lg:w-[22rem] shrink-[1] lg:max-w-[22rem] max-w-full w-max p-6 gap-4 flex flex-col bg-primary-100">
+        <section className="relative shrink-[1] lg:max-w-[24rem] max-w-full w-max p-4 sm:p-6 gap-4 flex flex-col bg-primary-100">
           <Description art={artData} />
           <Comments art={artData} />
         </section>

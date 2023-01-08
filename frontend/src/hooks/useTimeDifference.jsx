@@ -17,28 +17,26 @@ export const useTimeDifference = (time) => {
 
   const secondsDifference = Math.floor(difference / 1000);
 
+  const all = [
+    yearDifference,
+    monthsDifference,
+    weeksDifference,
+    daysDifference,
+    hoursDifference,
+    minutesDifference,
+    secondsDifference,
+  ];
+
+  const append = ["year", "month", "week", "day", "hour", "minute", "second"];
+
+  const biggest = all.filter((element) => element !== 0);
+
+  const dateDifference = `${biggest[0]} ${append[biggest.length - 1]}${
+    biggest[0] === 1 ? "" : "s"
+  } ago`;
+
   return {
-    all: {
-      yearDifference,
-      monthsDifference,
-      weeksDifference,
-      daysDifference,
-      hoursDifference,
-      minutesDifference,
-      secondsDifference,
-    },
-    biggest: !yearDifference
-      ? !monthsDifference
-        ? !weeksDifference
-          ? !daysDifference
-            ? !hoursDifference
-              ? !minutesDifference
-                ? secondsDifference
-                : minutesDifference
-              : hoursDifference
-            : daysDifference
-          : weeksDifference
-        : monthsDifference
-      : yearDifference,
+    all: all,
+    dateDifference: dateDifference,
   };
 };

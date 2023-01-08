@@ -54,7 +54,7 @@ const ArtCard = ({ data }) => {
               <img
                 src={data?.user.avatar}
                 alt={data?.user.lastName}
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-lg"
               />
               <span className=" text-base">{`${data?.user.firstName} ${data?.user.lastName}`}</span>
             </div>
