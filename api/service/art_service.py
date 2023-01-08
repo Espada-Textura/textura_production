@@ -25,6 +25,7 @@ from schema import (
     NestedArtPostSchema,
 )
 from utils import get_art_path
+from app import ArtServiceConfigs
 
 
 class ArtService:
@@ -34,6 +35,9 @@ class ArtService:
 
             art_post_model = dao.get_by_pid(pid=pid)
 
+            if not art_post_model.is_publishing:
+                abort(404)
+
             art_post_json = dao.jsonify(
                 ArtPostSchema,
                 art_post_model,
@@ -41,9 +45,12 @@ class ArtService:
 
         return art_post_json
 
-    def get_art_posts(self, user=None, expression=None, pagination=None):
+    def get_art_posts(self, user=None, expression={}, pagination={}):
         """ """
         with ArtPostDao() as dao:
+
+            if "is_publishing" not in expression.keys():
+                expression.update({"is_publishing": True})
 
             art_posts = dao.get_all(expression=expression, pagination=pagination)
 
@@ -67,11 +74,11 @@ class ArtService:
 
             art_post_model = art_post_dao.add(art_post_schema)
 
-            art_post_json = art_post_dao.jsonify(ArtPostSchema, art_post_model)
-
             for art_schema in arts:
                 art_schema.update({"art_post_id": art_post_model.id})
                 self.create_art(art=art_schema)
+
+            art_post_json = art_post_dao.jsonify(ArtPostSchema, art_post_model)
 
         return art_post_json
 
@@ -119,23 +126,20 @@ class ArtService:
                 img_type = base64_image.get("mime").split("/")[1]
 
                 img_size = img.size
-
                 art.width = img_size[0]
                 art.height = img_size[1]
 
-                img.save(
-                    get_art_path(f"{art.aid}.{img_type}"),
-                    optimize=True,
-                )
+                img.save(get_art_path(f"{art.aid}.{img_type}"))
 
-                img.resize(
-                    (round(img_size[0] / 3), round(img_size[1] / 3)), Image.ANTIALIAS
-                )
+                img.thumbnail(ArtServiceConfigs.APT_MAX_SIZE, Image.LANCZOS)
+
+                img_size = img.size
+                art.twidth = img_size[0]
+                art.theight = img_size[1]
 
                 img.save(
                     get_art_path(f"{art.aid}_thumbnail.{img_type}"),
-                    optimize=True,
-                    quality=20,
+                    quality=ArtServiceConfigs.APT_SAVE_QUALITY,
                 )
 
             art.rpath = str(get_art_path(f"{art.aid}.{img_type}"))
@@ -157,12 +161,8 @@ class ArtService:
 
         preimage = blurhash.encode(
             get_art_path(path),
-            x_components=round(4 * (art.get("width") / art.get("height")))
-            if (art.get("width") / art.get("height")) > 1
-            else 4,
-            y_components=round(4 * (art.get("height") / art.get("width")))
-            if (art.get("width") / art.get("height")) <= 1
-            else 4,
+            x_components=ArtServiceConfigs.BH_X_COMPONENT,
+            y_components=ArtServiceConfigs.BH_Y_COMPONENT,
         )
 
         with ArtDao() as dao:

@@ -86,6 +86,19 @@ module.exports = {
         10: "#1a212f10",
       },
 
+      secondary_2: {
+        100: "#e9eff2",
+        90: "#e9eff290",
+        80: "#e9eff280",
+        70: "#e9eff270",
+        60: "#e9eff260",
+        50: "#e9eff250",
+        40: "#e9eff240",
+        30: "#e9eff230",
+        20: "#e9eff220",
+        10: "#e9eff210",
+      },
+
       primary: {
         100: "#f9fbfc",
         90: "#f9fbfc90",

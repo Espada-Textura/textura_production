@@ -5,6 +5,7 @@ from .mixin import Mixin, NestedSchema
 
 class UserSchema(Mixin):
     uid = fields.Str()
+    avatar = fields.Str(required=False, dump_only=True)
     username = fields.Str(required=False)
     email = fields.Email(required=True)
     password = fields.Str(
@@ -16,6 +17,7 @@ class UserSchema(Mixin):
 
 class UserAuthSchema(Mixin):
     uid = fields.Str()
+    avatar = fields.Str(required=False, dump_only=True)
     username = fields.Str(required=False)
     email = fields.Email(required=True)
     password = fields.Str(

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { art } from "@/api";
+import { ImSpinner2 } from "react-icons/im";
 
 import Art from "@/components/ArtCard";
 
@@ -7,6 +8,7 @@ const Gallery = () => {
   const {
     isLoading,
     isFetching,
+    isFetchingNextPage,
     isError,
     error,
     data,
@@ -14,16 +16,17 @@ const Gallery = () => {
     fetchNextPage,
   } = art.useFetchGallery();
 
+  //Handling scroll event and adding more data as user scrolling into the bottom of the page.
   useEffect(() => {
     let fetch = false;
-
     const onScroll = async (event) => {
       const { scrollHeight, scrollTop, clientHeight } =
         event.target.scrollingElement;
 
       if (!fetch && scrollHeight - scrollTop <= clientHeight * 1.5) {
         fetch = true;
-        if (hasNextPage) fetchNextPage();
+        if (hasNextPage) await fetchNextPage();
+        fetch = false;
       }
     };
 
@@ -32,28 +35,31 @@ const Gallery = () => {
     return () => {
       document.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [fetchNextPage, hasNextPage]);
 
+  //If the component is in the first load of the appication, fetching data will display loading page
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
-    <div>{error.message}</div>;
-  }
-
-  console.log(isFetching, data);
-
   return (
     <>
-      <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6`}>
+      <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6 mt-14`}>
         {data?.pages.map((page) =>
           page?.data?.artPosts.map((info) => (
-            <Art title={info.title} art={info.arts[0]} key={info.arts[0].id} />
+            <Art data={info} key={info?.arts[0]?.id} />
           ))
         )}
       </div>
-      {isFetching && <div>Loading More</div>}
+
+      {isFetching ||
+        (isFetchingNextPage && (
+          <div className="w-full h-[2rem] flex items-center justify-center">
+            <ImSpinner2 className="w-10 h-10 animate-spin bg-secondary-60" />
+          </div>
+        ))}
+
+      {isError && <div>{error.message}</div>}
     </>
   );
 };

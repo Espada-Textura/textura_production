@@ -11,6 +11,7 @@ const DraftImages = ({ form, fieldArray }) => {
   const [images, deleteDraftImage, changeDraftImage] = useUploadStore(
     (state) => [
       state.draftImages,
+
       state.deleteDraftImage,
       state.changeDraftImage,
     ]
@@ -89,7 +90,7 @@ const DraftImages = ({ form, fieldArray }) => {
 
       {images.map((image, index) => {
         return (
-          <section className={" rounded-lg"} key={index}>
+          <section className={"rounded-lg pb-4"} key={index}>
             <TextareaAutoSize
               {...register(`desc.${index}.input`)}
               className={

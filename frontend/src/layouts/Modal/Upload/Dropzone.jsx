@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect } from "react";
+import { Fragment, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useUploadStore } from "@/zustand/uploadStore";
@@ -9,7 +9,6 @@ import {
   useSuccessNotify,
 } from "@/hooks/notification";
 import { art } from "@/api";
-import axios from "@/axios";
 
 import shallow from "zustand/shallow";
 
@@ -23,17 +22,6 @@ const Dropzone = () => {
   let filesCount = 0;
   const limitFiles = 10;
 
-  const { data: auth, mutate: login, isSuccess: isLoginSucess } = art.login();
-
-  //login
-  useEffect(() => {
-    login();
-  }, []);
-
-  if (isLoginSucess) {
-    axios.defaults.headers.common.Authorization = `Bearer ${auth.data.accessToken}`;
-  }
-
   const {
     mutate: upload,
     isError: isUploadError,
@@ -42,23 +30,32 @@ const Dropzone = () => {
     reset: resetUpload,
   } = art.useUpload();
 
-  const [images, imageLength, addDraftImages, resetDraftImages, setUploadOpen] =
-    useUploadStore(
-      (state) => [
-        state.draftImages,
-        state.imageLength,
-        state.addDraftImages,
-        state.resetDraftImages,
-        state.setUploadOpen,
-      ],
-      shallow
-    );
+  const [
+    images,
+    title,
+    desc,
+    imageLength,
+    addDraftImages,
+    resetDraftImages,
+    setUploadOpen,
+  ] = useUploadStore(
+    (state) => [
+      state.draftImages,
+      state.title,
+      state.desc,
+      state.imageLength,
+      state.addDraftImages,
+      state.resetDraftImages,
+      state.setUploadOpen,
+    ],
+    shallow
+  );
 
   const form = useForm(
     {
       defaultValues: {
-        title: "",
-        desc: [{ input: "" }],
+        title: title,
+        desc: [...desc],
       },
     },
     { shouldFocusError: true }
@@ -178,12 +175,12 @@ const Dropzone = () => {
         })}
       >
         <div className="fixed sm:fixed sm:w-[90%] max-sm:w-full bg-primary-100 z-10 max-w-[40rem] rounded-t-xl">
-          <Header trigger={form.trigger} formState={form.formState} />
+          <Header form={form} />
         </div>
 
         {images.length > 0 && (
           <div
-            className={`upload--image-container mt-14 pb-8 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll ${
+            className={`upload--image-container mt-14 bg-primary-100 max-h-[85vh] sm:max-h-[70vh] overflow-y-scroll ${
               imageLength === limitFiles ? "rounded-b-xl" : ""
             }`}
           >
@@ -194,7 +191,7 @@ const Dropzone = () => {
         {imageLength < limitFiles && (
           <div
             className={
-              "bg-primary-100 px-8 flex w-full justify-center border-t-[1px] border-solid border-t-secondary-20 " +
+              "bg-primary-100 px-8 flex w-full justify-center " +
               (images.length > 0
                 ? "max-sm:bottom-0 max-sm:absolute rounded-b-xl"
                 : "h-full sm:rounded-xl")
@@ -229,7 +226,10 @@ const Dropzone = () => {
                   <span> {"(*.png, *.jpg, *jpeg)"} files are accepted. </span>
                 </div>
               ) : (
-                <button className="relative self-center text-center w-full button-medium  my-1  text-secondary-100 rounded-xl font-bold">
+                <button
+                  type="button"
+                  className="relative self-center text-center w-full button-medium  my-1 text-secondary-100 rounded-xl font-bold shadow-none"
+                >
                   Add More
                 </button>
               )}
