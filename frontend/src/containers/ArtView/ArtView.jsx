@@ -10,7 +10,7 @@ import Gallery from "@/layouts/Gallery";
 import Comments from "./Comments";
 
 const ArtView = () => {
-  useBodyScrollLock(true, true);
+  // useBodyScrollLock(true, true);
 
   const param = useParams();
 
@@ -20,7 +20,7 @@ const ArtView = () => {
 
   return (
     <Fragment>
-      <section className="w-full h-screen flex max-lg:flex-col overflow-y-scroll">
+      <section className="w-full h-screen flex max-lg:flex-col">
         <section className="relative h-screen w-full">
           <Header />
           <Art art={artData} />

@@ -1,3 +1,3 @@
-import "@sass/components/layouts/_footer.scss";
+import "@sass/layouts/_footer.scss";
 
 export { default } from "./Footer";
