@@ -37,8 +37,8 @@ class JsMixin(Schema):
 class Mixin(JsMixin):
 
     id = fields.Int()
-    created_date = fields.DateTime("%d-%m-%Y %H:%M", dump_only=True)
-    updated_date = fields.DateTime("%d-%m-%Y %H:%M", dump_only=True)
+    created_date = fields.DateTime("%Y-%m-%d %H:%M:%S.%f", dump_only=True)
+    updated_date = fields.DateTime("%Y-%m-%d %H:%M:%S.%f", dump_only=True)
 
 
 class NestedSchema(Mixin):
