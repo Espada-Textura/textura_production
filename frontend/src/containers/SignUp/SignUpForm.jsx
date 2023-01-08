@@ -9,14 +9,14 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
+
 const SignUpForm = () => {
   const [signUpFormData, setSignUpFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
-
-  console.log(signUpFormData);
 
   function handleChange(event) {
     setSignUpFormData((prevSignUpFormData) => {
@@ -28,9 +28,18 @@ const SignUpForm = () => {
     });
   }
 
+  const { register, handleSubmit, errors } = useForm();
+
+  const onSubmit = (signUpFormData) => {
+    onsole.log(signUpFormData);
+  };
+
   return (
     <div className="signUp--form p-14 rounded-l-2xl max-md:h-screen lg:w-[50%] lg:bg-primary-100 xl:px-24 2xl:px-36">
-      <form className="text-center flex flex-col">
+      <form
+        className="text-center flex flex-col"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="flex justify-center pt-5">
           <picture>
             <source media="(min-width: 1024px)" srcSet={logoBlackSvg} />
@@ -76,8 +85,11 @@ const SignUpForm = () => {
                 placeholder="Jonh"
                 onChange={handleChange}
                 value={signUpFormData.firstName}
-                required
+                ref={register({ required: "First Name is required" })}
               ></input>
+              <p className="text-sm font-normal text-error-100">
+              {errors.firstName?.message}
+            </p>
             </div>
             <div className="flex flex-col text-left w-[49%]">
               <label
@@ -94,8 +106,11 @@ const SignUpForm = () => {
                 placeholder="Doe"
                 onChange={handleChange}
                 value={signUpFormData.lastName}
-                required
+                ref={register({ required: "Last Name is required" })}
               ></input>
+              <p className="text-sm font-normal text-error-100">
+              {errors.lastName?.message}
+            </p>
             </div>
           </div>
           <div className="flex flex-col text-left">
@@ -113,14 +128,23 @@ const SignUpForm = () => {
               placeholder="example@example.com"
               onChange={handleChange}
               value={signUpFormData.signUpEmail}
-              required
+              ref={register({
+                required: "Email is required",
+                pattern: {
+                  value: /^[^@\s]+@[^@\s]+\.(com|net|org|gov)$/,
+                  message: "Not a valid email",
+                },
+              })}
             ></input>
+            <p className="text-sm font-normal text-error-100">
+              {errors.email?.message}
+            </p>
           </div>
         </div>
         <div className="flex justify-center mb-8">
           <button
             className="button-filled-accent w-full h-14 rounded-2xl"
-            type="button"
+            type="submit"
           >
             Next
           </button>
