@@ -1,6 +1,7 @@
 from flask import Blueprint, make_response, abort, request
 from flask_jwt_extended import jwt_required
 from flask_cors import cross_origin
+import requests
 
 
 from schema import ArtSchema, NestedArtSchema
@@ -27,6 +28,7 @@ def art_post_view(expression=None, pagination=None):
 
 
 @art_post_route.route("/art-posts/<pid>", methods=["GET"])
+@cross_origin()
 @validate_params("ArtSchema")
 def art_post_view_by_pid(pid=None, expression=None, pagination=None):
 
@@ -38,6 +40,7 @@ def art_post_view_by_pid(pid=None, expression=None, pagination=None):
 
 
 @art_post_route.route("/art-posts/new", methods=["POST"])
+@cross_origin()
 @jwt_required(locations=["headers"])
 @validate_request("ArtPostSchema", exclude=["user"])
 def art_post_create(art_post=None):

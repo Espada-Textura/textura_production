@@ -140,6 +140,7 @@ class ArtService:
                 img.save(
                     get_art_path(f"{art.aid}_thumbnail.{img_type}"),
                     quality=ArtServiceConfigs.APT_SAVE_QUALITY,
+                    optimize=True,
                 )
 
             art.rpath = str(get_art_path(f"{art.aid}.{img_type}"))
