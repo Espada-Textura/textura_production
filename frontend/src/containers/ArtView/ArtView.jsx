@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { art } from "@/api";
 
+import Head from "./Helmet";
 import Header from "./Header";
 import Art from "./Art";
 import Description from "./Description";
@@ -17,6 +18,7 @@ const ArtView = () => {
 
   return (
     <Fragment>
+      <Head pid={param.postId} />
       <section className="w-full h-full flex max-lg:flex-col">
         <section className="relative h-screen w-full">
           <Header />
