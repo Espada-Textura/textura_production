@@ -4,7 +4,7 @@ import {
   HiOutlineZoomOut,
   HiOutlineArrowsExpand,
 } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();

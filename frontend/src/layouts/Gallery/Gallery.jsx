@@ -19,6 +19,7 @@ const Gallery = () => {
   //Handling scroll event and adding more data as user scrolling into the bottom of the page.
   useEffect(() => {
     let fetch = false;
+
     const onScroll = async (event) => {
       const { scrollHeight, scrollTop, clientHeight } =
         event.target.scrollingElement;

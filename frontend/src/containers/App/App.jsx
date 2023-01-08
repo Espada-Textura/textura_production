@@ -49,6 +49,11 @@ const router = createBrowserRouter(
     <Route
       element={
         <>
+          <ScrollRestoration
+            getKey={(location, _matches) => {
+              return location.pathname;
+            }}
+          />
           <Outlet />
         </>
       }
@@ -59,7 +64,12 @@ const router = createBrowserRouter(
         index
         element={
           <>
-            <Navigate to={"home"} />
+            <Navigate
+              to={"home"}
+              getKey={(location, matches) => {
+                return location.pathname;
+              }}
+            />
           </>
         }
       />
@@ -85,7 +95,6 @@ const router = createBrowserRouter(
         element={
           <Suspense fallback={<Loading />}>
             <ArtView />
-            <ScrollRestoration />
           </Suspense>
         }
       />
