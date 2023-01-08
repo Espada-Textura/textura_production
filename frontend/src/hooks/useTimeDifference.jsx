@@ -27,5 +27,18 @@ export const useTimeDifference = (time) => {
       minutesDifference,
       secondsDifference,
     },
+    biggest: !yearDifference
+      ? !monthsDifference
+        ? !weeksDifference
+          ? !daysDifference
+            ? !hoursDifference
+              ? !minutesDifference
+                ? secondsDifference
+                : minutesDifference
+              : hoursDifference
+            : daysDifference
+          : weeksDifference
+        : monthsDifference
+      : yearDifference,
   };
 };

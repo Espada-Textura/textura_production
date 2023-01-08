@@ -1,6 +1,7 @@
 import "@/sass/components/_react-toastify/index.scss";
 
 import Topbar from "@layouts/TopBar";
+import Footer from "@/layouts/Footer";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -23,6 +24,7 @@ const Main = () => {
         theme="light"
         enableMultiContainer
       />
+      <Footer />
     </>
   );
 };

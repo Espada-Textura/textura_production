@@ -1,9 +1,10 @@
 import { Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useKeyAction } from "@/hooks";
 import { art } from "@/api";
 
-import { Helmet } from "react-helmet-async";
-
+import Head from "./Helmet";
+import Footer from "@/layouts/Footer";
 import Header from "./Header";
 import Art from "./Art";
 import Description from "./Description";
@@ -12,39 +13,22 @@ import Comments from "./Comments";
 
 const ArtView = () => {
   const param = useParams();
-
-  const { data, isLoading } = art.useFetchPost(param.postId);
+  const navigate = useNavigate();
+  const { data, isLoading, isSuccess } = art.useFetchPost(param.postId);
 
   const artData = data?.data;
 
+  useKeyAction(
+    "Escape",
+    () => {
+      navigate("/home");
+    },
+    []
+  );
+
   return (
     <Fragment>
-      <Helmet prioritizeSeoTags>
-        <title>Textura</title>
-        <link rel="canonical" href="https://web.textura-art.com/" />
-        <meta
-          property="twitter:image"
-          key="twitter:image"
-          content={`https://web.textura-art.com/api/art/${param.postId}_thumbnail..jpeg`}
-        />
-        <meta
-          property="og:image"
-          key="og:image"
-          content={`https://web.textura-art.com/api/art/${param.postId}_thumbnail..jpeg`}
-        />
-        <meta
-          property="og:image:alt"
-          content="Textura is a place, likely a community, for our Cambodian Artists to share their arts, earn recognition, express feeling and emotion through art, and more importantly is to improve the artist community in Cambodia."
-        />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="600" />
-        <meta property="og:site_name" content="Textura" />
-        <meta property="og:type" content="object" />
-        <meta
-          property="og:description"
-          content="Textura is a place, likely a community, for our Cambodian Artists to share their arts, earn recognition, express feeling and emotion through art, and more importantly is to improve the artist community in Cambodia."
-        />
-      </Helmet>
+      {isSuccess && <Head aid={artData.arts[0].aid} />}
       <section className="w-full h-full flex max-lg:flex-col">
         <section className="relative h-screen w-full">
           <Header />
@@ -61,6 +45,7 @@ const ArtView = () => {
           <Comments art={artData} />
         </section>
       </section>
+      <Footer />
     </Fragment>
   );
 };

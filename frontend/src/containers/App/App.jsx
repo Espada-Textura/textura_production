@@ -44,16 +44,12 @@ import { Topics } from "@containers/Discover/Topics";
 import { Stories } from "@containers/Discover/Stories";
 import { Artists } from "@containers/Discover/Artists";
 
-//layout
-const Footer = React.lazy(() => import("@/layouts/Footer"));
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
       element={
         <>
           <Outlet />
-          <Footer />
         </>
       }
       errorElement={<NotFound />}
