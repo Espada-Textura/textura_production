@@ -2,7 +2,8 @@ import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { art } from "@/api";
 
-import Head from "./Helmet";
+import { Helmet } from "react-helmet-async";
+
 import Header from "./Header";
 import Art from "./Art";
 import Description from "./Description";
@@ -18,7 +19,32 @@ const ArtView = () => {
 
   return (
     <Fragment>
-      <Head pid={param.postId} />
+      <Helmet prioritizeSeoTags>
+        <title>Textura</title>
+        <link rel="canonical" href="https://web.textura-art.com/" />
+        <meta
+          property="twitter:image"
+          key="twitter:image"
+          content={`https://web.textura-art.com/api/art/${param.postId}_thumbnail..jpeg`}
+        />
+        <meta
+          property="og:image"
+          key="og:image"
+          content={`https://web.textura-art.com/api/art/${param.postId}_thumbnail..jpeg`}
+        />
+        <meta
+          property="og:image:alt"
+          content="Textura is a place, likely a community, for our Cambodian Artists to share their arts, earn recognition, express feeling and emotion through art, and more importantly is to improve the artist community in Cambodia."
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="600" />
+        <meta property="og:site_name" content="Textura" />
+        <meta property="og:type" content="object" />
+        <meta
+          property="og:description"
+          content="Textura is a place, likely a community, for our Cambodian Artists to share their arts, earn recognition, express feeling and emotion through art, and more importantly is to improve the artist community in Cambodia."
+        />
+      </Helmet>
       <section className="w-full h-full flex max-lg:flex-col">
         <section className="relative h-screen w-full">
           <Header />
