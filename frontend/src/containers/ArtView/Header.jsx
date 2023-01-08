@@ -6,7 +6,7 @@ import {
 } from "react-icons/hi";
 import { useNavigate, Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ isTheater, setTheater }) => {
   const navigate = useNavigate();
 
   return (
@@ -25,7 +25,10 @@ const Header = () => {
         <button className="icon-button-medium button-plain-secondary">
           <HiOutlineZoomOut className="w-5 h-5" />
         </button>
-        <button className="icon-button-medium button-plain-secondary">
+        <button
+          className="icon-button-medium button-plain-secondary"
+          onClick={() => setTheater(!isTheater)}
+        >
           <HiOutlineArrowsExpand className="w-5 h-5" />
         </button>
       </div>
