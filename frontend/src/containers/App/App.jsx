@@ -5,7 +5,7 @@ import "@sass/containers/_app.scss";
 import React, { Suspense } from "react";
 import {
   Route,
-  Routes,
+  Outlet,
   Navigate,
   ScrollRestoration,
   RouterProvider,
@@ -44,10 +44,29 @@ import { Topics } from "@containers/Discover/Topics";
 import { Stories } from "@containers/Discover/Stories";
 import { Artists } from "@containers/Discover/Artists";
 
+//layout
+const Footer = React.lazy(() => import("@/layouts/Footer"));
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route errorElement={<NotFound/>}>
-      <Route path="/" index element={<Navigate to={"home"} />} />
+    <Route
+      element={
+        <>
+          <Outlet />
+          <Footer />
+        </>
+      }
+      errorElement={<NotFound />}
+    >
+      <Route
+        path="/"
+        index
+        element={
+          <>
+            <Navigate to={"home"} />
+          </>
+        }
+      />
 
       <Route
         path="sign-up"
@@ -162,7 +181,7 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>Hello</title>
+        <title>Textura</title>
         <link rel="canonical" href="https://web.textura-art.com/" />
         <meta
           property="twitter:image"

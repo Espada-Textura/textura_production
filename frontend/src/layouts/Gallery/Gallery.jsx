@@ -44,7 +44,7 @@ const Gallery = () => {
 
   return (
     <>
-      <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6`}>
+      <div className={`gallery--container columns-4 p-6 sm:p-8 sm:gap-6 mt-14`}>
         {data?.pages.map((page) =>
           page?.data?.artPosts.map((info) => (
             <Art data={info} key={info?.arts[0]?.id} />
