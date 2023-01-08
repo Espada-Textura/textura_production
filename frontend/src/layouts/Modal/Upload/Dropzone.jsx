@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect } from "react";
+import { Fragment, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useUploadStore } from "@/zustand/uploadStore";
@@ -9,7 +9,6 @@ import {
   useSuccessNotify,
 } from "@/hooks/notification";
 import { art } from "@/api";
-import axios from "@/axios";
 
 import shallow from "zustand/shallow";
 
@@ -22,17 +21,6 @@ import DraftImages from "./DraftImages";
 const Dropzone = () => {
   let filesCount = 0;
   const limitFiles = 10;
-
-  const { data: auth, mutate: login, isSuccess: isLoginSucess } = art.login();
-
-  //login
-  useEffect(() => {
-    login();
-  }, []);
-
-  if (isLoginSucess) {
-    axios.defaults.headers.common.Authorization = `Bearer ${auth.data.accessToken}`;
-  }
 
   const {
     mutate: upload,

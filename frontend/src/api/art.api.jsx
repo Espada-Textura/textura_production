@@ -64,17 +64,6 @@ export const useUpload = () => {
   });
 };
 
-export const login = () => {
-  return useMutation({
-    mutationKey: "login",
-    mutationFn: () =>
-      axios.post("login", {
-        email: "misapisatto@gmail.com",
-        password: "Misa5454",
-      }),
-  });
-};
-
 /**
  * export function for naming convention
  */
@@ -82,5 +71,4 @@ export const art = {
   useFetchGallery: useFetchGallery,
   useFetchPost: useFetchPost,
   useUpload: useUpload,
-  login: login,
 };
