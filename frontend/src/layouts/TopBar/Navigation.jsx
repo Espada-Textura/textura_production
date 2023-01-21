@@ -14,7 +14,7 @@ const Navigation = () => {
     <nav className="max-md:hidden">
       <ul className={"topbar--navigation-bar gap-4"}>
         <li>
-          <NavLink to={"/home"} className={"topbar--nav-link max-xl:p-3"}>
+          <NavLink to={"/"} className={"topbar--nav-link max-xl:p-3"}>
             <span className="max-md:hidden">Home</span>
             <HiOutlineHome className="md:hidden w-8 h-8" />
           </NavLink>

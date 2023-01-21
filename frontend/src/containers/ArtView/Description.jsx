@@ -15,6 +15,7 @@ const Description = ({ art }) => {
   const descRef = useRef();
 
   const postedtime = useTimeDifference(art?.createdDate);
+  console.log(art?.createdDate, postedtime);
 
   useEffect(() => {
     const resize = () => {

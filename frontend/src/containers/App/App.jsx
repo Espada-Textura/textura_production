@@ -60,21 +60,6 @@ const router = createBrowserRouter(
       errorElement={<NotFound />}
     >
       <Route
-        path="/"
-        index
-        element={
-          <>
-            <Navigate
-              to={"home"}
-              getKey={(location, matches) => {
-                return location.pathname;
-              }}
-            />
-          </>
-        }
-      />
-
-      <Route
         path="sign-up"
         element={
           <Suspense fallback={<Loading />}>
@@ -99,7 +84,21 @@ const router = createBrowserRouter(
         }
       />
       <Route element={<Main />}>
-        <Route path="home" element={<Home />} />
+        <Route
+          path="home"
+          index
+          element={
+            <>
+              <Navigate
+                to={"/"}
+                getKey={(location, matches) => {
+                  return location.pathname;
+                }}
+              />
+            </>
+          }
+        />
+        <Route path="/" element={<Home />} />
         <Route
           path="recovery-password"
           element={

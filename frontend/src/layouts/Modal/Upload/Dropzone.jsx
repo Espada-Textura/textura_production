@@ -120,6 +120,7 @@ const Dropzone = () => {
     });
   }, []);
 
+  //file validator function for validation number of files
   const fileValidator = useCallback((_file) => {
     filesCount++;
 
@@ -131,6 +132,7 @@ const Dropzone = () => {
       : null;
   });
 
+  //calling the useDropZone hooks for using component
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/jpeg": [], "image/png": [] },
     maxSize: 10000000,

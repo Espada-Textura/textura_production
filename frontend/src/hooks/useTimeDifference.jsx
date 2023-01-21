@@ -31,9 +31,9 @@ export const useTimeDifference = (time) => {
 
   const biggest = all.filter((element) => element !== 0);
 
-  const dateDifference = `${biggest[0]} ${append[biggest.length - 1]}${
-    biggest[0] === 1 ? "" : "s"
-  } ago`;
+  const dateDifference = `${biggest[0]} ${
+    append[append.length - biggest.length]
+  }${biggest[0] === 1 ? "" : "s"} ago`;
 
   return {
     all: all,
