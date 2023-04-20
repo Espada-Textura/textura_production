@@ -1,5 +1,7 @@
 from flask import Blueprint, make_response, abort
 from flask_jwt_extended import jwt_required
+from flask_cors import cross_origin
+
 
 from schema import UserSchema, NestedUserSchema, UserPasswordSchema
 from dao import UserDao
@@ -9,6 +11,7 @@ user_route = Blueprint("user_route", __name__, url_prefix="/api")
 
 
 @user_route.route("/users", methods=["GET"])
+@cross_origin()
 @jwt_required()
 @validate_params("UserSchema")
 def user_view(expression=None, pagination=None):
@@ -26,6 +29,7 @@ def user_view(expression=None, pagination=None):
 
 
 @user_route.route("/users", methods=["POST"])
+@cross_origin()
 @jwt_required()
 @validate_request("UserSchema")
 def user_add(user=None):
@@ -40,6 +44,7 @@ def user_add(user=None):
 
 
 @user_route.route("/users", methods=["PUT"])
+@cross_origin()
 @jwt_required()
 @validate_request("UserSchema", exclude=("password",))
 def user_edit(user=None):
@@ -54,6 +59,7 @@ def user_edit(user=None):
 
 
 @user_route.route("/users", methods=["PATCH"])
+@cross_origin()
 @jwt_required()
 @validate_request("UserPasswordSchema", only=("id", "password", "new_password"))
 def user_password_edit(user_password=None):

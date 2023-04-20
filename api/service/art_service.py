@@ -129,7 +129,10 @@ class ArtService:
                 art.width = img_size[0]
                 art.height = img_size[1]
 
-                img.save(get_art_path(f"{art.aid}.{img_type}"))
+                img.save(
+                    get_art_path(f"{art.aid}.{img_type}"),
+                    optimize=True,
+                )
 
                 img.thumbnail(ArtServiceConfigs.APT_MAX_SIZE, Image.LANCZOS)
 

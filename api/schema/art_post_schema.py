@@ -43,27 +43,27 @@ class ArtPostSchema(Mixin):
         #         data.update({"arts": [data.get("arts")[index]]})
         #         break
 
-        if data.get("created_date"):
-            data.update(
-                {
-                    "created_date": time.mktime(
-                        datetime.datetime.strptime(
-                            data.get("created_date"), "%Y-%m-%d %H:%M:%S.%f"
-                        ).timetuple()
-                    )
-                }
-            )
+        # if data.get("created_date"):
+        #     data.update(
+        #         {
+        #             "created_date": time.mktime(
+        #                 datetime.datetime.strptime(
+        #                     data.get("created_date"), "%Y-%m-%d %H:%M:%S.%f"
+        #                 ).timetuple()
+        #             )
+        #         }
+        #     )
 
-        if data.get("updated_date"):
-            data.update(
-                {
-                    "updated_date": time.mktime(
-                        datetime.datetime.strptime(
-                            data.get("updated_date"), "%Y-%m-%d %H:%M:%S.%f"
-                        ).timetuple()
-                    )
-                }
-            )
+        # if data.get("updated_date"):
+        #     data.update(
+        #         {
+        #             "updated_date": time.mktime(
+        #                 datetime.datetime.strptime(
+        #                     data.get("updated_date"), "%Y-%m-%d %H:%M:%S.%f"
+        #                 ).timetuple()
+        #             )
+        #         }
+        #     )
 
         return data
 

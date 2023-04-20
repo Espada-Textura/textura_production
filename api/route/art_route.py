@@ -1,5 +1,6 @@
 from flask import Blueprint, make_response, abort, request
 from flask_jwt_extended import jwt_required
+from flask_cors import cross_origin
 
 from schema import ArtSchema, NestedArtSchema
 from dao import ArtDao
@@ -10,6 +11,7 @@ art_route = Blueprint("art_route", __name__, url_prefix="/api")
 
 
 @art_route.route("/arts", methods=["GET"])
+@cross_origin()
 @validate_params("ArtSchema")
 def art_view(expression=None, pagination=None):
 
@@ -24,6 +26,7 @@ def art_view(expression=None, pagination=None):
 
 
 @art_route.route("/arts/<aid>", methods=["GET"])
+@cross_origin()
 @validate_params("ArtSchema")
 def art_view_by_aid(aid=None, expression=None, pagination=None):
 
@@ -35,6 +38,7 @@ def art_view_by_aid(aid=None, expression=None, pagination=None):
 
 
 @art_route.route("/arts/new", methods=["POST"])
+@cross_origin()
 @jwt_required()
 @validate_request("ArtSchema", exclude=["user"])
 def art_create(art=None):
@@ -49,6 +53,7 @@ def art_create(art=None):
 
 
 @art_route.route("/arts", methods=["PUT"])
+@cross_origin()
 @jwt_required()
 @validate_request("ArtSchema")
 def art_upadte(art=None):
@@ -63,6 +68,7 @@ def art_upadte(art=None):
 
 
 @art_route.route("/arts/<aid>", methods=["DELETE"])
+@cross_origin()
 @jwt_required(locations=["headers"])
 def art_delete(aid=None):
 
