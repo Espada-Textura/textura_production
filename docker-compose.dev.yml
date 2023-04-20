@@ -71,4 +71,5 @@ services:
 
 networks:
   app:
+    name: textura
     driver: bridge
